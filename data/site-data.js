@@ -3,7 +3,7 @@ export const siteData = {
   shortBrand: "Fıstıközü",
   domain: "www.fıstıközü.com.tr",
   logoPath: "/assets/logo-original.jpg",
-  heroImage: "/assets/images/sube-yeni-sanayi.png",
+  heroImage: "/assets/images/baklava-hero.png",
   fallbackHeroImage: "/assets/images/baklava-hero.png",
   qrMenuPath: "/menu/",
 
