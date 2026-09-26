@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#171a16">
+    <meta name="description" content="Fıstıközü Cafe / Pastane güncel QR menüsü.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Cafe / Pastane QR Menü | Fıstıközü">
+    <meta property="og:description" content="Fıstıközü Cafe / Pastane güncel QR menüsü.">
+    <link rel="icon" href="/assets/logo-original.jpg" type="image/jpeg">
+    <title>Cafe / Pastane QR Menü | Fıstıközü</title>
+    <link rel="stylesheet" href="/assets/styles.css">
+    <script type="module" src="/assets/site.js"></script>
+  </head>
+  <body class="menu-page">
+    <a class="skip-link" href="#main">İçeriğe geç</a>
+
+    <header class="qr-header">
+      <a class="brand" href="/" aria-label="Fıstıközü Baklavaları ana sayfa">
+        <img class="brand-logo" data-logo alt="Fıstıközü Baklavaları logosu" hidden>
+        <span class="brand-text" data-brand>Fıstıközü Baklavaları</span>
+      </a>
+      <a class="back-link" href="/">Ana sayfa</a>
+    </header>
+
+    <main id="main" class="qr-main">
+      <section class="qr-hero" aria-labelledby="menu-heading">
+        <p class="eyebrow">FISTIKÖZÜ CAFE / PASTANE</p>
+        <h1 id="menu-heading">QR Menü</h1>
+        <p>Güncel ürün ve fiyat bilgileri bu sabit sayfada yer alır.</p>
+        <div class="menu-meta" data-menu-meta></div>
+      </section>
+
+      <section class="menu-tools" aria-label="Menü araçları">
+        <label class="menu-search">
+          <span>Ürün ara</span>
+          <input data-menu-search type="search" placeholder="Baklava, kahve, içecek..." autocomplete="off">
+        </label>
+        <p class="menu-search-status" data-menu-count>Kategoriler hazırlanıyor.</p>
+      </section>
+
+      <nav class="menu-tabs" data-menu-nav aria-label="Menü kategorileri" hidden></nav>
+      <p class="menu-no-results" data-menu-no-results hidden>Aramanızla eşleşen kategori veya ürün bulunamadı.</p>
+      <div class="menu-content" data-menu aria-live="polite"></div>
+    </main>
+
+    <footer class="site-footer compact-footer">
+      <a class="footer-brand" href="/" data-brand>Fıstıközü Baklavaları</a>
+      <p>© <span data-year></span></p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#171a16">
+    <meta name="description" content="Fıstıközü Baklavaları resmi web sitesi. Şubeler, ürün grupları ve Cafe / Pastane QR menüsü.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Fıstıközü Baklavaları">
+    <meta property="og:description" content="Fıstıközü Baklavaları şubeleri ve yeni Cafe / Pastane QR menüsü.">
+    <meta property="og:image" content="/assets/images/baklava-hero.png">
+    <link rel="icon" href="/assets/logo-original.jpg" type="image/jpeg">
+    <title>Fıstıközü Baklavaları | Şubeler ve QR Menü</title>
+    <link rel="stylesheet" href="/assets/styles.css">
+    <script type="module" src="/assets/site.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">İçeriğe geç</a>
+
+    <header class="site-header" data-header>
+      <a class="brand" href="/" aria-label="Fıstıközü Baklavaları ana sayfa">
+        <img class="brand-logo" data-logo alt="Fıstıközü Baklavaları logosu" hidden>
+        <span class="brand-text" data-brand>Fıstıközü Baklavaları</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Ana menü">
+        <a href="#hakkimizda">Hakkımızda</a>
+        <a href="#subeler">Şubeler</a>
+        <a href="#urunler">Ürünler</a>
+        <a href="#cafe">Cafe / Pastane</a>
+        <a href="#iletisim">İletişim</a>
+        <a class="nav-action" href="/menu/">QR Menü</a>
+      </nav>
+
+      <details class="mobile-menu">
+        <summary aria-label="Menüyü aç">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </summary>
+        <nav aria-label="Mobil menü">
+          <a href="#hakkimizda">Hakkımızda</a>
+          <a href="#subeler">Şubeler</a>
+          <a href="#urunler">Ürünler</a>
+          <a href="#cafe">Cafe / Pastane</a>
+          <a href="#iletisim">İletişim</a>
+          <a class="nav-action" href="/menu/">QR Menü</a>
+        </nav>
+      </details>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-media" aria-hidden="true">
+          <img data-hero-image src="/assets/images/baklava-hero.png" alt="">
+        </div>
+        <div class="hero-inner">
+          <p class="eyebrow">FISTIKÖZÜ BAKLAVALARI</p>
+          <h1 id="hero-title">Baklava geleneği, cafe rahatlığı.</h1>
+          <p class="hero-copy">
+            Dört şube başlığı, yeni Cafe / Pastane deneyimi ve masalarda sabit kalacak QR menü tek yerde.
+          </p>
+          <div class="hero-actions" aria-label="Öne çıkan bağlantılar">
+            <a class="button button-primary" href="/menu/">QR menüyü aç</a>
+            <a class="button button-secondary" href="#subeler">Şubeleri gör</a>
+          </div>
+          <dl class="hero-stats" data-about-stats></dl>
+        </div>
+      </section>
+
+      <section class="section section-intro" id="hakkimizda" aria-labelledby="intro-title">
+        <div class="section-kicker">HAKKIMIZDA</div>
+        <div class="intro-grid">
+          <h2 id="intro-title" data-about-title>Fıstıközü’nün dijital vitrini.</h2>
+          <p data-about-copy></p>
+        </div>
+      </section>
+
+      <section class="section branch-section" id="subeler" aria-labelledby="branches-title">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">ŞUBELER</p>
+            <h2 id="branches-title">Dört noktayı tek bakışta gösteren sade yapı.</h2>
+          </div>
+          <p>Adres, telefon, çalışma saati ve harita bağlantıları kesinleştiğinde her şube kartında görünür.</p>
+        </div>
+        <div class="branch-grid" data-branches></div>
+      </section>
+
+      <section class="section products-section" id="urunler" aria-labelledby="products-title">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">ÜRÜN GRUPLARI</p>
+            <h2 id="products-title">Baklava tarafı güçlü, cafe tarafı esnek.</h2>
+          </div>
+          <a class="text-link" href="/menu/">Cafe / Pastane QR menüsü</a>
+        </div>
+        <div class="product-grid" data-product-groups></div>
+      </section>
+
+      <section class="cafe-feature" id="cafe" aria-labelledby="cafe-title">
+        <div class="cafe-copy">
+          <p class="section-kicker">YENİ ŞUBE</p>
+          <h2 id="cafe-title">Cafe / Pastane QR menüsü hazır altyapıyla bekliyor.</h2>
+          <p>
+            Masalara basılacak QR kodu aynı adrese gider. Ürünler ve fiyatlar güncellendiğinde bağlantı değişmez.
+          </p>
+          <a class="button button-light" href="/menu/">Menü sayfasına git</a>
+        </div>
+        <div class="phone-preview" aria-hidden="true">
+          <div class="phone-bar"></div>
+          <p>Fıstıközü Cafe / Pastane</p>
+          <strong>QR Menü</strong>
+          <span>Baklava</span>
+          <span>Pastane</span>
+          <span>Kahveler</span>
+          <span>İçecekler</span>
+        </div>
+      </section>
+
+      <section class="section contact-section" id="iletisim" aria-labelledby="contact-title">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">İLETİŞİM</p>
+            <h2 id="contact-title">Bilgiler netleşince aynı yapıya eklenecek.</h2>
+          </div>
+        </div>
+        <div class="contact-grid">
+          <div class="info-panel" data-contact-details></div>
+          <div class="info-panel" data-franchise-details></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="footer-brand" href="/" data-brand>Fıstıközü Baklavaları</a>
+      <div class="footer-links">
+        <a href="#hakkimizda">Hakkımızda</a>
+        <a href="#subeler">Şubeler</a>
+        <a href="#urunler">Ürünler</a>
+        <a href="/menu/">QR Menü</a>
+      </div>
+      <p>© <span data-year></span> <span data-brand>Fıstıközü Baklavaları</span></p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" role="img" aria-labelledby="title">
+  <title id="title">Fıstıközü Baklavaları logosu</title>
+  <circle cx="150" cy="150" r="145" fill="#262427" stroke="#fff" stroke-width="5"/>
+  <path d="M9 74 83 67c-17 20-17 43 1 66C47 124 22 105 9 74Z" fill="#82d300" stroke="#fff" stroke-width="4"/>
+  <path d="M112 66c46-36 107-49 181-33-19 43-54 78-112 88-18-23-40-42-69-55Z" fill="#82d300" stroke="#171719" stroke-width="5"/>
+  <path d="M47 77c29 12 54 13 83 3-15 24-34 35-62 30-11-7-17-18-21-33Z" fill="#fff"/>
+  <path d="M104 86c30 3 54 19 73 48-28-3-53-15-72-34-5-5-6-9-1-14Z" fill="#fff"/>
+  <path d="M127 96c13 13 25 30 33 49-21-6-39-16-53-31 0-8 7-14 20-18Z" fill="#262427"/>
+  <path d="M24 151 45 150l7 13-30 6Z" fill="#fff"/>
+  <path d="M252 176 278 184l-8 13-24-13Z" fill="#fff"/>
+  <path id="wordmark-curve" d="M31 158Q150 286 269 158" fill="none"/>
+  <text fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="33" font-style="italic" font-weight="800" letter-spacing="1.5">
+    <textPath href="#wordmark-curve" startOffset="50%" text-anchor="middle">FISTIKÖZÜ</textPath>
+  </text>
+</svg>
