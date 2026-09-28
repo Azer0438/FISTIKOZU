@@ -21,11 +21,11 @@ Build, `public/` içine sayfaları, görselleri, veri dosyalarını, robots.txt 
 
 ## İçerik Yönetimi
 
-Şubeler, ürünler, kategoriler, iletişim ve sosyal bağlantılar `data/site-data.js` dosyasından yönetilir. Sadece firma tarafından doğrulanmış gerçek bilgiler eklenmelidir. Boş alanlar ziyaretçiye gösterilmez.
+Şubeler, ana sayfa içeriği, iletişim ve sosyal bağlantılar `data/site-data.js` dosyasından yönetilir. QR menünün ürün ve kategorileri bağımsız `menu/data/catalog.js` dosyasındadır; ayrıntılar [menü dokümanında](menu/README.md). Sadece firma tarafından doğrulanmış gerçek bilgiler eklenmelidir. Boş alanlar ziyaretçiye gösterilmez.
 
 ### Menü
 
-`menu.categories` ve `menu.products` başlangıçta boştur. Veri yokken kategori, arama veya sahte ürün gösterilmez; ziyaretçi doğal bir karşılama görür. Kalıcı adres `/menu/` değişmez.
+Kalıcı adres `/menu/` değişmez. QR menü, `menu/data/catalog.js` içindeki onaylanmış ürün adlarını kullanır. Fiyatlar, fotoğraflar ve içerik açıklamaları doğrulanana kadar boş kalır. Eski `?demo=1` bağlantısı da artık gerçek kataloğu açar. Aşağıdaki eski tekil `category` şeması ana sayfa ürün bölümü içindir; QR içerik girişi için [menü dokümanını](menu/README.md) kullanın.
 
 Kategori şeması (yalnızca dokümantasyon):
 

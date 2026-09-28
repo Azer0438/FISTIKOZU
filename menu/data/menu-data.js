@@ -1,8 +1,11 @@
 import { siteData } from "../../data/site-data.js";
+import { categories, products } from "./catalog.js";
 
-// Gerçek ürün ve kategoriler data/site-data.js içindeki menu alanından gelir.
+// QR kataloğu bağımsızdır; ana sitenin ürün bölümünü değiştirmez.
 export const menuData = {
   ...siteData.menu,
+  categories,
+  products,
   settings: {
     defaultBranch: "cafe-pastane",
     unavailableMode: "hide"

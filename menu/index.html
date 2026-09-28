@@ -20,10 +20,9 @@
     <link rel="apple-touch-icon" href="/assets/logo-original.jpg">
     <script>
       document.documentElement.classList.add("qr-loading");
-      if (new URLSearchParams(location.search).get("demo") === "1") document.documentElement.dataset.qrDemo = "true";
       window.qrLoadingTimer = setTimeout(() => document.documentElement.classList.remove("qr-loading"), 5000);
     </script>
-    <link rel="stylesheet" href="/menu/menu.css?v=1">
+    <link rel="stylesheet" href="/menu/menu.css?v=2">
     <script type="module" src="/menu/app.js"></script>
     <!-- structured-data -->
   </head>
@@ -36,7 +35,6 @@
         <p class="qr-header-title" data-header-title hidden></p>
         <a class="qr-icon-button qr-website" href="/" aria-label="Fıstıközü web sitesine git" title="Fıstıközü web sitesine git"><img class="qr-icon" src="/assets/icons/arrow-up-right.svg" width="20" height="20" alt=""></a>
       </div>
-      <p class="qr-demo-notice" data-demo hidden>Örnek menü. Ürünler, fiyatlar ve görseller temsilidir.</p>
     </header>
     <main class="qr-main qr-container" id="main">
       <div class="qr-intro" data-intro>

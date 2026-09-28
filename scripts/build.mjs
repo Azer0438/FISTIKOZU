@@ -7,7 +7,7 @@ import {
   statSync,
   writeFileSync,
 } from "node:fs";
-import { basename, join, resolve } from "node:path";
+import { basename, extname, join, resolve } from "node:path";
 import { siteData } from "../data/site-data.js";
 import { createStructuredData } from "../assets/seo.js";
 
@@ -24,6 +24,8 @@ function copyRecursive(source, target) {
     }
     return;
   }
+
+  if ([".md", ".csv"].includes(extname(source).toLowerCase())) return;
 
   mkdirSync(resolve(target, ".."), { recursive: true });
   copyFileSync(source, target);

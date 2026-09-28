@@ -5,6 +5,7 @@ import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { buildCatalog, findProducts, readContext, readCategory, categoryHash } from "../menu/utils/catalog.js";
 import { menuData } from "../menu/data/menu-data.js";
+import { categories, products } from "../menu/data/catalog.js";
 import { siteData } from "../data/site-data.js";
 
 const fixture = {
@@ -23,9 +24,10 @@ const fixture = {
   ]
 };
 
-test("QR data stays separate from demo and empty categories stay hidden", () => {
-  assert.equal(menuData.products, siteData.menu.products);
-  assert.equal(menuData.categories, siteData.menu.categories);
+test("the production QR catalog is independent from homepage data", () => {
+  assert.equal(menuData.products, products);
+  assert.equal(menuData.categories, categories);
+  assert.notEqual(menuData.products, siteData.menu.products);
   assert.deepEqual(buildCatalog(), { categories: [], products: [] });
   assert.deepEqual(buildCatalog({ categories: [null, {}], products: [null, {}] }), { categories: [], products: [] });
 });
@@ -77,15 +79,14 @@ test("duplicate IDs and orphan products cannot create duplicate cards", () => {
   data.products.push(data.products[0], { id: "orphan", name: "TEST", categories: ["unknown"] });
   assert.equal(buildCatalog(data).products.length, 2);
 });
-test("branch and table URL parameters are validated and demo is explicit", () => {
+test("branch and table URL parameters are validated; demo no longer switches catalogs", () => {
   const branches = siteData.branches;
   assert.equal(readContext("/menu/?branch=organize&table=12", branches).branch.id, "organize");
   assert.equal(readContext("/menu/?branch=cafe", branches).branch.id, "cafe-pastane");
   assert.equal(readContext("/menu/?branch=unknown", branches).branch.id, "cafe-pastane");
   assert.equal(readContext("/menu/?table=12", branches).table, "12");
   assert.equal(readContext("/menu/?table=%3Cscript%3E", branches).table, "");
-  assert.equal(readContext("/menu/?demo=true", branches).demo, false);
-  assert.equal(readContext("/menu/?demo=1", branches).demo, true);
+  assert.deepEqual(readContext("/menu/?demo=1", branches), readContext("/menu/", branches));
 });
 test("category links survive encoding and reject unknown or malformed hashes", () => {
   const categories = [{ id: "çilek & kahve" }];
@@ -98,7 +99,39 @@ test("menu is independent from homepage script and styles; all module syntax is 
   const html = readFileSync(new URL("../menu/index.html", import.meta.url), "utf8");
   assert.doesNotMatch(html, /(?:src|href)="\/assets\/(?:site\.js|styles\.css)/);
   assert.match(html, /src="\/menu\/app\.js"/);
-  for (const path of ["app.js", "components.js", "utils/catalog.js", "data/menu-data.js", "data/demo-data.js"]) {
+  for (const path of ["app.js", "components.js", "utils/catalog.js", "data/menu-data.js", "data/catalog.js"]) {
     execFileSync(process.execPath, ["--check", fileURLToPath(new URL(`../menu/${path}`, import.meta.url))]);
   }
+});
+
+test("all approved categories and screenshot product groups are imported", () => {
+  const baseline = { pasta: 20, "hamburger-menu": 9, "sweet-croissant": 11, coffee: 26, icecekler: 19, matcha: 5, "bitki-caylari": 5, kahvalti: 10, "ice-coffee": 17, kokteyl: 20 };
+  for (const [id, count] of Object.entries(baseline)) {
+    assert.ok(categories.find(category => category.id === id));
+    assert.ok(products.filter(product => product.categories.includes(id)).length >= count, `missing product in ${id}`);
+  }
+  assert.ok(products.length >= 135);
+  assert.equal(new Set(products.map(product => product.id)).size, products.length);
+  assert.ok(products.every(product => product.categories.every(id => categories.some(category => category.id === id))));
+  assert.doesNotMatch(JSON.stringify({ categories, products }), /fl[aâ]neur|fl[aâ]nöz|demo-/i);
+});
+
+test("shared items are unique and retain their position in each category", () => {
+  const catalog = buildCatalog(menuData);
+  assert.deepEqual(products.find(product => product.id === "ekstra-cikolata").categories, ["pasta", "sweet-croissant"]);
+  assert.equal(findProducts(catalog, "", "sweet-croissant").at(-1).id, "ekstra-cikolata");
+  assert.equal(findProducts(catalog, "", "kahvalti")[2].id, "nutella-kruvasan");
+  assert.equal(findProducts(catalog, "", "icecekler")[8].id, "turk-kahvesi");
+  assert.equal(findProducts(catalog, "", "kokteyl")[13].id, "limonata");
+  assert.equal(findProducts(catalog, "nutella kruvasan").length, 1);
+  assert.equal(findProducts(catalog, "zebra mocha").length, 2, "hot and iced variants must remain distinct");
+});
+
+test("photo fields and per-category order overrides survive catalog normalization", () => {
+  const catalog = buildCatalog({ categories: [{ id: "a", name: "TEST" }], products: [
+    { id: "first", name: "First", categories: ["a"], order: 1, categoryOrder: { a: 2 } },
+    { id: "second", name: "Second", categories: ["a"], order: 2, categoryOrder: { a: 1 }, image: "/image.webp", imageKind: "generated" }
+  ] });
+  assert.deepEqual(findProducts(catalog, "", "a").map(item => item.id), ["second", "first"]);
+  assert.equal(catalog.products[1].imageKind, "generated");
 });

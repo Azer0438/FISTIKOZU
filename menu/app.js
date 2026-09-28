@@ -6,8 +6,13 @@ import { buildCatalog, readContext, findProducts, categoryHash, readCategory } f
 import { node, icon, categoryCard, productCard, productDetail } from "./components.js";
 
 const $ = (selector) => document.querySelector(selector);
+const pageUrl = new URL(location.href);
+if (pageUrl.searchParams.has("demo")) {
+  pageUrl.searchParams.delete("demo");
+  history.replaceState(history.state, "", pageUrl);
+}
 const context = readContext(location.href, siteData.branches, menuData.settings.defaultBranch);
-const data = context.demo ? (await import("./data/demo-data.js")).demoData : menuData;
+const data = menuData;
 const catalog = buildCatalog(data, context.branch?.id);
 const logo = safeLink(siteData.logoPath) || "/assets/logo-original.jpg";
 const currency = data.currency || "TRY";
@@ -29,14 +34,6 @@ $("[data-header-branch]").textContent = context.branch?.label || "Cafe / Pastane
 $("[data-brand-link]").href = homeUrl.href;
 $("[data-brand-link]").setAttribute("aria-label", `Fıstıközü ${context.branch?.label || "Cafe / Pastane"}, ana menü`);
 document.querySelectorAll("[data-logo]").forEach((image) => { image.src = logo; });
-$("[data-demo]").hidden = !context.demo;
-if (context.demo) {
-  const robots = node("meta");
-  robots.name = "robots";
-  robots.content = "noindex, nofollow";
-  document.head.append(robots);
-  $("[data-detail-label]").textContent = "Örnek ürün · Temsili fiyat ve görsel";
-}
 
 let schema = $("#structured-data");
 if (!schema) {
@@ -70,7 +67,8 @@ for (const dialog of [categoryDialog, detailDialog]) {
   });
 }
 function showProduct(product) {
-  $("[data-detail]").replaceChildren(productDetail(product, { logo, currency }));
+  const categoryName = catalog.categories.filter((category) => product.categories.includes(category.id)).map((category) => category.name).join(" · ");
+  $("[data-detail]").replaceChildren(productDetail(product, { logo, currency, categoryName }));
   openDialog(detailDialog);
   detailDialog.scrollTop = 0;
 }
@@ -83,7 +81,7 @@ function render() {
   const heading = category?.name || "Menümüz";
   const hasCatalog = catalog.categories.length > 0;
   title.textContent = heading;
-  document.title = `${context.demo ? "Örnek Menü | " : ""}${heading} | Fıstıközü`;
+  document.title = `${category ? `${category.name} | ` : ""}Fıstıközü | QR Menü`;
   $("[data-header-title]").textContent = heading;
   $("[data-header-title]").hidden = !category;
   $("[data-brand-link]").hidden = Boolean(category);
@@ -102,6 +100,7 @@ function render() {
   $("[data-status]").textContent = hasCatalog ? (showingProducts ? `${heading}: ${items.length} ürün` : `${catalog.categories.length} kategori`) : "";
   categoryGrid.hidden = showingProducts;
   productList.hidden = !showingProducts;
+  productList.classList.toggle("is-text-list", items.every((product) => !safeLink(product.image)));
   if (showingProducts) {
     const names = new Map(catalog.categories.map((item) => [item.id, item.name]));
     productList.replaceChildren(...items.map((product) => productCard(product, {

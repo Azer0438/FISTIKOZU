@@ -8,15 +8,15 @@ export function node(tag, className = "", text) {
   return element;
 }
 
-export function icon(name) {
+export function icon(name, directory = "/assets/icons") {
   const image = node("img", "qr-icon");
-  image.src = `/assets/icons/${name}.svg`;
+  image.src = `${directory}/${name}.svg`;
   image.alt = "";
   image.width = image.height = 20;
   return image;
 }
 
-export function media(src, alt, logo, eager = false) {
+export function media(src, alt, logo, eager = false, imageKind = "") {
   const frame = node("div", "qr-media");
   const image = node("img");
   image.width = 640;
@@ -38,6 +38,7 @@ export function media(src, alt, logo, eager = false) {
     image.src = src;
   } else fallback();
   frame.append(image);
+  if (imageKind === "generated") frame.append(node("span", "qr-image-note", "Temsili görsel"));
   return frame;
 }
 
@@ -46,7 +47,14 @@ export function categoryCard(category, logo, index) {
   const link = node("a", "qr-category-card");
   link.href = categoryHash(category.id);
   link.dataset.category = category.id;
-  link.append(media(category.image, category.name, logo, index < 3));
+  if (safeLink(category.image)) {
+    link.append(media(category.image, category.name, logo, index < 3, category.imageKind));
+  } else {
+    link.classList.add("is-text-category");
+    const symbol = icon(/^[a-z0-9-]+$/.test(category.icon || "") ? category.icon : "utensils-crossed", "/menu/icons");
+    symbol.classList.add("qr-category-symbol");
+    link.append(symbol);
+  }
   const caption = node("div", "qr-category-caption");
   const copy = node("div");
   copy.append(node("h3", "", category.name), node("span", "qr-category-count", `${category.count} ürün`));
@@ -63,7 +71,8 @@ export function productCard(product, { logo, currency, categoryName, onOpen }) {
   button.setAttribute("aria-haspopup", "dialog");
   button.setAttribute("aria-label", `${product.name}, ürün detayı`);
   button.dataset.product = product.id;
-  button.append(media(product.image, product.name, logo));
+  if (safeLink(product.image)) button.append(media(product.image, product.name, logo, false, product.imageKind));
+  else button.classList.add("is-text-product");
   const body = node("div", "qr-product-body");
   if (categoryName) body.append(node("span", "qr-product-category", categoryName));
   body.append(node("h3", "", product.name));
@@ -80,10 +89,11 @@ export function productCard(product, { logo, currency, categoryName, onOpen }) {
   return item;
 }
 
-export function productDetail(product, { logo, currency }) {
+export function productDetail(product, { logo, currency, categoryName }) {
   const fragment = document.createDocumentFragment();
-  fragment.append(media(product.image, product.name, logo, true));
+  if (safeLink(product.image)) fragment.append(media(product.image, product.name, logo, true, product.imageKind));
   const copy = node("div", "qr-detail-copy");
+  if (categoryName) copy.append(node("p", "qr-detail-category", categoryName));
   const title = node("h2", "", product.name);
   title.id = "product-title";
   copy.append(title);

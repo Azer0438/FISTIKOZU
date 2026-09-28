@@ -20,7 +20,7 @@ export function readContext(url, branches, defaultBranch = "cafe-pastane") {
   const known = list(branches);
   const branch = known.find((item) => item.id === id) || known.find((item) => item.id === defaultBranch) || known[0] || null;
   const table = parsed.searchParams.get("table") || "";
-  return { branch, table: /^[A-Za-z0-9_-]{1,32}$/.test(table) ? table : "", demo: parsed.searchParams.get("demo") === "1" };
+  return { branch, table: /^[A-Za-z0-9_-]{1,32}$/.test(table) ? table : "" };
 }
 
 export function buildCatalog(data = {}, branchId = "") {
@@ -56,11 +56,16 @@ export function buildCatalog(data = {}, branchId = "") {
 export function findProducts(catalog, query = "", categoryId = "") {
   const words = normalizeText(query).trim().split(/\s+/).filter(Boolean);
   const names = new Map(catalog.categories.map((item) => [item.id, item.name]));
-  return catalog.products.filter((item) => {
+  const matches = catalog.products.filter((item) => {
     if (categoryId && !item.categories.includes(categoryId)) return false;
     const text = normalizeText([item.name, item.description, ...item.categories.map((id) => names.get(id))].filter(hasText).join(" "));
     return words.every((word) => text.includes(word));
   });
+  if (categoryId) matches.sort((a, b) => {
+    const rank = (item) => Number.isFinite(item.categoryOrder?.[categoryId]) ? item.categoryOrder[categoryId] : order(item);
+    return rank(a) - rank(b);
+  });
+  return matches;
 }
 
 export function categoryHash(id) {

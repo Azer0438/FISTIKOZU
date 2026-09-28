@@ -1,102 +1,80 @@
 # Fıstıközü QR Menü
 
-Ana siteden bağımsız HTML/CSS/JavaScript modülü. Yeni çalışma zamanı bağımlılığı yoktur. Ana sayfanın HTML, CSS, JavaScript ve verileri bu revizyonda değiştirilmez.
+Normal adres: `/menu/`. Menü artık demo verisi kullanmaz. Eski `?demo=1` bağlantıları da aynı kataloğu açar; şube, masa ve kategori bilgileri korunur.
 
-## Adresler
+135 farklı ürün, 10 kategori. Ürün adları kullanıcının sağladığı referanslardan onayla aktarılmıştır. Fiyatlar, açıklamalar ve fotoğraflar henüz onaylanmadığı için boş bırakılmıştır. Aktarım dökümü: [IMPORT-NOTES.md](IMPORT-NOTES.md).
 
-- Gerçek menü: `/menu/`
-- Açıkça etiketli örnek önizleme: `/menu/?demo=1`
-- Şube bağlamı: `/menu/?branch=organize` (diğerleri: `sehir-hastanesi`, `yeni-sanayi`, `cafe-pastane`; `cafe` takma adı desteklenir)
-- Masa bağlamı: `/menu/?branch=organize&table=12`
-- Kategori: `/menu/#kategori/kategori-kimligi`
+## Tek İçerik Dosyası
 
-Kategori geçişleri query parametrelerini korur. Yenileme, tarayıcı geri/ileri ve bağlantıyla kategori açma desteklenir. Fiziksel QR için temel adres `/menu/` olarak kalır. Şube bazlı alt yollar henüz oluşturulmaz; şimdilik query parametresi yeterlidir. Masa parametresi yalnızca doğrulanıp okunur; sipariş, sepet veya takip işlemi yapılmaz.
+**`menu/data/catalog.js`** içindeki `sections` dizisi kategori ve ürünlerin kaynağıdır. Ana sitenin `data/site-data.js` dosyası değiştirilmez; bu sayede QR ürünleri ana sayfanın mevcut tasarımını etkilemez.
 
-## Gerçek İçeriği Ekleme
+Her kategorinin `id`, `name`, `icon`, isteğe bağlı `image`, `imageKind`, `active`, `branchIds` alanları ve `items` ürün listesi vardır. Kategori ve ürünlerin dizi sırası görüntüleme sırasını belirler. Bir kategoriyi gizlemek için `active: false` kullanılır.
 
-Tek içerik kaynağı: **`data/site-data.js` dosyasındaki `menu.categories` ve `menu.products`**.
-Mevcut boş diziler korunmuştur. Örnek veriler ayrı `menu/data/demo-data.js` dosyasında bulunur, sadece `demo=1` seçildiğinde yüklenir. Normal menüde ve ana sayfada demo ürün/fiyat görünmez.
-
-Kategori şeması (gerçek veri değildir):
-
-```js
-{
-  id: "kategori-kimligi",
-  name: "Firmanın verdiği kategori adı",
-  slug: "kategori-kimligi",
-  image: "/menu/images/gercek-kategori.webp",
-  order: 1,
-  active: true
-}
-```
-
-Ürün şeması (gerçek veri değildir):
+Ürün nesnesi örneği (değerler şemadır):
 
 ```js
 {
   id: "urun-kimligi",
   name: "Firmanın verdiği ürün adı",
-  slug: "urun-kimligi",
-  categories: ["kategori-kimligi"],
-  category: "kategori-kimligi",
   description: "",
   price: null,
   image: "",
+  imageKind: "",
   ingredients: [],
-  available: true,
-  featured: false,
-  order: 1
+  available: true
 }
 ```
 
-- `categories` birden fazla kategori kimliği alabilir. Global aramada ürün yalnızca bir kez görünür.
-- Eski `category` tekil alanı da desteklenir. Ana sitenin mevcut ürün bölümünü beslemek için `category` alanına ana kategori kimliği yazılır; QR menü çoklu kategori için `categories` alanını tercih eder.
-- Kategori URL'si değişmez `id` ile üretilir. İsim/slug değişimi kayıtlı bağlantıyı bozmaz.
-- Küçük `order` önce gelir. Sıra verilmezse mevcut dizi sırası korunur.
-- `active: false` kategoriyi gizler. Görünür ürünü olmayan kategoriler gösterilmez.
-- `price: null` fiyatı gizler, `0` geçerli fiyattır. Formatlama ortak `assets/content.js` yardımcısını kullanır.
-- `description` isteğe bağlıdır. Listede iki satır, detay penceresinde tam metin gösterilir.
-- `ingredients` isteğe bağlı metin veya metin dizisidir; yalnızca doğrulanmış bilgi girilir.
-- Ürün ve kategori görseli yoksa veya yüklenemezse orijinal logo gösterilir. Görseller sabit oranlıdır; ürün görselleri lazy load edilir.
-- `id` alanları kendi dizilerinde benzersiz olmalıdır.
+- Fiyat doğrulandığında `price` alanına sayısal tutar eklenir. `null` fiyatı gizler; `0` geçerli bir fiyat olarak gösterilir.
+- İsteğe bağlı `description` kartta iki satır, detayda tam gösterilir.
+- `ingredients` yalnızca doğrulanmış içerikleri taşıyan metin veya metin dizisidir.
+- `available: false` bulunabilirlik ayarına göre gizlenir veya "Geçici olarak mevcut değil" olarak görünür.
+- Fotoğraf yokken boş görsel alanı veya tekrar eden büyük logo gösterilmez. Ürün kompakt metin satırı, kategori ikonlu kart olur.
+- Ürün ID'leri benzersiz olmalıdır. Aynı ürün başka kategoride tekrar kullanılacaksa yeni nesne yerine mevcut kimliği yazılır: `"nutella-kruvasan"`. Ürün nesnesi, ilk kullanıldığı kategoride tanımlanmalıdır.
+- Çoklu kategori ilişkileri ve `categoryOrder` otomatik üretilir. Fiyat veya fotoğraf bir yerde değiştirildiğinde ürünün tüm kategorileri güncellenir. Global aramada aynı ürün bir kez görünür.
 
-## Menü ve Şube Ayarları
+## Fotoğraf Ekleme
 
-**`menu/data/menu-data.js`** içindeki `settings.unavailableMode`:
+1. `GORSEL-LISTESI.csv` dosyasında ürünlerin ve kategorilerin önerilen dosya adları bulunur.
+2. Gerçek dosyaları `menu/images/products/` veya `menu/images/categories/` altına koyun. PNG/JPEG dosyaları yayın öncesi WebP olarak optimize edilebilir.
+3. İlgili ürünün `image` alanını `/menu/images/products/urun-kimligi.webp` olarak yazın.
+4. AI ile üretilmiş görsellerde `imageKind: "generated"` kullanın. Kart ve detayda "Temsili görsel" görünür; bu bir demo menü etiketi değildir. Gerçek ürün çekiminde `imageKind: "photo"` kullanılır.
 
-- `"hide"`: `available: false` olan ürünü gizler (varsayılan).
-- `"show"`: ürünü "Geçici olarak mevcut değil" bilgisiyle gösterir; detayları incelenebilir.
+Dosya adı tek başına fotoğrafı etkinleştirmez; `image` yolu açıkça girilmelidir. Böylece henüz gelmemiş dosyalara istek atılmaz. Eklenmiş bir fotoğraf sonradan yüklenemezse logo yedeği devreye girer. Ürün görselleri lazy load edilir; sabit oranları yerleşim kaymasını önler.
 
-Ürün/kategoride isteğe bağlı `branchIds: ["organize"]` yalnızca bu şubede gösterir. Alan yoksa tüm şubelerde ortak kullanılır. Boş dizi hiçbir şubede göstermez.
+## Şube Ayarları
 
-Şube ayarı örneği (gerçek veri değildir):
+`menu/data/menu-data.js` içindeki `settings.unavailableMode`:
+
+- `"hide"`: mevcut olmayan ürünü gizler (varsayılan).
+- `"show"`: mevcut olmayan ürünü açıklayıcı durum bilgisiyle gösterir.
+
+Varsayılan şube Cafe / Pastane'dir. Diğer şubeler aynı kataloğu kullanır. Şube özel değişiklik örneği:
 
 ```js
 branchOverrides: {
   organize: {
-    products: {
-      "urun-kimligi": { price: null, available: true, hidden: false }
-    },
-    categories: {
-      "kategori-kimligi": { active: false }
-    }
+    products: { "urun-kimligi": { price: null, available: true, hidden: false } },
+    categories: { "kategori-kimligi": { active: false } }
   }
 }
 ```
 
-Fiyat geçersiz kılınmazsa ortak fiyat kullanılır. `null` o şubede fiyatı gizler. `hidden: true`, bulunabilirlik ayarından bağımsız kesin gizlemedir. Bilinmeyen şube parametresi varsayılan Cafe / Pastane'ye döner.
+Ürün/kategori nesnesine `branchIds: ["organize"]` eklenirse yalnızca belirtilen şubede görünür. `hidden: true` ürünü kesin gizler. Belirtilmeyen fiyat ortak kayıttan gelir; `price: null` yalnızca o şubede fiyatı gizler.
 
-## Dosyalar ve Kontroller
+## Bağlantılar
 
-- `index.html`: semantik kabuk, meta bilgileri ve native dialog'lar.
-- `menu.css`: yalnızca QR sayfasının bağımsız stilleri.
-- `app.js`: arama, gezinme, detay, odak yönetimi ve parametreler.
-- `components.js`: kategori kartı, ürün kartı, görsel yedeği, detay.
-- `utils/catalog.js`: saf veri filtreleme, sıralama, şube ve kategori çözümleme.
-- `data/menu-data.js`: gerçek veri kaynağını kullanan menü ayarları.
-- `data/demo-data.js`: gerçek menüye karışmayan örnek veri.
-- `../tests/qr-menu.test.mjs`: veri, route, bağımsızlık ve syntax testleri.
+- `/menu/`: ana menü.
+- `/menu/#kategori/coffee`: kategoriye doğrudan bağlantı.
+- `/menu/?branch=organize&table=12`: şube/masa bağlamı.
+- Diğer şubeler: `sehir-hastanesi`, `yeni-sanayi`, `cafe-pastane`; `cafe` takma adı da kabul edilir.
 
-`npm start` ile `http://localhost:4173/menu/?demo=1` açılır. `npm test` mevcut ve yeni testleri çalıştırır; `npm run build` menü klasörünü mevcut statik yayın yapısına dahil eder.
+Kategori geçişleri query parametrelerini korur. Tarayıcı geri/ileri, yenileme, arama ve hızlı kategori geçişi desteklenir. Masa yalnızca okunup doğrulanır; sipariş, sepet, üyelik veya ödeme yoktur. Fiziksel QR adresi `/menu/` olarak kalır.
 
-Demo için yerleşik image_gen aracıyla üretilen görseller: `menu/images/demo-coffee.webp` ve `menu/images/demo-cake.webp`. Tam üretim istemleri ve kaynak notları `images/README.md` içindedir. Baklava önizlemesi projedeki mevcut temsili görseldir. Hiçbiri gerçek ürün fotoğrafı olduğu iddiasıyla etiketlenmez.
+## Kontroller
+
+`npm start`: `http://localhost:4173/menu/`.
+
+`npm test`: içerik, kategori ilişkileri, şube davranışları, fiyatlar, route ve syntax testleri.
+
+`npm run check` ve `npm run build`: mevcut kontrol ve statik yayın yapısı. Yeni runtime bağımlılığı yoktur.
