@@ -1,0 +1,9 @@
+# Demo Görselleri
+
+`demo-coffee.webp` ve `demo-cake.webp`, yerleşik image_gen aracıyla üretilmiş temsili önizleme görselleridir. Fıstıközü'nün gerçek ürün fotoğrafları değildir; yalnızca `?demo=1` verilerinde kullanılır. Kaynaklar 800 piksel genişliğinde WebP olarak optimize edilmiştir. Gerçek menüye otomatik atanmazlar.
+
+## Üretim İstemleri
+
+Coffee: "Use case: product-mockup. Asset type: clearly fictional demo cafe QR menu category and product photograph. Single unbranded white ceramic cup of latte with realistic delicate latte art on a light neutral grey stone table, small saucer, tiny silver spoon, very few coffee beans. Professional appetizing cafe product photography, side window soft daylight, realistic crisp textures, subtle natural shadow. Three-quarter overhead view, whole cup and saucer fully visible centered with breathing room on every side, square framing suitable for both square and 4:3 crops. Bright and clean, natural warm coffee tone contrasted with neutral grey and white. No logos, no text, no watermark, no hands, no other food, no illustration, no dark blurry atmosphere."
+
+Cake: "Use case: product-mockup. Asset type: fictional demo patisserie QR menu product photograph. A single elegant individual strawberry and vanilla cream sponge cake on a small clean white porcelain plate, visible layers of light sponge and white cream, fresh strawberry halves neatly arranged on top. Whole cake and plate visible centered with breathing room on all sides. Light cool grey stone table, soft natural daylight, appetizing editorial food photography, sharp realistic crumb and fruit texture. Three-quarter view from slightly above, square framing that works for 4:3 crop. Restrained pastel pink and red accents, white cream and neutral grey. No branding, no text, no watermark, no other products, no hands, no illustrated style, no dark background."

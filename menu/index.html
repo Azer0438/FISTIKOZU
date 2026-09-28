@@ -2,62 +2,86 @@
 <html lang="tr">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#1b1d19">
-    <title>Menü | Fıstıközü Cafe / Pastane</title>
-    <meta name="description" content="Fıstıközü Cafe / Pastane menüsü. Fıstıközü lezzetlerini yeni bir deneyimle keşfedin.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#20241e">
+    <title>Fıstıközü | QR Menü</title>
+    <meta name="description" content="Fıstıközü Cafe / Pastane menüsünü keşfedin. Kategoriler, lezzetler ve ürün detayları.">
     <link rel="canonical" href="https://www.xn--fstkz-mua7b24ac.com.tr/menu/">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="tr_TR">
     <meta property="og:site_name" content="Fıstıközü Baklavaları">
-    <meta property="og:title" content="Menü | Fıstıközü Cafe / Pastane">
-    <meta property="og:description" content="Fıstıközü lezzetlerini yeni bir deneyimle keşfedin.">
+    <meta property="og:title" content="Fıstıközü | QR Menü">
+    <meta property="og:description" content="Fıstıközü Cafe / Pastane menüsünü keşfedin.">
     <meta property="og:url" content="https://www.xn--fstkz-mua7b24ac.com.tr/menu/">
     <meta property="og:image" content="https://www.xn--fstkz-mua7b24ac.com.tr/assets/logo-original.jpg">
     <meta property="og:image:alt" content="Fıstıközü logosu">
     <meta name="twitter:card" content="summary">
     <link rel="icon" href="/assets/logo-original.jpg" type="image/jpeg">
     <link rel="apple-touch-icon" href="/assets/logo-original.jpg">
-    <link rel="stylesheet" href="/assets/styles.css?v=3">
-    <script type="module" src="/assets/site.js"></script>
+    <script>
+      document.documentElement.classList.add("qr-loading");
+      if (new URLSearchParams(location.search).get("demo") === "1") document.documentElement.dataset.qrDemo = "true";
+      window.qrLoadingTimer = setTimeout(() => document.documentElement.classList.remove("qr-loading"), 5000);
+    </script>
+    <link rel="stylesheet" href="/menu/menu.css?v=1">
+    <script type="module" src="/menu/app.js"></script>
     <!-- structured-data -->
   </head>
-  <body class="menu-page">
-    <a class="skip-link" href="#main">İçeriğe geç</a>
+  <body class="qr-page">
+    <a class="qr-skip" href="#main">İçeriğe geç</a>
     <header class="qr-header">
-      <div class="qr-header-inner">
-        <a class="brand" href="/" aria-label="Fıstıközü Cafe / Pastane ana sayfa"><img class="brand-logo" data-logo src="/assets/logo-original.jpg" width="150" height="150" alt="Fıstıközü logosu"><span class="brand-wordmark">Fıstıközü <span>Cafe / Pastane</span></span></a>
-        <a class="icon-button" href="/" aria-label="Ana sayfaya dön" title="Ana sayfaya dön"><img class="icon" src="/assets/icons/arrow-up-right.svg" width="22" height="22" alt=""></a>
+      <div class="qr-header-inner qr-container" data-header>
+        <button class="qr-icon-button" data-back type="button" aria-label="Ana menüye dön" title="Ana menüye dön" hidden><img class="qr-icon" src="/assets/icons/arrow-left.svg" width="20" height="20" alt=""></button>
+        <a class="qr-brand" href="/menu/" data-brand-link aria-label="Fıstıközü Cafe / Pastane, ana menü"><img data-logo src="/assets/logo-original.jpg" width="150" height="150" alt=""><span>Fıstıközü <small data-header-branch>Cafe / Pastane</small></span></a>
+        <p class="qr-header-title" data-header-title hidden></p>
+        <a class="qr-icon-button qr-website" href="/" aria-label="Fıstıközü web sitesine git" title="Fıstıközü web sitesine git"><img class="qr-icon" src="/assets/icons/arrow-up-right.svg" width="20" height="20" alt=""></a>
       </div>
+      <p class="qr-demo-notice" data-demo hidden>Örnek menü. Ürünler, fiyatlar ve görseller temsilidir.</p>
     </header>
-
-    <main id="main" class="qr-main">
-      <div class="qr-title"><p class="section-kicker" data-menu-branch>FISTIKÖZÜ CAFE / PASTANE</p><h1>Menü</h1><span class="accent-line" aria-hidden="true"></span></div>
-      <div class="menu-tools" data-menu-tools hidden>
-        <form class="menu-search" role="search" data-search-form>
-          <label class="sr-only" for="menu-search">Menüde ara</label>
-          <img class="icon" src="/assets/icons/search.svg" width="20" height="20" alt="">
-          <input id="menu-search" data-menu-search type="search" placeholder="Menüde ara" autocomplete="off" aria-controls="menu-content">
-          <button class="icon-button search-clear" data-search-clear type="button" aria-label="Aramayı temizle" title="Aramayı temizle" hidden><img class="icon" src="/assets/icons/x.svg" width="20" height="20" alt=""></button>
-        </form>
-        <nav class="menu-tabs" data-menu-nav aria-label="Menü kategorileri"></nav>
+    <main class="qr-main qr-container" id="main">
+      <div class="qr-intro" data-intro>
+        <p class="qr-eyebrow" data-branch>FISTIKÖZÜ CAFE / PASTANE</p>
+        <div class="qr-title-row"><h1 data-title tabindex="-1">Menümüz</h1><span class="qr-title-rule" aria-hidden="true"></span></div>
+        <p class="qr-greeting" data-greeting>Hoş geldiniz, afiyet olsun.</p>
       </div>
-      <p class="menu-count sr-only" data-menu-count role="status" aria-live="polite"></p>
-      <div class="menu-content" id="menu-content" data-menu></div>
-      <section class="menu-welcome" data-menu-empty aria-labelledby="welcome-title">
-        <img class="welcome-logo" data-logo src="/assets/logo-original.jpg" width="150" height="150" alt="Fıstıközü logosu">
-        <p class="section-kicker">FISTIKÖZÜ CAFE / PASTANE</p>
-        <h2 id="welcome-title">Hoş geldiniz.</h2>
-        <p>Menü ve servis hakkında<br>ekibimizle görüşebilirsiniz.</p>
-        <a class="text-link" href="/#subeler">Şubelerimiz <img class="icon" src="/assets/icons/arrow-up-right.svg" width="20" height="20" alt=""></a>
+      <form class="qr-search" role="search" data-search-form hidden>
+        <label class="qr-sr-only" for="menu-search">Menüde ara</label>
+        <img class="qr-icon" src="/assets/icons/search.svg" width="20" height="20" alt="">
+        <input id="menu-search" type="search" data-search placeholder="Menüde ara..." autocomplete="off" enterkeyhint="search" aria-controls="menu-content">
+        <button class="qr-icon-button" data-clear type="button" aria-label="Aramayı temizle" title="Aramayı temizle" hidden><img class="qr-icon" src="/assets/icons/x.svg" width="20" height="20" alt=""></button>
+      </form>
+      <p class="qr-sr-only" data-status role="status" aria-live="polite" aria-atomic="true"></p>
+      <section id="menu-content" class="qr-content" aria-labelledby="content-title" data-content hidden>
+        <div class="qr-section-heading"><h2 id="content-title" data-content-title>Kategoriler</h2><span data-count></span></div>
+        <ul class="qr-category-grid" data-categories></ul>
+        <ul class="qr-product-grid" data-products hidden></ul>
       </section>
-      <section class="menu-no-results" data-menu-no-results hidden aria-labelledby="no-results-title">
+      <section class="qr-empty" data-empty aria-labelledby="empty-title">
+        <img data-logo src="/assets/logo-original.jpg" width="150" height="150" alt="Fıstıközü logosu">
+        <h2 id="empty-title">Tatlı bir mola.</h2>
+        <p>Menü ve servis hakkında<br>ekibimizle görüşebilirsiniz.</p>
+        <a class="qr-text-link" href="/#subeler">Şubelerimiz <img class="qr-icon" src="/assets/icons/arrow-up-right.svg" width="20" height="20" alt=""></a>
+      </section>
+      <section class="qr-empty qr-no-results" data-no-results aria-labelledby="no-results-title" hidden>
+        <img class="qr-empty-icon" src="/assets/icons/search.svg" width="32" height="32" alt="">
         <h2 id="no-results-title">Bir eşleşme bulamadık.</h2>
         <p>Başka bir lezzet arayabilirsiniz.</p>
-        <button class="text-link" type="button" data-search-reset>Aramayı Temizle <img class="icon" src="/assets/icons/x.svg" width="20" height="20" alt=""></button>
+        <button class="qr-text-link" data-reset type="button">Aramayı temizle <img class="qr-icon" src="/assets/icons/x.svg" width="20" height="20" alt=""></button>
       </section>
+      <noscript><p class="qr-noscript">Menüyü görüntülemek için JavaScript'i etkinleştirebilir veya ekibimizle görüşebilirsiniz.</p></noscript>
     </main>
-
-    <footer class="site-footer compact-footer on-dark"><div class="qr-footer-inner"><a href="/" class="text-link">Fıstıközü’nü Keşfedin <img class="icon" src="/assets/icons/arrow-up-right.svg" width="20" height="20" alt=""></a><p>© <span data-year></span> <span data-brand>Fıstıközü Baklavaları</span></p></div></footer>
+    <footer class="qr-footer qr-container"><a href="/">Fıstıközü Baklavaları <img class="qr-icon" src="/assets/icons/arrow-up-right.svg" width="20" height="20" alt=""></a><p>© <span data-year></span> Fıstıközü</p></footer>
+    <div class="qr-floating" data-floating hidden>
+      <button class="qr-top qr-icon-button" type="button" data-top aria-label="Yukarı çık" title="Yukarı çık" hidden><img class="qr-icon" src="/assets/icons/arrow-down.svg" width="20" height="20" alt=""></button>
+      <button class="qr-category-trigger" type="button" data-category-trigger aria-haspopup="dialog" aria-controls="category-sheet"><img class="qr-icon" src="/assets/icons/menu.svg" width="20" height="20" alt="">Kategoriler</button>
+    </div>
+    <dialog class="qr-dialog qr-category-dialog" id="category-sheet" aria-labelledby="category-sheet-title">
+      <div class="qr-sheet-head"><h2 id="category-sheet-title">Kategoriler</h2><button class="qr-icon-button" type="button" data-close aria-label="Kategorileri kapat" title="Kategorileri kapat" autofocus><img class="qr-icon" src="/assets/icons/x.svg" width="20" height="20" alt=""></button></div>
+      <nav aria-label="Hızlı kategori geçişi" data-category-list></nav>
+    </dialog>
+    <dialog class="qr-dialog qr-detail-dialog" id="product-detail" aria-labelledby="product-title">
+      <div class="qr-detail-head"><span data-detail-label>Fıstıközü</span><button class="qr-icon-button" type="button" data-close aria-label="Ürün detayını kapat" title="Ürün detayını kapat" autofocus><img class="qr-icon" src="/assets/icons/x.svg" width="20" height="20" alt=""></button></div>
+      <div data-detail></div>
+    </dialog>
   </body>
 </html>
