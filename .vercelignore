@@ -1,0 +1,9 @@
+.git/
+.vercel/
+node_modules/
+tmp/
+public/
+public2/
+.env
+.env.*
+*.log
