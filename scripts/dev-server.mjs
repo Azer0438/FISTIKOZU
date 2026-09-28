@@ -3,7 +3,7 @@ import { createServer } from "node:http";
 import { dirname, extname, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const root = dirname(fileURLToPath(import.meta.url));
+const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const port = Number(process.env.PORT || 4173);
 
 const mimeTypes = {

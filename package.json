@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "start": "node server.mjs",
-    "dev": "node server.mjs",
-    "check": "node --check server.mjs && node --check assets/site.js && node --check data/site-data.js"
+    "start": "node scripts/dev-server.mjs",
+    "dev": "node scripts/dev-server.mjs",
+    "check": "node --check scripts/dev-server.mjs && node --check scripts/build.mjs && node --check assets/site.js && node --check data/site-data.js"
   }
 }
