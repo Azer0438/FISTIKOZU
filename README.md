@@ -1,59 +1,99 @@
-# Fıstıközü Web Sitesi
+# Fıstıközü Baklavaları
 
-Yerel ortamda çalışacak statik web sitesi ve Cafe / Pastane QR menü altyapısı.
+Türkçe statik web sitesi ve kalıcı `/menu/` QR menüsü. Mevcut HTML, CSS, JavaScript ve Node.js yapısı korunur; uygulama için ek paket kurulumu gerekmez.
 
-## Başlatma
+## Çalıştırma
 
-```bash
+```sh
 npm start
 ```
 
-Ana sayfa:
+Ana sayfa: `http://localhost:4173/` · Menü: `http://localhost:4173/menu/`
+Port doluysa `PORT` ortam değişkeni ile farklı port seçilir.
 
-```text
-http://localhost:4173
+```sh
+npm run check
+npm test
+npm run build
 ```
 
-QR menü:
+Build, `public/` içine sayfaları, görselleri, veri dosyalarını, robots.txt ve sitemap.xml dosyalarını çıkarır. Yapılandırılmış veriler HTML içine build sırasında yazılır. Yerel sunucu `scripts/dev-server.mjs` içinde kalmalıdır; köke `server.mjs` koymak Vercel'in projeyi Node uygulaması olarak algılamasına yol açabilir.
 
-```text
-http://localhost:4173/menu/
+## İçerik Yönetimi
+
+Şubeler, ürünler, kategoriler, iletişim ve sosyal bağlantılar `data/site-data.js` dosyasından yönetilir. Sadece firma tarafından doğrulanmış gerçek bilgiler eklenmelidir. Boş alanlar ziyaretçiye gösterilmez.
+
+### Menü
+
+`menu.categories` ve `menu.products` başlangıçta boştur. Veri yokken kategori, arama veya sahte ürün gösterilmez; ziyaretçi doğal bir karşılama görür. Kalıcı adres `/menu/` değişmez.
+
+Kategori şeması (yalnızca dokümantasyon):
+
+```js
+{ id: "kategori-kimligi", name: "Firmanın verdiği kategori adı" }
 ```
 
-## Vercel Yayını
+Ürün şeması (yalnızca dokümantasyon):
 
-GitHub deposu `Azer0438/FISTIKOZU`, üretim dalı `main` olmalıdır.
-Root Directory depo kökünde kalmalıdır; `menu` veya `public` seçilmemelidir.
-`vercel.json` şu ayarları belirler:
-
-- Framework Preset: Other
-- Build Command: `npm run build`
-- Output Directory: `public`
-
-Yerel kontrol için `npm run check` ve `npm run build` çalıştırılır.
-Yayın çıktısında `public/index.html`, `public/menu/index.html`, `public/assets/`
-ve `public/data/` bulunmalıdır. Yayından sonra `/` ve `/menu/` adresleri kontrol edilir.
-
-Yerel sunucu `scripts/dev-server.mjs` içindedir. Dosyayı kökte `server.mjs`
-adıyla tutmak, Vercel'in projeyi Node sunucusu olarak algılamasına neden olabilir.
-Yayında yalnızca statik `public` çıktısı kullanılır.
-
-## İçerik Güncelleme
-
-Şube, iletişim, ürün grubu ve QR menü ürünleri şu dosyadan güncellenir:
-
-```text
-data/site-data.js
+```js
+{
+  id: "urun-kimligi",
+  name: "Firmanın verdiği ürün adı",
+  description: "",
+  price: null,
+  image: "",
+  category: "kategori-kimligi",
+  available: true,
+  featured: false
+}
 ```
 
-QR menüdeki ürün satırları demo sunumu için fiyat alanı boş şekilde hazırlanmıştır. Gerçek fiyatlar geldiğinde aynı ürünlerde `price` alanı doldurulabilir veya ürün isimleri değiştirilebilir.
+- `category`, mevcut bir kategorinin `id` değeriyle eşleşmelidir.
+- `price` zorunlu değildir. `null` veya boş metin olduğunda fiyat gösterilmez. Sayısal fiyatlar `menu.currency` para birimine göre Türkçe biçimlendirilir; onaylanmış metin fiyatları da desteklenir.
+- `available: false` ürünü hem ana sayfadan hem menüden gizler. Ürünü olmayan kategoriler gösterilmez.
+- `image` yoksa boş görsel kutusu oluşturulmaz. Yerel görsel yolu önerilir.
+- `featured: true` ürünler ana sayfada öne çıkar. İşaretli ürün yoksa ilk altı görünür ürün kullanılır. Ürün yokken ana sayfa markanın görsel anlatımını korur.
 
-Şube görselleri de aynı dosyada her şubenin `image` alanından yönetilir. Yeni Sanayi için beklenen yol:
+### Şubeler
 
-```text
-assets/images/sube-yeni-sanayi.png
+Her şube `id`, `name`, `label`, `type`, `image`, `address`, `phone`, `mapsUrl`, `coordinates` ve `workingHours` alanlarını destekler. `label` kısa şube adı; `type`, `bakery` veya `cafe` olabilir. Cafe / Pastane için `qrMenu: true`, menü bağlantısını açar.
+
+- `phone` girildiğinde **Ara**, doğrulanmış `mapsUrl` girildiğinde **Yol Tarifi** otomatik görünür.
+- Harita bağlantısı adres veya koordinatlardan tahmin edilmez.
+- `address` boşsa `null` bırakılır. Gerçek bilgiler geldiğinde aşağıdaki nesne doldurulur. Görüntüleme için düz metin de desteklenir; LocalBusiness şeması için yapılandırılmış adres gerekir.
+
+```js
+address: {
+  streetAddress: "",
+  addressLocality: "",
+  addressRegion: "",
+  postalCode: "",
+  addressCountry: ""
+},
+coordinates: null,
+workingHours: []
 ```
 
-Ana sayfa hero görseli `data/site-data.js` içindeki `heroImage` alanından gelir ve `assets/images/baklava-hero.png` dosyasını kullanır. Yeni Sanayi fotoğrafı yalnızca ilgili şubenin görselidir.
+Koordinat şeması: `{ latitude: sayi, longitude: sayi }`.
+Çalışma saati şeması: `{ days: [], opens: "", closes: "" }`.
+`days`, `Monday` ile `Sunday` arasındaki gün adlarını; saatler `HH:MM` biçimini kullanır. Arayüz günleri Türkçe gösterir.
 
-QR kodlar ileride `/menu/` adresine yönlendirildiğinde, ürün ve fiyat değişikliklerinde QR kodu yeniden basmak gerekmez.
+Yeni Sanayi fotoğrafı sadece ilgili şubede kullanılır. Diğer şubelere fotoğraf veya boş fotoğraf alanı atanmaz. Logo orijinal JPEG dosyasıdır. Mevcut temsili baklava görseli hero ve lezzetler bölümünde kullanılır; gerçek Fıstıközü ürün fotoğrafı olarak etiketlenmez. WebP sürümleri aynı görselin optimize edilmiş kopyalarıdır; PNG kaynakları korunur.
+
+### İletişim
+
+`contact.email`, `contact.phone`, `contact.address` ve `socialLinks: [{ name, url }]` alanları gerçek bilgilerle doldurulur. Boş iletişim bilgileri veya sosyal hesaplar için yer tutucu gösterilmez.
+
+## SEO ve Yayın
+
+Canonical adresler ve `canonicalBase`, gelecekteki `https://www.fıstıközü.com.tr` alan adına hazırlanmıştır. HTML, alan adının standart ASCII/Punycode karşılığını kullanır. Bu ayarlar alan adını bağlamaz; mevcut yayın Vercel adresinde çalışır.
+
+Organization ve WebSite şemaları hazırdır. Şubelere gerçek `streetAddress`, `addressLocality` ve `addressCountry` girildiğinde LocalBusiness alt türü eklenir; bilinmeyen telefon, koordinat veya saatler şemaya yazılmaz. Menü sayfasında yalnızca ilgili Cafe / Pastane şubesi için yerel işletme verisi eklenir.
+
+Vercel ayarları: **Other**, Root Directory depo kökü, Build Command `npm run build`, Output Directory `public`. GitHub deposu `Azer0438/FISTIKOZU`, üretim dalı `main`.
+
+Yeni veri veya görseller eklendikten sonra kontrolleri ve build'i çalıştırın. GitHub'a push yapılınca Vercel otomatik yayınlar. `/menu/` adresi korunur; menü güncellemeleri QR kodunun yeniden basılmasını gerektirmez.
+
+## Görsel Kaynakları
+
+Arayüz ikonları Lucide'dan alınmıştır; lisansı `assets/icons/LICENSE.txt` dosyasındadır. Harici font veya tarayıcıda çalışan yeni bir kütüphane eklenmemiştir.

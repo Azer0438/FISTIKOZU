@@ -1,13 +1,6 @@
 import { siteData } from "/data/site-data.js";
-
-const hasText = (value) => typeof value === "string" && value.trim().length > 0;
-const cleanPhone = (value) => value.replace(/[^\d+]/g, "");
-const normalizeText = (value) =>
-  (value || "")
-    .toString()
-    .toLocaleLowerCase("tr-TR")
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
+import { hasText, safeLink, phoneLink, formatPrice, formatAddress, validHours, dayNames, getMenuGroups, filterMenuGroups } from "./content.js";
+import { createStructuredData } from "./seo.js";
 
 function el(tag, className, text) {
   const node = document.createElement(tag);
@@ -17,406 +10,295 @@ function el(tag, className, text) {
 }
 
 function setText(selector, value) {
-  document.querySelectorAll(selector).forEach((node) => {
-    node.textContent = value;
-  });
+  if (!hasText(value)) return;
+  document.querySelectorAll(selector).forEach((node) => { node.textContent = value; });
 }
 
-function addDetail(container, label, value, href) {
-  if (!hasText(value)) return false;
+function icon(name) {
+  const image = el("img", "icon");
+  image.src = `/assets/icons/${name}.svg`;
+  image.alt = "";
+  image.width = 20;
+  image.height = 20;
+  return image;
+}
 
+function linkButton(label, href, iconName = "arrow-up-right") {
+  const link = el("a", "text-link", label);
+  link.href = href;
+  link.append(icon(iconName));
+  return link;
+}
+
+function contentImage(src, alt, className, width = 640, height = 480) {
+  const image = el("img", className);
+  image.src = src;
+  image.alt = alt;
+  image.width = width;
+  image.height = height;
+  image.loading = "lazy";
+  image.decoding = "async";
+  return image;
+}
+
+function addDetail(container, value, iconName, href) {
+  if (!hasText(value)) return;
   const row = el("p", "detail-row");
-  row.append(el("span", "detail-label", label));
-
-  if (href) {
-    const link = document.createElement("a");
-    link.href = href;
-    link.textContent = value;
-    row.append(link);
-  } else {
-    row.append(document.createTextNode(value));
-  }
-
+  row.append(icon(iconName));
+  const content = el(href ? "a" : "span", "", value);
+  if (href) content.href = href;
+  row.append(content);
   container.append(row);
-  return true;
 }
 
 setText("[data-brand]", siteData.brand);
-setText("[data-year]", new Date().getFullYear().toString());
+setText("[data-year]", String(new Date().getFullYear()));
+setText("[data-about-title]", siteData.about?.title);
+setText("[data-about-copy]", siteData.about?.description);
+setText("[data-menu-branch]", siteData.menu?.branchName);
 
 document.querySelectorAll("[data-logo]").forEach((image) => {
-  if (!hasText(siteData.logoPath)) return;
-
-  image.src = siteData.logoPath;
-  image.addEventListener(
-    "load",
-    () => {
-      image.hidden = false;
-    },
-    { once: true }
-  );
+  if (safeLink(siteData.logoPath)) image.src = siteData.logoPath;
 });
 
 document.querySelectorAll("[data-hero-image]").forEach((image) => {
-  const fallbackImage = hasText(siteData.fallbackHeroImage)
-    ? siteData.fallbackHeroImage
-    : image.getAttribute("src");
-
-  if (hasText(siteData.heroImage)) {
-    image.src = siteData.heroImage;
+  if (safeLink(siteData.heroImage)) image.src = siteData.heroImage;
+  if (hasText(siteData.heroSrcset)) {
+    image.srcset = siteData.heroSrcset;
+    image.sizes = image.closest(".hero") ? "100vw" : "(min-width: 768px) 55vw, 100vw";
   }
-
-  image.addEventListener(
-    "error",
-    () => {
-      if (fallbackImage && image.src !== new URL(fallbackImage, window.location.href).href) {
-        image.src = fallbackImage;
-      }
-    },
-    { once: true }
-  );
+  image.addEventListener("error", () => {
+    if (safeLink(siteData.fallbackHeroImage)) {
+      image.removeAttribute("srcset");
+      image.src = siteData.fallbackHeroImage;
+    }
+  }, { once: true });
 });
 
-document.querySelectorAll(".mobile-menu a").forEach((link) => {
-  link.addEventListener("click", () => {
-    const menu = link.closest("details");
-    if (menu) menu.open = false;
+const header = document.querySelector("[data-header]");
+const mobileMenu = document.querySelector(".mobile-menu");
+if (header) {
+  const updateHeader = () => header.classList.toggle("is-scrolled", window.scrollY > 24);
+  let scheduled = false;
+  window.addEventListener("scroll", () => {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(() => { updateHeader(); scheduled = false; });
+  }, { passive: true });
+  updateHeader();
+}
+
+if (mobileMenu) {
+  const summary = mobileMenu.querySelector("summary");
+  const closeMenu = (restoreFocus = false) => {
+    mobileMenu.open = false;
+    if (restoreFocus) summary.focus();
+  };
+  mobileMenu.addEventListener("toggle", () => {
+    header?.classList.toggle("menu-is-open", mobileMenu.open);
+    const label = mobileMenu.open ? "Menüyü kapat" : "Menüyü aç";
+    summary.setAttribute("aria-label", label);
+    summary.title = label;
   });
-});
-
-const aboutTitle = document.querySelector("[data-about-title]");
-if (aboutTitle && hasText(siteData.about?.title)) {
-  aboutTitle.textContent = siteData.about.title;
-}
-
-const aboutCopy = document.querySelector("[data-about-copy]");
-if (aboutCopy) {
-  aboutCopy.textContent = hasText(siteData.about?.description)
-    ? siteData.about.description
-    : "Marka tanıtım metni eklenecek.";
-}
-
-const aboutStats = document.querySelector("[data-about-stats]");
-if (aboutStats) {
-  const stats = siteData.about?.stats?.filter((item) => hasText(item.value) && hasText(item.label)) ?? [];
-
-  stats.forEach((item) => {
-    const group = el("div", "stat-item");
-    group.append(el("dt", "", item.value));
-    group.append(el("dd", "", item.label));
-    aboutStats.append(group);
+  mobileMenu.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => closeMenu()));
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && mobileMenu.open) closeMenu(true);
   });
-}
-
-const productGroups = document.querySelector("[data-product-groups]");
-if (productGroups) {
-  const groups = siteData.productGroups?.filter((group) => hasText(group.name)) ?? [];
-
-  groups.forEach((group) => {
-    const article = el("article", "product-card");
-    if (hasText(group.status)) {
-      article.append(el("span", "status-pill", group.status));
-    }
-    article.append(el("h3", "", group.name));
-    if (hasText(group.description)) {
-      article.append(el("p", "", group.description));
-    }
-    productGroups.append(article);
+  document.addEventListener("click", (event) => {
+    if (mobileMenu.open && !mobileMenu.contains(event.target)) closeMenu();
+  });
+  matchMedia("(min-width: 1100px)").addEventListener("change", (event) => {
+    if (event.matches) closeMenu();
   });
 }
 
 const branches = document.querySelector("[data-branches]");
 if (branches) {
-  siteData.branches.forEach((branch, index) => {
+  const knownBranches = (siteData.branches || []).filter((branch) => hasText(branch.name));
+  branches.classList.toggle("has-feature", knownBranches.filter((branch) => safeLink(branch.image)).length === 1);
+  knownBranches.forEach((branch, index) => {
     const article = el("article", "branch-card");
-
-    const media = el("figure", "branch-media");
-    const placeholder = el("div", "branch-media-placeholder", "Şube görseli eklenecek");
-    if (hasText(branch.image)) {
-      const image = document.createElement("img");
-      image.src = branch.image;
-      image.alt = `${branch.name} şube görseli`;
-      image.loading = "lazy";
-      image.addEventListener(
-        "error",
-        () => {
-          image.remove();
-          media.append(placeholder);
-        },
-        { once: true }
-      );
+    article.id = `sube-${branch.id}`;
+    article.setAttribute("aria-label", branch.name);
+    if (safeLink(branch.image)) {
+      article.classList.add("has-image");
+      const media = el("figure", "branch-media");
+      const image = contentImage(branch.image, `${branch.name} dış görünümü`, "", branch.imageWidth || 640, branch.imageHeight || 480);
+      image.addEventListener("error", () => { media.hidden = true; }, { once: true });
       media.append(image);
-    } else {
-      media.append(placeholder);
+      article.append(media);
     }
-    article.append(media);
-
-    article.append(el("span", "branch-index", String(index + 1).padStart(2, "0")));
-
-    const heading = el("h3", "", branch.name);
-    article.append(heading);
-
-    if (hasText(branch.status)) {
-      article.append(el("span", "branch-status", branch.status));
-    }
-
+    const body = el("div", "branch-body");
+    const number = el("span", "branch-index", String(index + 1).padStart(2, "0"));
+    number.setAttribute("aria-hidden", "true");
+    body.append(number);
+    const content = el("div", "branch-content");
+    const heading = el("h3");
+    if (hasText(branch.label)) {
+      heading.append(el("span", "branch-brand", branch.type === "cafe" ? siteData.shortBrand : siteData.brand));
+      heading.append(el("span", "branch-name", branch.label));
+    } else heading.textContent = branch.name;
+    content.append(heading);
     const details = el("div", "branch-details");
-    const hasAddress = addDetail(details, "Adres", branch.address);
-    const hasPhone = addDetail(details, "Telefon", branch.phone, hasText(branch.phone) ? `tel:${cleanPhone(branch.phone)}` : "");
-    const hasHours = addDetail(details, "Saat", branch.hours);
-
-    if (hasText(branch.mapsUrl)) {
-      addDetail(details, "Harita", "Google Haritalar", branch.mapsUrl);
+    addDetail(details, formatAddress(branch.address), "map-pin");
+    for (const hours of validHours(branch.workingHours)) {
+      addDetail(details, `${hours.days.map((day) => dayNames[day]).join(", ")}: ${hours.opens} - ${hours.closes}`, "clock");
     }
-
-    if (hasAddress || hasPhone || hasHours || hasText(branch.mapsUrl)) {
-      article.append(details);
-    } else {
-      article.append(el("p", "pending-copy", "Şube detayları eklenecek."));
+    if (details.childElementCount) content.append(details);
+    const actions = el("div", "branch-actions");
+    if (safeLink(branch.mapsUrl)) {
+      const link = linkButton("Yol Tarifi", branch.mapsUrl, "map-pin");
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.setAttribute("aria-label", `${branch.name} yol tarifi (yeni sekme)`);
+      actions.append(link);
     }
-
-    if (branch.qrMenu) {
-      const link = el("a", "branch-link", "QR menüye git");
-      link.href = siteData.qrMenuPath;
-      article.append(link);
+    if (phoneLink(branch.phone)) {
+      const link = linkButton("Ara", phoneLink(branch.phone), "phone");
+      link.setAttribute("aria-label", `${branch.name} şubesini ara`);
+      actions.append(link);
     }
-
+    if (branch.qrMenu) actions.append(linkButton("Menüyü İncele", siteData.qrMenuPath));
+    if (actions.childElementCount) content.append(actions);
+    body.append(content);
+    article.append(body);
     branches.append(article);
   });
 }
 
-const contactDetails = document.querySelector("[data-contact-details]");
-if (contactDetails) {
-  contactDetails.append(el("h3", "", "İletişim"));
-  const hasEmail = addDetail(
-    contactDetails,
-    "E-posta",
-    siteData.contact.email,
-    hasText(siteData.contact.email) ? `mailto:${siteData.contact.email}` : ""
-  );
-  const hasPhone = addDetail(
-    contactDetails,
-    "Telefon",
-    siteData.contact.phone,
-    hasText(siteData.contact.phone) ? `tel:${cleanPhone(siteData.contact.phone)}` : ""
-  );
-  const hasAddress = addDetail(contactDetails, "Adres", siteData.contact.address);
-
-  if (!hasEmail && !hasPhone && !hasAddress) {
-    contactDetails.append(el("p", "pending-copy", "İletişim bilgileri eklenecek."));
+const contact = document.querySelector("[data-contact-details]");
+if (contact) {
+  const details = siteData.contact || {};
+  if (phoneLink(details.phone)) addDetail(contact, details.phone, "phone", phoneLink(details.phone));
+  if (hasText(details.email) && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(details.email)) {
+    addDetail(contact, details.email, "mail", `mailto:${details.email}`);
   }
+  addDetail(contact, formatAddress(details.address), "map-pin");
+  contact.hidden = contact.childElementCount === 0;
 }
 
-const franchiseDetails = document.querySelector("[data-franchise-details]");
-if (franchiseDetails) {
-  franchiseDetails.append(el("h3", "", siteData.franchise.title || "Franchise"));
-
-  if (hasText(siteData.franchise.description)) {
-    franchiseDetails.append(el("p", "", siteData.franchise.description));
-  }
-
-  const hasEmail = addDetail(
-    franchiseDetails,
-    "E-posta",
-    siteData.franchise.email,
-    hasText(siteData.franchise.email) ? `mailto:${siteData.franchise.email}` : ""
-  );
-  const hasPhone = addDetail(
-    franchiseDetails,
-    "Telefon",
-    siteData.franchise.phone,
-    hasText(siteData.franchise.phone) ? `tel:${cleanPhone(siteData.franchise.phone)}` : ""
-  );
-
-  if (!hasText(siteData.franchise.description) && !hasEmail && !hasPhone) {
-    franchiseDetails.append(el("p", "pending-copy", "Franchise bilgileri eklenecek."));
-  }
-}
-
-const menuMeta = document.querySelector("[data-menu-meta]");
-if (menuMeta) {
-  const branch = hasText(siteData.menu.branchName) ? siteData.menu.branchName : siteData.brand;
-  menuMeta.append(el("span", "", branch));
-
-  if (hasText(siteData.menu.lastUpdated)) {
-    menuMeta.append(el("span", "", `Güncelleme: ${siteData.menu.lastUpdated}`));
-  }
-}
-
-const menuNav = document.querySelector("[data-menu-nav]");
-const menu = document.querySelector("[data-menu]");
-const menuSearch = document.querySelector("[data-menu-search]");
-const menuCount = document.querySelector("[data-menu-count]");
-const menuNoResults = document.querySelector("[data-menu-no-results]");
-
-if (menu) {
-  const allCategories = siteData.menu.categories?.filter((category) => hasText(category.name)) ?? [];
-  const hasVisibleItems = allCategories.some((category) => category.items?.length);
-
-  if (!allCategories.length) {
-    allCategories.push({
-      id: "hazirlaniyor",
-      name: "Menü",
-      description: "Ürün ve fiyat bilgileri eklendiğinde bu sayfa aynı QR bağlantısıyla güncellenecek.",
-      pendingText: "Menü hazırlanıyor.",
-      items: []
-    });
-  }
-
-  if (menuNav) {
-    menuNav.hidden = false;
-    allCategories.forEach((category) => {
-      const link = el("a", "", category.name);
-      link.href = `#menu-${category.id}`;
-      menuNav.append(link);
-    });
-  }
-
-  if (!hasVisibleItems) {
-    const notice = el("section", "empty-panel menu-notice");
-    notice.append(el("p", "section-kicker", "YAKINDA"));
-    notice.append(el("h2", "", "Cafe / Pastane menüsü hazırlanıyor."));
-    notice.append(el("p", "", "Kategoriler hazır; ürün isimleri ve fiyatlar netleştiğinde bu sabit QR sayfasına eklenecek."));
-    menu.append(notice);
-  }
-
-  allCategories.forEach((category) => {
-    const section = el("section", `menu-category${category.items?.length ? "" : " menu-category-pending"}`);
-    section.id = `menu-${category.id}`;
-    section.dataset.searchText = [
-      category.name,
-      category.description,
-      category.pendingText,
-      ...(category.items || []).flatMap((product) => [
-        product.name,
-        product.description,
-        product.price,
-        product.unit,
-        ...(product.badges || [])
-      ])
-    ]
-      .filter(Boolean)
-      .join(" ");
-    section.append(el("h2", "", category.name));
-
-    if (hasText(category.description)) {
-      section.append(el("p", "menu-category-copy", category.description));
-    }
-
-    if (!category.items?.length) {
-      const pending = el("div", "category-pending");
-      pending.append(el("span", "", "Yakında"));
-      pending.append(el("p", "", category.pendingText || "Ürünler ve fiyatlar eklenecek."));
-      section.append(pending);
-      menu.append(section);
-      return;
-    }
-
-    const list = el("ul", "menu-items");
-    category.items.forEach((product) => {
-      if (!hasText(product.name)) return;
-
-      const item = el("li", product.available === false ? "is-unavailable" : "");
-      item.dataset.searchText = [
-        product.name,
-        product.description,
-        product.price,
-        product.unit,
-        ...(product.badges || [])
-      ]
-        .filter(Boolean)
-        .join(" ");
-      const content = el("div", "menu-item-copy");
-      content.append(el("strong", "", product.name));
-
-      if (hasText(product.description)) {
-        content.append(el("span", "", product.description));
-      }
-
-      if (Array.isArray(product.badges) && product.badges.length) {
-        const badges = el("div", "menu-badges");
-        product.badges.filter(hasText).forEach((badge) => badges.append(el("span", "", badge)));
-        content.append(badges);
-      }
-
-      item.append(content);
-
-      const priceBlock = el("div", "menu-price");
-      if (product.available === false) {
-        priceBlock.append(el("span", "sold-out", "Tükendi"));
-      } else if (hasText(product.price)) {
-        priceBlock.append(el("strong", "", product.price));
-        if (hasText(product.unit)) {
-          priceBlock.append(el("span", "", product.unit));
-        }
-      }
-
-      item.append(priceBlock);
-      list.append(item);
-    });
-
-    section.append(list);
-    menu.append(section);
+document.querySelectorAll("[data-social-links]").forEach((container) => {
+  (siteData.socialLinks || []).forEach((social) => {
+    if (!hasText(social.name) || !safeLink(social.url)) return;
+    const link = linkButton(social.name, social.url);
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    container.append(link);
   });
+  container.hidden = container.childElementCount === 0;
+});
 
-  const sections = Array.from(menu.querySelectorAll(".menu-category"));
-  const tabLinks = Array.from(menuNav?.querySelectorAll("a") || []);
+const groups = getMenuGroups(siteData.menu);
+const products = document.querySelector("[data-products]");
+if (products) {
+  const allProducts = groups.flatMap((group) => group.items.map((product) => ({ ...product, categoryName: group.name })));
+  const featured = allProducts.filter((product) => product.featured === true);
+  const visibleProducts = (featured.length ? featured : allProducts).slice(0, 6);
+  visibleProducts.forEach((product) => {
+    const article = el("article", "product-card");
+    if (safeLink(product.image)) article.append(contentImage(product.image, product.name, "", 640, 480));
+    const body = el("div", "product-card-body");
+    body.append(el("p", "section-kicker", product.categoryName), el("h3", "", product.name));
+    if (hasText(product.description)) body.append(el("p", "", product.description));
+    const price = formatPrice(product.price, siteData.menu.currency);
+    if (price) body.append(el("strong", "product-price", price));
+    article.append(body);
+    products.append(article);
+  });
+  products.hidden = !visibleProducts.length;
+  document.querySelector("[data-product-feature]").hidden = visibleProducts.length > 0;
+}
 
-  function updateMenuCount(visibleCategories, visibleItems, query) {
-    if (!menuCount) return;
+const menu = document.querySelector("[data-menu]");
+if (menu && groups.length) {
+  document.querySelector("[data-menu-empty]").hidden = true;
+  document.querySelector("[data-menu-tools]").hidden = false;
+  const nav = document.querySelector("[data-menu-nav]");
+  const search = document.querySelector("[data-menu-search]");
+  const clear = document.querySelector("[data-search-clear]");
+  const count = document.querySelector("[data-menu-count]");
+  const noResults = document.querySelector("[data-menu-no-results]");
+  let categoryId = "";
 
-    if (query) {
-      menuCount.textContent =
-        visibleItems > 0
-          ? `${visibleItems} ürün, ${visibleCategories} kategori bulundu.`
-          : `${visibleCategories} kategori bulundu.`;
-      return;
-    }
-
-    const itemCount = allCategories.reduce((total, category) => total + (category.items?.length || 0), 0);
-    menuCount.textContent =
-      itemCount > 0
-        ? `${itemCount} ürün, ${allCategories.length} kategori`
-        : `${allCategories.length} kategori hazır; ürünler yakında eklenecek.`;
-  }
-
-  function filterMenu() {
-    const query = normalizeText(menuSearch?.value || "");
-    let visibleCategories = 0;
-    let visibleItems = 0;
-
-    sections.forEach((section) => {
-      const items = Array.from(section.querySelectorAll(".menu-items li"));
-      const sectionMatches = normalizeText(section.dataset.searchText).includes(query);
-      let matchingItems = 0;
-
-      if (items.length) {
-        items.forEach((item) => {
-          const itemMatches = !query || normalizeText(item.dataset.searchText).includes(query);
-          item.hidden = query ? !itemMatches : false;
-          if (itemMatches) matchingItems += 1;
-        });
-      }
-
-      const shouldShow = !query || sectionMatches || matchingItems > 0;
-      section.hidden = !shouldShow;
-
-      const tab = tabLinks.find((link) => link.getAttribute("href") === `#${section.id}`);
-      if (tab) tab.hidden = !shouldShow;
-
-      if (shouldShow) {
-        visibleCategories += 1;
-        visibleItems += items.length ? matchingItems : 0;
-      }
+  function renderMenu() {
+    const filtered = filterMenuGroups(groups, search.value, categoryId);
+    const fragment = document.createDocumentFragment();
+    filtered.forEach((group) => {
+      const section = el("section", "menu-category");
+      const heading = el("h2", "", group.name);
+      heading.id = `menu-${group.id}`;
+      section.setAttribute("aria-labelledby", heading.id);
+      section.append(heading);
+      const list = el("ul", "menu-items");
+      group.items.forEach((product) => {
+        const item = el("li");
+        if (safeLink(product.image)) item.append(contentImage(product.image, product.name, "menu-product-image", 192, 192));
+        const copy = el("div", "menu-item-copy");
+        copy.append(el("h3", "", product.name));
+        if (hasText(product.description)) copy.append(el("p", "", product.description));
+        item.append(copy);
+        const price = formatPrice(product.price, siteData.menu.currency);
+        if (price) item.append(el("span", "menu-price", price));
+        list.append(item);
+      });
+      section.append(list);
+      fragment.append(section);
     });
-
-    if (menuNoResults) {
-      menuNoResults.hidden = visibleCategories > 0;
-    }
-
-    updateMenuCount(visibleCategories, visibleItems, query);
+    menu.replaceChildren(fragment);
+    const total = filtered.reduce((sum, group) => sum + group.items.length, 0);
+    count.textContent = `${total} ürün`;
+    noResults.hidden = total > 0;
+    clear.hidden = !search.value;
+    nav.querySelectorAll("button").forEach((button) => {
+      button.setAttribute("aria-pressed", String(button.dataset.category === categoryId));
+    });
   }
 
-  menuSearch?.addEventListener("input", filterMenu);
-  filterMenu();
+  [{ id: "", name: "Tümü" }, ...groups].forEach((group) => {
+    const button = el("button", "", group.name);
+    button.type = "button";
+    button.dataset.category = group.id;
+    button.setAttribute("aria-controls", "menu-content");
+    button.addEventListener("click", () => { categoryId = group.id; renderMenu(); });
+    nav.append(button);
+  });
+  const resetSearch = () => { search.value = ""; categoryId = ""; renderMenu(); search.focus(); };
+  search.addEventListener("input", renderMenu);
+  clear.addEventListener("click", resetSearch);
+  document.querySelector("[data-search-reset]").addEventListener("click", resetSearch);
+  document.querySelector("[data-search-form]").addEventListener("submit", (event) => event.preventDefault());
+  renderMenu();
+}
+
+let schema = document.getElementById("structured-data");
+if (!schema) {
+  schema = document.createElement("script");
+  schema.id = "structured-data";
+  schema.type = "application/ld+json";
+  document.head.append(schema);
+}
+schema.textContent = JSON.stringify(createStructuredData(siteData, Boolean(menu)));
+
+if ("IntersectionObserver" in window) {
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduceMotion) {
+    const reveal = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) { entry.target.classList.add("is-revealed"); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll("[data-reveal]").forEach((node) => reveal.observe(node));
+  }
+  const navigation = document.querySelectorAll(".main-nav a");
+  const activeSection = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const target = entry.target.classList.contains("hero") ? "#top" : `#${entry.target.id}`;
+      navigation.forEach((link) => {
+        if (link.getAttribute("href") === target) link.setAttribute("aria-current", "location");
+        else link.removeAttribute("aria-current");
+      });
+    });
+  }, { rootMargin: "-20% 0px -60% 0px" });
+  document.querySelectorAll(".hero, #urunler, #subeler, #hakkimizda, #iletisim").forEach((node) => activeSection.observe(node));
 }
