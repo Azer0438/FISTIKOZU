@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { buildCatalog, findProducts, readContext, readCategory, categoryHash } from "../menu/utils/catalog.js";
@@ -134,4 +134,17 @@ test("photo fields and per-category order overrides survive catalog normalizatio
   ] });
   assert.deepEqual(findProducts(catalog, "", "a").map(item => item.id), ["second", "first"]);
   assert.equal(catalog.products[1].imageKind, "generated");
+});
+
+test("provided Pasta images are connected to the matching products", () => {
+  const pastaProducts = products.filter(product => product.categories.includes("pasta"));
+  const withImages = pastaProducts.filter(product => product.image);
+  assert.equal(withImages.length, 19);
+  assert.deepEqual(pastaProducts.filter(product => !product.image).map(product => product.id), ["ekstra-cikolata"]);
+
+  for (const product of withImages) {
+    assert.match(product.image, /^\/menu\/images\/products\/pasta\/[a-z0-9-]+\.webp$/);
+    assert.equal(product.imageKind, "generated");
+    assert.ok(existsSync(fileURLToPath(new URL(`..${product.image}`, import.meta.url))), `missing ${product.image}`);
+  }
 });
