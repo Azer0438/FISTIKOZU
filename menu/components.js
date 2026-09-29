@@ -18,6 +18,7 @@ export function icon(name, directory = "/assets/icons") {
 
 export function media(src, alt, logo, eager = false, imageKind = "") {
   const frame = node("div", "qr-media");
+  if (imageKind === "logo") frame.classList.add("is-logo");
   const image = node("img");
   image.width = 640;
   image.height = 480;

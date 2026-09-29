@@ -139,12 +139,16 @@ test("photo fields and per-category order overrides survive catalog normalizatio
 test("provided Pasta images are connected to the matching products", () => {
   const pastaProducts = products.filter(product => product.categories.includes("pasta"));
   const withImages = pastaProducts.filter(product => product.image);
-  assert.equal(withImages.length, 19);
-  assert.deepEqual(pastaProducts.filter(product => !product.image).map(product => product.id), ["ekstra-cikolata"]);
+  assert.equal(withImages.length, 20);
+  assert.deepEqual(pastaProducts.filter(product => !product.image), []);
 
-  for (const product of withImages) {
+  for (const product of withImages.filter(product => product.id !== "ekstra-cikolata")) {
     assert.match(product.image, /^\/menu\/images\/products\/pasta\/[a-z0-9-]+\.webp$/);
     assert.equal(product.imageKind, "generated");
     assert.ok(existsSync(fileURLToPath(new URL(`..${product.image}`, import.meta.url))), `missing ${product.image}`);
   }
+
+  const extraChocolate = withImages.find(product => product.id === "ekstra-cikolata");
+  assert.equal(extraChocolate.image, "/assets/logo-original.jpg");
+  assert.equal(extraChocolate.imageKind, "logo");
 });

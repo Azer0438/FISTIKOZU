@@ -23,7 +23,7 @@ const sections = [
       { id: "ekstra-muz", name: "Ekstra Muz", image: "/menu/images/products/pasta/ekstra-muz.webp", imageKind: "generated" },
       { id: "cikolatali-cookie", name: "Çikolatalı Cookie", image: "/menu/images/products/pasta/cikolatali-cookie.webp", imageKind: "generated" },
       { id: "ekstra-cilek", name: "Ekstra Çilek", image: "/menu/images/products/pasta/ekstra-cilek.webp", imageKind: "generated" },
-      { id: "ekstra-cikolata", name: "Ekstra Çikolata" },
+      { id: "ekstra-cikolata", name: "Ekstra Çikolata", image: "/assets/logo-original.jpg", imageKind: "logo" },
       { id: "dogum-gunu-pastasi", name: "Doğum Günü Pastası", image: "/menu/images/products/pasta/dogum-gunu-pastasi.webp", imageKind: "generated" }
     ]
   },
