@@ -218,16 +218,20 @@ test("provided Pasta images are connected to the matching products", () => {
 test("provided hot drink images and brief descriptions are connected", () => {
   const hotDrinks = products.filter(product => product.categories.includes("coffee"));
   const withImages = hotDrinks.filter(product => product.image);
-  assert.equal(withImages.length, 14);
-  assert.deepEqual(hotDrinks.filter(product => !product.image).map(product => product.id), ["ekstra-aroma"]);
+  assert.equal(withImages.length, 15);
+  assert.deepEqual(hotDrinks.filter(product => !product.image), []);
   assert.equal(hotDrinks.filter(product => product.description).length, 14);
   assert.equal(products.find(product => product.id === "cappucino").name, "Cappuccino");
 
-  for (const product of withImages) {
+  for (const product of withImages.filter(product => product.id !== "ekstra-aroma")) {
     assert.match(product.image, /^\/menu\/images\/products\/coffee\/[a-z0-9-]+\.webp$/);
     assert.equal(product.imageKind, "generated");
     assert.ok(existsSync(fileURLToPath(new URL(`..${product.image}`, import.meta.url))), `missing ${product.image}`);
   }
+
+  const extraAroma = withImages.find(product => product.id === "ekstra-aroma");
+  assert.equal(extraAroma.image, "/assets/logo-original.jpg");
+  assert.equal(extraAroma.imageKind, "logo");
 });
 
 test("screenshot descriptions are available without the removed competitor name", () => {

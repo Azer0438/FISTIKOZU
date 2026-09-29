@@ -48,7 +48,7 @@ const sections = [
       { id: "hazelnut-latte", name: "Hazelnut Latte", price: 175, description: "Espresso, süt ve fındık aroması.", image: "/menu/images/products/coffee/hazelnut-latte.webp", imageKind: "generated" },
       { id: "espresso", name: "Espresso", price: 175, description: "Yoğun gövdeli tek shot espresso.", image: "/menu/images/products/coffee/espresso.webp", imageKind: "generated" },
       { id: "ekstra-shot", name: "Ekstra Shot", price: 50, description: "Seçtiğiniz içeceğe eklenen tek shot espresso.", image: "/menu/images/products/coffee/ekstra-shot.webp", imageKind: "generated" },
-      { id: "ekstra-aroma", name: "Ekstra Aroma", price: 50 }
+      { id: "ekstra-aroma", name: "Ekstra Aroma", price: 50, image: "/assets/logo-original.jpg", imageKind: "logo" }
     ]
   },
   {
