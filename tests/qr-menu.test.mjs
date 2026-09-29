@@ -154,3 +154,19 @@ test("provided Pasta images are connected to the matching products", () => {
   assert.equal(extraChocolate.image, "/assets/logo-original.jpg");
   assert.equal(extraChocolate.imageKind, "logo");
 });
+
+test("provided Sweet Croissant images and logo are connected to the matching products", () => {
+  const croissantProducts = products.filter(product => product.categories.includes("sweet-croissant"));
+  assert.equal(croissantProducts.length, 11);
+  assert.ok(croissantProducts.every(product => product.image));
+
+  for (const product of croissantProducts.filter(product => product.id !== "ekstra-cikolata")) {
+    assert.match(product.image, /^\/menu\/images\/products\/sweet-croissant\/[a-z0-9-]+\.webp$/);
+    assert.equal(product.imageKind, "generated");
+    assert.ok(existsSync(fileURLToPath(new URL(`..${product.image}`, import.meta.url))), `missing ${product.image}`);
+  }
+
+  const extraChocolate = croissantProducts.find(product => product.id === "ekstra-cikolata");
+  assert.equal(extraChocolate.image, "/assets/logo-original.jpg");
+  assert.equal(extraChocolate.imageKind, "logo");
+});

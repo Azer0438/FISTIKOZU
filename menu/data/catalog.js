@@ -42,16 +42,16 @@ const sections = [
   },
   {
     id: "sweet-croissant", name: "Sweet Croissant", icon: "croissant", items: [
-      { id: "nutella-kruvasan", name: "Nutella Kruvasan" },
-      { id: "berry-milk", name: "Berry Milk" },
-      { id: "badem-dolgulu-kruvasan", name: "Badem Dolgulu Kruvasan" },
-      { id: "beyaz-cikolatali-kruvasan", name: "Beyaz Çikolatalı Kruvasan" },
-      { id: "sutlu-cikolatali-kruvasan", name: "Sütlü Çikolatalı Kruvasan" },
-      { id: "lotus-dolgulu-kruvasan", name: "Lotus Dolgulu Kruvasan" },
-      { id: "cikolata-kremali-kruvasan", name: "Çikolata Kremalı Kruvasan" },
-      { id: "rubyon", name: "RubyOn" },
-      { id: "sweets", name: "Sweets" },
-      { id: "trio", name: "Trio" },
+      { id: "nutella-kruvasan", name: "Nutella Kruvasan", image: "/menu/images/products/sweet-croissant/nutella-kruvasan.webp", imageKind: "generated" },
+      { id: "berry-milk", name: "Berry Milk", image: "/menu/images/products/sweet-croissant/berry-milk.webp", imageKind: "generated" },
+      { id: "badem-dolgulu-kruvasan", name: "Badem Dolgulu Kruvasan", image: "/menu/images/products/sweet-croissant/badem-dolgulu-kruvasan.webp", imageKind: "generated" },
+      { id: "beyaz-cikolatali-kruvasan", name: "Beyaz Çikolatalı Kruvasan", image: "/menu/images/products/sweet-croissant/beyaz-cikolatali-kruvasan.webp", imageKind: "generated" },
+      { id: "sutlu-cikolatali-kruvasan", name: "Sütlü Çikolatalı Kruvasan", image: "/menu/images/products/sweet-croissant/sutlu-cikolatali-kruvasan.webp", imageKind: "generated" },
+      { id: "lotus-dolgulu-kruvasan", name: "Lotus Dolgulu Kruvasan", image: "/menu/images/products/sweet-croissant/lotus-dolgulu-kruvasan.webp", imageKind: "generated" },
+      { id: "cikolata-kremali-kruvasan", name: "Çikolata Kremalı Kruvasan", image: "/menu/images/products/sweet-croissant/cikolata-kremali-kruvasan.webp", imageKind: "generated" },
+      { id: "rubyon", name: "RubyOn", image: "/menu/images/products/sweet-croissant/rubyon.webp", imageKind: "generated" },
+      { id: "sweets", name: "Sweets", image: "/menu/images/products/sweet-croissant/sweets.webp", imageKind: "generated" },
+      { id: "trio", name: "Trio", image: "/menu/images/products/sweet-croissant/trio.webp", imageKind: "generated" },
       "ekstra-cikolata"
     ]
   },
