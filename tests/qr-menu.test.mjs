@@ -223,20 +223,38 @@ test("provided hot drink images and brief descriptions are connected", () => {
   assert.equal(hotDrinks.filter(product => product.description).length, 14);
   assert.equal(products.find(product => product.id === "cappucino").name, "Cappuccino");
 
-  for (const product of withImages.filter(product => product.id !== "ekstra-aroma")) {
+  for (const product of withImages.filter(product => !["ekstra-aroma", "turk-kahvesi"].includes(product.id))) {
     assert.match(product.image, /^\/menu\/images\/products\/coffee\/[a-z0-9-]+\.webp$/);
     assert.equal(product.imageKind, "generated");
     assert.ok(existsSync(fileURLToPath(new URL(`..${product.image}`, import.meta.url))), `missing ${product.image}`);
   }
+
+  const turkishCoffee = withImages.find(product => product.id === "turk-kahvesi");
+  assert.equal(turkishCoffee.image, "/menu/images/products/drinks/turk-kahvesi.webp");
+  assert.equal(turkishCoffee.imageKind, "generated");
 
   const extraAroma = withImages.find(product => product.id === "ekstra-aroma");
   assert.equal(extraAroma.image, "/assets/logo-original.jpg");
   assert.equal(extraAroma.imageKind, "logo");
 });
 
+test("provided drink images and brief descriptions are connected", () => {
+  const drinks = products.filter(product => product.categories.includes("icecekler"));
+  const withImages = drinks.filter(product => product.image);
+  assert.equal(withImages.length, 18);
+  assert.deepEqual(drinks.filter(product => !product.image).map(product => product.id), ["sprite"]);
+  assert.equal(drinks.filter(product => product.description).length, 19);
+
+  for (const product of withImages) {
+    assert.match(product.image, /^\/menu\/images\/products\/drinks\/[a-z0-9-]+\.webp$/);
+    assert.equal(product.imageKind, "generated");
+    assert.ok(existsSync(fileURLToPath(new URL(`..${product.image}`, import.meta.url))), `missing ${product.image}`);
+  }
+});
+
 test("screenshot descriptions are available without the removed competitor name", () => {
   const described = products.filter(product => product.description);
-  assert.equal(described.length, 30);
+  assert.equal(described.length, 47);
   assert.match(products.find(product => product.id === "tiramisu").description, /Mascarpone.*espresso/i);
   assert.match(products.find(product => product.id === "kis-cayi").description, /Hibiskus.*adaçayı/i);
   assert.match(products.find(product => product.id === "green-apple-kokteyl").description, /Elma.*nane/i);
