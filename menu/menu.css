@@ -97,7 +97,6 @@ ul { list-style: none; margin: 0; padding: 0; }
 .is-text-product .qr-product-foot { grid-column: 2; grid-row: 1 / span 5; align-self: center; margin: 0; padding: 0; min-height: 24px; max-width: 120px; }
 .is-text-product .qr-product-foot .qr-price { font-size: 16px; }
 .qr-detail-category { color: var(--qr-accent); font-size: 12px; margin-bottom: 12px; }
-.qr-image-note { position: absolute; bottom: 10px; left: 10px; padding: 3px 7px; border-radius: 3px; background: rgb(255 255 255 / 94%); color: #303c26; font-size: 11px; line-height: 1.5; }
 .qr-unavailable { font-size: 12px; line-height: 1.5; color: #805114; margin-top: 10px; display: flex; gap: 7px; align-items: baseline; }
 .qr-unavailable::before { content: ""; width: 6px; height: 6px; background: currentColor; border-radius: 50%; flex: 0 0 6px; }
 .qr-empty { text-align: center; padding: 44px 8px 38px; }

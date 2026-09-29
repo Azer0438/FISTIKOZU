@@ -39,7 +39,6 @@ export function media(src, alt, logo, eager = false, imageKind = "") {
     image.src = src;
   } else fallback();
   frame.append(image);
-  if (imageKind === "generated") frame.append(node("span", "qr-image-note", "Temsili görsel"));
   return frame;
 }
 

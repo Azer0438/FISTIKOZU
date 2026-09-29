@@ -97,8 +97,10 @@ test("category links survive encoding and reject unknown or malformed hashes", (
 });
 test("menu is independent from homepage script and styles; all module syntax is valid", () => {
   const html = readFileSync(new URL("../menu/index.html", import.meta.url), "utf8");
+  const components = readFileSync(new URL("../menu/components.js", import.meta.url), "utf8");
   assert.doesNotMatch(html, /(?:src|href)="\/assets\/(?:site\.js|styles\.css)/);
   assert.match(html, /src="\/menu\/app\.js"/);
+  assert.doesNotMatch(components, /Temsili görsel/);
   for (const path of ["app.js", "components.js", "utils/catalog.js", "data/menu-data.js", "data/catalog.js"]) {
     execFileSync(process.execPath, ["--check", fileURLToPath(new URL(`../menu/${path}`, import.meta.url))]);
   }
