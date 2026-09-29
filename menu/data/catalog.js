@@ -76,11 +76,11 @@ const sections = [
   },
   {
     id: "bitki-caylari", name: "Bitki Çayları", icon: "flower-2", items: [
-      { id: "papatya-cayi", name: "Papatya Çayı", price: 120 },
-      { id: "yesil-cay", name: "Yeşil Çay", price: 120, description: "Bal ile servis edilir." },
-      { id: "kis-cayi", name: "Kış Çayı", price: 120, description: "Hibiskus, kuşburnu, portakal kabuğu, elma, karanfil, zencefil, limon, tarçın ve adaçayı." },
-      { id: "nane-limon", name: "Nane Limon", price: 120 },
-      { id: "ihlamur", name: "Ihlamur", price: 120 }
+      { id: "papatya-cayi", name: "Papatya Çayı", price: 120, description: "Papatya çiçekleriyle hazırlanan yumuşak içimli bitki çayı.", image: "/menu/images/products/herbal-tea/papatya-cayi.webp", imageKind: "generated" },
+      { id: "yesil-cay", name: "Yeşil Çay", price: 120, description: "Yeşil çay yapraklarıyla hazırlanan hafif içimli çay; bal ile servis edilir.", image: "/menu/images/products/herbal-tea/yesil-cay.webp", imageKind: "generated" },
+      { id: "kis-cayi", name: "Kış Çayı", price: 120, description: "Hibiskus, kuşburnu, portakal kabuğu, elma, karanfil, zencefil, limon, tarçın ve adaçayı.", image: "/menu/images/products/herbal-tea/kis-cayi.webp", imageKind: "generated" },
+      { id: "nane-limon", name: "Nane Limon", price: 120, description: "Nane ve limonla hazırlanan ferahlatıcı bitki çayı.", image: "/menu/images/products/herbal-tea/nane-limon.webp", imageKind: "generated" },
+      { id: "ihlamur", name: "Ihlamur", price: 120, description: "Ihlamur çiçekleriyle hazırlanan hafif içimli bitki çayı; bal ile servis edilir.", image: "/menu/images/products/herbal-tea/ihlamur.webp", imageKind: "generated" }
     ]
   },
   {

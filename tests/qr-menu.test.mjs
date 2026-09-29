@@ -253,9 +253,22 @@ test("provided drink images and brief descriptions are connected", () => {
   }
 });
 
+test("provided herbal tea images and brief descriptions are connected", () => {
+  const herbalTeas = products.filter(product => product.categories.includes("bitki-caylari"));
+  assert.equal(herbalTeas.length, 5);
+  assert.equal(herbalTeas.filter(product => product.image).length, 5);
+  assert.equal(herbalTeas.filter(product => product.description).length, 5);
+
+  for (const product of herbalTeas) {
+    assert.match(product.image, /^\/menu\/images\/products\/herbal-tea\/[a-z0-9-]+\.webp$/);
+    assert.equal(product.imageKind, "generated");
+    assert.ok(existsSync(fileURLToPath(new URL(`..${product.image}`, import.meta.url))), `missing ${product.image}`);
+  }
+});
+
 test("screenshot descriptions are available without the removed competitor name", () => {
   const described = products.filter(product => product.description);
-  assert.equal(described.length, 47);
+  assert.equal(described.length, 50);
   assert.match(products.find(product => product.id === "tiramisu").description, /Mascarpone.*espresso/i);
   assert.match(products.find(product => product.id === "kis-cayi").description, /Hibiskus.*adaçayı/i);
   assert.match(products.find(product => product.id === "green-apple-kokteyl").description, /Elma.*nane/i);
