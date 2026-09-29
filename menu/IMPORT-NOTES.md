@@ -27,5 +27,5 @@ Toplam 81 kategori üyeliği ve 77 farklı ürün vardır. Türk Kahvesi, Limona
 
 - Eski ürünlerin açıklamaları yalnızca sağlanan menü ekranlarında görülen içeriklerden alınmıştır; rakip marka adı açıklamalara taşınmamıştır.
 - Yeni ürünlerde yalnızca müşterinin yazdığı içerikler kullanılmıştır. Bilinmeyen reçete veya servis iddiası eklenmemiştir.
-- Kullanıcının sağladığı Pasta ürün görselleri optimize edilmiş WebP olarak kullanılır. Ekstra Çikolata görseli Fıstıközü logosudur.
+- Kullanıcının sağladığı Pasta görselleri ile 14 Sıcak İçecek görseli optimize edilmiş WebP olarak kullanılır. Ekstra Çikolata görseli Fıstıközü logosudur.
 - Kaldırılan kategorilerin eski görsel dosyaları arşiv olarak depoda kalabilir ancak canlı katalogda referans edilmez.
