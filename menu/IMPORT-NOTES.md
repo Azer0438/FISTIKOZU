@@ -9,9 +9,9 @@ Son müşteri revizyonu 29 Eylül 2026 tarihinde işlendi. Ürün adları ve mev
 | İçecekler | 19 |
 | Bitki Çayları | 5 |
 | Soğuk Kahveler | 9 |
-| Kokteyl | 16 |
+| Kokteyl | 7 |
 
-Toplam 90 kategori üyeliği ve 86 farklı ürün vardır. Türk Kahvesi, Limonata, Mojito ve Çilekli Mojito tek kayıtla birden fazla kategoride kullanılır.
+Toplam 81 kategori üyeliği ve 77 farklı ürün vardır. Türk Kahvesi, Limonata, Mojito ve Çilekli Mojito tek kayıtla birden fazla kategoride kullanılır.
 
 ## Son Revizyon
 
@@ -20,7 +20,7 @@ Toplam 90 kategori üyeliği ve 86 farklı ürün vardır. Türk Kahvesi, Limona
 - Müşterinin "olmasın", "kalksın", "çıkacak" veya "çıkarılacak" dediği ürünler katalogdan kaldırıldı.
 - Pasta kategorisine Magnolya, Pavlova, Profiterol, Budapeşte, Frambuaz, Fransız Ekler, Rulo Pasta Muzlu Çikolata, iki Cupta Spoonful çeşidi ve Ruby Mono eklendi.
 - Papatya Çayı ve Ihlamur eklendi. Müşterinin verdiği 76 fiyat işlendi.
-- Fiyatı verilmeyen Doğum Günü Pastası ile dokuz kokteylde fiyat gösterilmez.
+- Fiyatı olmayan dokuz kokteyl katalogdan kaldırıldı. Yalnızca Doğum Günü Pastası fiyatsız gösterilir.
 - "Spoonfullar Cupta olacak, çikolatalı, orman meyveli, 150" notu iki ayrı ürün olarak yorumlandı. Doğru ürün görselleri sağlanana kadar görselsiz gösterilir.
 
 ## İçerik ve Görseller

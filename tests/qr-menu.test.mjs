@@ -113,14 +113,14 @@ test("the final customer-approved categories and product groups are published", 
     ["icecekler", "İçecekler", 19],
     ["bitki-caylari", "Bitki Çayları", 5],
     ["ice-coffee", "Soğuk Kahveler", 9],
-    ["kokteyl", "Kokteyl", 16]
+    ["kokteyl", "Kokteyl", 7]
   ];
   assert.deepEqual(categories.map(category => [
     category.id,
     category.name,
     products.filter(product => product.categories.includes(category.id)).length
   ]), expected);
-  assert.equal(products.length, 86);
+  assert.equal(products.length, 77);
   assert.equal(new Set(products.map(product => product.id)).size, products.length);
   assert.ok(products.every(product => product.categories.every(id => categories.some(category => category.id === id))));
   assert.doesNotMatch(JSON.stringify({ categories, products }), /fl[aâ]neur|fl[aâ]nöz|demo-/i);
@@ -137,12 +137,14 @@ test("removed product records are not exposed", () => {
     "elma-tarcin", "kirmizi-orman-meyveleri", "ice-latte-laktozsuz", "ice-zebra-mocha",
     "ice-berrywhite-latte", "ice-caramel-macchiato", "ice-cookies-latte", "ice-irish-cream-macchiato",
     "ice-toffee-nut-latte", "ice-hazelnut-latte", "naneli-limonata", "cilekli-limonata",
-    "kuzukulakli-limonata", "yesil-elma-limonata"
+    "kuzukulakli-limonata", "yesil-elma-limonata", "passion", "meyveli-soguk-cay",
+    "french-kiss", "hawana-special", "kamikaze-redbull", "daffy-duck-redbull",
+    "apex-redbull", "berry-margarita", "tropical-rush"
   ];
   assert.deepEqual(products.filter(product => removed.includes(product.id)), []);
 });
 
-test("customer-approved prices and intentionally unpriced items are preserved", () => {
+test("customer-approved prices and the intentionally unpriced birthday cake are preserved", () => {
   const expectedPrices = {
     "tiramisu": 200, "flan-raffaello": 220, "tart": 220, "amerikan-brownie": 200,
     "citir-belcika-cikolatali-mono": 220, "fistikli-mono": 220, "orman-meyveli-spoonful": 220,
@@ -171,10 +173,7 @@ test("customer-approved prices and intentionally unpriced items are preserved", 
   for (const [id, price] of Object.entries(expectedPrices)) {
     assert.equal(products.find(product => product.id === id)?.price, price, id);
   }
-  assert.deepEqual(products.filter(product => product.price === null).map(product => product.id), [
-    "dogum-gunu-pastasi", "passion", "meyveli-soguk-cay", "french-kiss", "hawana-special",
-    "kamikaze-redbull", "daffy-duck-redbull", "apex-redbull", "berry-margarita", "tropical-rush"
-  ]);
+  assert.deepEqual(products.filter(product => product.price === null).map(product => product.id), ["dogum-gunu-pastasi"]);
 });
 
 test("shared items are unique and retain their position in each category", () => {
@@ -183,7 +182,7 @@ test("shared items are unique and retain their position in each category", () =>
   assert.deepEqual(products.find(product => product.id === "limonata").categories, ["icecekler", "kokteyl"]);
   assert.deepEqual(products.find(product => product.id === "mojito").categories, ["icecekler", "kokteyl"]);
   assert.equal(findProducts(catalog, "", "icecekler")[8].id, "turk-kahvesi");
-  assert.equal(findProducts(catalog, "", "kokteyl")[13].id, "limonata");
+  assert.equal(findProducts(catalog, "", "kokteyl")[4].id, "limonata");
   assert.equal(findProducts(catalog, "mojito").length, 2);
 });
 
@@ -218,9 +217,9 @@ test("provided Pasta images are connected to the matching products", () => {
 
 test("screenshot descriptions are available without the removed competitor name", () => {
   const described = products.filter(product => product.description);
-  assert.equal(described.length, 27);
+  assert.equal(described.length, 18);
   assert.match(products.find(product => product.id === "tiramisu").description, /Mascarpone.*espresso/i);
   assert.match(products.find(product => product.id === "kis-cayi").description, /Hibiskus.*adaçayı/i);
-  assert.match(products.find(product => product.id === "tropical-rush").description, /Mango.*soda/i);
+  assert.match(products.find(product => product.id === "green-apple-kokteyl").description, /Elma.*nane/i);
   assert.doesNotMatch(described.map(product => product.description).join(" "), /fl[aâ]neur/i);
 });

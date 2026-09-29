@@ -100,17 +100,8 @@ const sections = [
     id: "kokteyl", name: "Kokteyl", icon: "martini", items: [
       { id: "green-apple-kokteyl", name: "Green Apple Kokteyl", price: 200, description: "Elma, limon ve nane." },
       { id: "kuzu-kulagi", name: "Kuzu Kulağı", price: 200 },
-      { id: "passion", name: "Passion", description: "Mango, şeftali, limon ve portakal." },
-      { id: "meyveli-soguk-cay", name: "Meyveli Soğuk Çay", description: "Elma, çilek, portakal suyu ve gül reyhanı." },
-      { id: "french-kiss", name: "French Kiss", description: "Yeşil elma, limon, turunçgiller ve nane." },
-      { id: "hawana-special", name: "Hawana Special", description: "Kavun, turunçgiller, limon ve ananas." },
-      { id: "kamikaze-redbull", name: "Kamikaze (RedBULL)", description: "Kivi, limon, ananas, nane ve Red Bull." },
-      { id: "daffy-duck-redbull", name: "Daffy Duck (RedBULL)", description: "Kavun, frambuaz, limon, portakal, nane ve Red Bull." },
-      { id: "apex-redbull", name: "Apex (RedBULL)", description: "Mango, ananas, kavun, limon ve Red Bull." },
       { id: "flamingo-milkshake", name: "Flamingo Milkshake Çilekli", price: 225 },
       { id: "coko-coko-milkshake", name: "COKO COKO Milkshake Çikolatalı", price: 225 },
-      { id: "berry-margarita", name: "Berry Margarita", description: "Karadut, frambuaz ve nar." },
-      { id: "tropical-rush", name: "Tropical Rush", description: "Mango, ananas, limon, vanilya, nane ve soda." },
       "limonata",
       "mojito",
       "cilekli-mojito"

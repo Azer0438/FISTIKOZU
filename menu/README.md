@@ -2,7 +2,7 @@
 
 Normal adres: `/menu/`. Menü artık demo verisi kullanmaz. Eski `?demo=1` bağlantıları da aynı kataloğu açar; şube, masa ve kategori bilgileri korunur.
 
-86 farklı ürün, 6 kategori. Ürünler ve 76 fiyat müşterinin son revizyonuna göre düzenlenmiştir. Fiyatı verilmeyen 10 ürün boş bırakılır. Mevcut içerik açıklamaları kullanıcının sağladığı ekranlardan, yeni ürün açıklamaları ise müşteri notlarından alınmıştır. Aktarım dökümü: [IMPORT-NOTES.md](IMPORT-NOTES.md).
+77 farklı ürün, 6 kategori. Ürünler ve 76 fiyat müşterinin son revizyonuna göre düzenlenmiştir. Yalnızca Doğum Günü Pastası fiyatsız bırakılır. Mevcut içerik açıklamaları kullanıcının sağladığı ekranlardan, yeni ürün açıklamaları ise müşteri notlarından alınmıştır. Aktarım dökümü: [IMPORT-NOTES.md](IMPORT-NOTES.md).
 
 ## Tek İçerik Dosyası
 
