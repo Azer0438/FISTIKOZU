@@ -59,7 +59,7 @@ const sections = [
       { id: "limonata", name: "Limonata", price: 150, description: "Limon ve taze nane aromalı ferahlatıcı içecek.", image: "/menu/images/products/drinks/limonata.webp", imageKind: "generated" },
       { id: "cola", name: "Cola", price: 100, description: "Soğuk servis edilen gazlı kola.", image: "/menu/images/products/drinks/cola.webp", imageKind: "generated" },
       { id: "fanta", name: "Fanta", price: 100, description: "Portakal aromalı gazlı içecek.", image: "/menu/images/products/drinks/fanta.webp", imageKind: "generated" },
-      { id: "sprite", name: "Sprite", price: 80, description: "Limon ve lime aromalı gazlı içecek." },
+      { id: "sprite", name: "Sprite", price: 80, description: "Limon ve lime aromalı gazlı içecek.", image: "/menu/images/products/drinks/soda.webp", imageKind: "generated" },
       { id: "churchill", name: "Churchill", price: 150, description: "Maden suyu, limon suyu ve tuz.", image: "/menu/images/products/drinks/churchill.webp", imageKind: "generated" },
       "turk-kahvesi",
       { id: "double-turk-kahvesi", name: "Double Türk Kahvesi", price: 150, description: "Çift ölçü kahveyle hazırlanan yoğun Türk kahvesi.", image: "/menu/images/products/drinks/double-turk-kahvesi.webp", imageKind: "generated" },

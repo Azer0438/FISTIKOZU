@@ -241,9 +241,10 @@ test("provided hot drink images and brief descriptions are connected", () => {
 test("provided drink images and brief descriptions are connected", () => {
   const drinks = products.filter(product => product.categories.includes("icecekler"));
   const withImages = drinks.filter(product => product.image);
-  assert.equal(withImages.length, 18);
-  assert.deepEqual(drinks.filter(product => !product.image).map(product => product.id), ["sprite"]);
+  assert.equal(withImages.length, 19);
+  assert.deepEqual(drinks.filter(product => !product.image).map(product => product.id), []);
   assert.equal(drinks.filter(product => product.description).length, 19);
+  assert.equal(drinks.find(product => product.id === "sprite").image, "/menu/images/products/drinks/soda.webp");
 
   for (const product of withImages) {
     assert.match(product.image, /^\/menu\/images\/products\/drinks\/[a-z0-9-]+\.webp$/);
