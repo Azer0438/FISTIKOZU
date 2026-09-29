@@ -1,34 +1,31 @@
-# Menü Aktarım Notları
+# Menü Revizyon Notları
 
-Kullanıcı, rakip menü ekranlarındaki ürün adlarını Fıstıközü için kullanmamızı onayladı. Kaynak: masaüstündeki `QR MENU FISTIKÖZÜ` klasörünün 1.png - 35.png ekranları. Kaynak görseller uygulamaya kopyalanmadı.
+Son müşteri revizyonu 29 Eylül 2026 tarihinde işlendi. Ürün adları ve mevcut içerik açıklamaları, kullanıcının sağladığı 1.png - 35.png menü ekranlarıyla karşılaştırıldı. Fiyatlar ve eklenen ürünler müşterinin son listesinden alındı.
 
-| Kategori | Ekranlar | Ürün sayısı |
-| --- | --- | ---: |
-| Pasta | 4-8 | 20 |
-| Hamburger Menü | 9-10 | 9 |
-| Sweet Croissant | 11-13 | 11 |
-| Coffee | 14-19 | 26 |
-| İçecekler | 20-23 | 19 |
-| Matcha | 24 | 5 |
-| Bitki Çayları | 25 | 5 |
-| Kahvaltı | 26-27 | 10 |
-| Ice Coffee | 28-31 | 17 |
-| Kokteyl | 32-35 | 20 |
+| Kategori | Ürün sayısı |
+| --- | ---: |
+| Pasta | 26 |
+| Sıcak İçecekler | 15 |
+| İçecekler | 19 |
+| Bitki Çayları | 5 |
+| Soğuk Kahveler | 9 |
+| Kokteyl | 16 |
 
-Toplam 142 kategori üyeliği, 135 farklı ürün. Ekstra Çikolata, Patates Kızartması, Nutella Kruvasan, Türk Kahvesi, Limonata, Mojito ve Çilekli Mojito tek kayıtla birden fazla kategoridedir. Sıcak ve soğuk Zebra Mocha ayrı ürünlerdir. Referanstaki kategori sıraları ve ürünlerin kategori içi sırası korunmuştur.
+Toplam 90 kategori üyeliği ve 86 farklı ürün vardır. Türk Kahvesi, Limonata, Mojito ve Çilekli Mojito tek kayıtla birden fazla kategoride kullanılır.
 
-## İsim Düzenlemeleri
+## Son Revizyon
 
-- Flaneur Breakfast: Kahvaltı
-- Omlet Flâneur: Sebzeli Omlet
-- Omlet Flânöz: Tulum Peynirli Omlet
-- Flaneur Ice Tea: Meyveli Soğuk Çay
-- Tamamen büyük harf yazılmış genel adların yazımı okunabilir hale getirildi; ürün adlarının anlamı değiştirilmedi.
+- Hamburger Menü, Sweet Croissant, Matcha ve Kahvaltı kategorileri kaldırıldı.
+- Coffee kategorisinin görünen adı Sıcak İçecekler, Ice Coffee kategorisinin görünen adı Soğuk Kahveler oldu.
+- Müşterinin "olmasın", "kalksın", "çıkacak" veya "çıkarılacak" dediği ürünler katalogdan kaldırıldı.
+- Pasta kategorisine Magnolya, Pavlova, Profiterol, Budapeşte, Frambuaz, Fransız Ekler, Rulo Pasta Muzlu Çikolata, iki Cupta Spoonful çeşidi ve Ruby Mono eklendi.
+- Papatya Çayı ve Ihlamur eklendi. Müşterinin verdiği 76 fiyat işlendi.
+- Fiyatı verilmeyen Doğum Günü Pastası ile dokuz kokteylde fiyat gösterilmez.
+- "Spoonfullar Cupta olacak, çikolatalı, orman meyveli, 150" notu iki ayrı ürün olarak yorumlandı. Doğru ürün görselleri sağlanana kadar görselsiz gösterilir.
 
-## Aktarılmayan İçerikler
+## İçerik ve Görseller
 
-- Üçüncü yıl ve 280 TL kampanya afişleri; bunlara bağlı "Fransız Pastaları" kampanya satırı bir ürün olarak alınmadı.
-- Rakibin fiyatları, açıklamaları, gramaj/menşe/servis iddiaları, reçeteleri ve fotoğrafları.
-- Rakibin logosu ve "yerli üretim" gibi doğrulanmamış rozetler.
-
-Fiyatlar, açıklamalar ve görseller kullanıcı tarafından sağlanacak. Bilinmeyen alanlar boş tutulur, ziyaretçiye geliştirme açıklaması gösterilmez.
+- Eski ürünlerin açıklamaları yalnızca sağlanan menü ekranlarında görülen içeriklerden alınmıştır; rakip marka adı açıklamalara taşınmamıştır.
+- Yeni ürünlerde yalnızca müşterinin yazdığı içerikler kullanılmıştır. Bilinmeyen reçete veya servis iddiası eklenmemiştir.
+- Kullanıcının sağladığı Pasta ürün görselleri optimize edilmiş WebP olarak kullanılır. Ekstra Çikolata görseli Fıstıközü logosudur.
+- Kaldırılan kategorilerin eski görsel dosyaları arşiv olarak depoda kalabilir ancak canlı katalogda referans edilmez.

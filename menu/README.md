@@ -2,7 +2,7 @@
 
 Normal adres: `/menu/`. Menü artık demo verisi kullanmaz. Eski `?demo=1` bağlantıları da aynı kataloğu açar; şube, masa ve kategori bilgileri korunur.
 
-135 farklı ürün, 10 kategori. Ürün adları kullanıcının sağladığı referanslardan onayla aktarılmıştır. Fiyatlar, açıklamalar ve fotoğraflar henüz onaylanmadığı için boş bırakılmıştır. Aktarım dökümü: [IMPORT-NOTES.md](IMPORT-NOTES.md).
+86 farklı ürün, 6 kategori. Ürünler ve 76 fiyat müşterinin son revizyonuna göre düzenlenmiştir. Fiyatı verilmeyen 10 ürün boş bırakılır. Mevcut içerik açıklamaları kullanıcının sağladığı ekranlardan, yeni ürün açıklamaları ise müşteri notlarından alınmıştır. Aktarım dökümü: [IMPORT-NOTES.md](IMPORT-NOTES.md).
 
 ## Tek İçerik Dosyası
 
@@ -30,7 +30,7 @@ Her kategorinin `id`, `name`, `icon`, isteğe bağlı `image`, `imageKind`, `act
 - `ingredients` yalnızca doğrulanmış içerikleri taşıyan metin veya metin dizisidir.
 - `available: false` bulunabilirlik ayarına göre gizlenir veya "Geçici olarak mevcut değil" olarak görünür.
 - Fotoğraf yokken boş görsel alanı veya tekrar eden büyük logo gösterilmez. Ürün kompakt metin satırı, kategori ikonlu kart olur.
-- Ürün ID'leri benzersiz olmalıdır. Aynı ürün başka kategoride tekrar kullanılacaksa yeni nesne yerine mevcut kimliği yazılır: `"nutella-kruvasan"`. Ürün nesnesi, ilk kullanıldığı kategoride tanımlanmalıdır.
+- Ürün ID'leri benzersiz olmalıdır. Aynı ürün başka kategoride tekrar kullanılacaksa yeni nesne yerine mevcut kimliği yazılır: `"limonata"`. Ürün nesnesi, ilk kullanıldığı kategoride tanımlanmalıdır.
 - Çoklu kategori ilişkileri ve `categoryOrder` otomatik üretilir. Fiyat veya fotoğraf bir yerde değiştirildiğinde ürünün tüm kategorileri güncellenir. Global aramada aynı ürün bir kez görünür.
 
 ## Fotoğraf Ekleme
@@ -38,7 +38,7 @@ Her kategorinin `id`, `name`, `icon`, isteğe bağlı `image`, `imageKind`, `act
 1. `GORSEL-LISTESI.csv` dosyasında ürünlerin ve kategorilerin önerilen dosya adları bulunur.
 2. Gerçek dosyaları `menu/images/products/` veya `menu/images/categories/` altına koyun. PNG/JPEG dosyaları yayın öncesi WebP olarak optimize edilebilir.
 3. İlgili ürünün `image` alanını `/menu/images/products/urun-kimligi.webp` olarak yazın.
-4. AI ile üretilmiş görsellerde `imageKind: "generated"` kullanın. Kart ve detayda "Temsili görsel" görünür; bu bir demo menü etiketi değildir. Gerçek ürün çekiminde `imageKind: "photo"` kullanılır.
+4. AI ile üretilmiş görsellerde `imageKind: "generated"`, gerçek ürün çekiminde `imageKind: "photo"`, logo kullanımında `imageKind: "logo"` kullanın. Bu alan kaynak bilgisidir; ziyaretçiye rozet gösterilmez.
 
 Dosya adı tek başına fotoğrafı etkinleştirmez; `image` yolu açıkça girilmelidir. Böylece henüz gelmemiş dosyalara istek atılmaz. Eklenmiş bir fotoğraf sonradan yüklenemezse logo yedeği devreye girer. Ürün görselleri lazy load edilir; sabit oranları yerleşim kaymasını önler.
 

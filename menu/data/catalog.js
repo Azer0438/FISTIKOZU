@@ -1,188 +1,119 @@
-// Kullanıcının onayladığı ürün adları, 1.png - 35.png referanslarından aktarılmıştır.
-// Rakibin fiyatları, reçeteleri, kampanyaları ve fotoğrafları aktarılmaz.
-// Ürün nesnesine price, description, image ve imageKind alanları sonradan eklenebilir.
+// Ürünler, müşterinin son menü revizyonuna göre düzenlenmiştir.
+// Açıklamalar yalnızca kullanıcının sağladığı menü ekranlarında görülen bilgilerden alınır.
 // Metin kimlikleri, önceki kategoride tanımlanmış aynı ürünün tekrar kullanımıdır.
 const sections = [
   {
     id: "pasta", name: "Pasta", icon: "cake-slice", items: [
-      { id: "berry-bliss", name: "Berry Bliss", image: "/menu/images/products/pasta/berry-bliss.webp", imageKind: "generated" },
-      { id: "tiramisu", name: "Tiramisu", image: "/menu/images/products/pasta/tiramisu.webp", imageKind: "generated" },
-      { id: "flan-raffaello", name: "Flan Raffaello", image: "/menu/images/products/pasta/flan-raffaello.webp", imageKind: "generated" },
-      { id: "tart", name: "Tart", image: "/menu/images/products/pasta/tart.webp", imageKind: "generated" },
-      { id: "amerikan-brownie", name: "Amerikan Brownie", image: "/menu/images/products/pasta/amerikan-brownie.webp", imageKind: "generated" },
-      { id: "citir-belcika-cikolatali-mono", name: "Çıtır Belçika Çikolatalı Mono", image: "/menu/images/products/pasta/citir-belcika-cikolatali-mono.webp", imageKind: "generated" },
-      { id: "fistikli-mono", name: "Fıstıklı Mono", image: "/menu/images/products/pasta/fistikli-mono.webp", imageKind: "generated" },
-      { id: "orman-meyveli-spoonful", name: "Orman Meyveli Spoonful", image: "/menu/images/products/pasta/orman-meyveli-spoonful.webp", imageKind: "generated" },
-      { id: "sutlu-cikolata-spoonful", name: "Sütlü Çikolata Spoonful", image: "/menu/images/products/pasta/sutlu-cikolata-spoonful.webp", imageKind: "generated" },
-      { id: "lotus-spoonful", name: "Lotus Spoonful", image: "/menu/images/products/pasta/lotus-spoonful.webp", imageKind: "generated" },
-      { id: "san-sebastian", name: "San Sebastian", image: "/menu/images/products/pasta/san-sebastian.webp", imageKind: "generated" },
-      { id: "san-sebastian-sutlu-cikolata", name: "San Sebastian Sütlü Çikolata", image: "/menu/images/products/pasta/san-sebastian-sutlu-cikolata.webp", imageKind: "generated" },
-      { id: "orman-meyveli-cheesecake", name: "Orman Meyveli Cheesecake", image: "/menu/images/products/pasta/orman-meyveli-cheesecake.webp", imageKind: "generated" },
-      { id: "dondurmali-cookie", name: "Dondurmalı Cookie", image: "/menu/images/products/pasta/dondurmali-cookie.webp", imageKind: "generated" },
-      { id: "cikolatali-cookie-dondurmali", name: "Çikolatalı Cookie Dondurmalı", image: "/menu/images/products/pasta/cikolatali-cookie-dondurmali.webp", imageKind: "generated" },
-      { id: "ekstra-muz", name: "Ekstra Muz", image: "/menu/images/products/pasta/ekstra-muz.webp", imageKind: "generated" },
-      { id: "cikolatali-cookie", name: "Çikolatalı Cookie", image: "/menu/images/products/pasta/cikolatali-cookie.webp", imageKind: "generated" },
-      { id: "ekstra-cilek", name: "Ekstra Çilek", image: "/menu/images/products/pasta/ekstra-cilek.webp", imageKind: "generated" },
-      { id: "ekstra-cikolata", name: "Ekstra Çikolata", image: "/assets/logo-original.jpg", imageKind: "logo" },
-      { id: "dogum-gunu-pastasi", name: "Doğum Günü Pastası", image: "/menu/images/products/pasta/dogum-gunu-pastasi.webp", imageKind: "generated" }
+      { id: "tiramisu", name: "Tiramisu", price: 200, description: "Mascarpone peyniri, kedi dili, espresso ve Fransız pastacı kreması.", image: "/menu/images/products/pasta/tiramisu.webp", imageKind: "generated" },
+      { id: "flan-raffaello", name: "Flan Raffaello", price: 220, description: "Beyaz çikolatalı prenses kreması, Hindistan cevizi ve çikolata sos.", image: "/menu/images/products/pasta/flan-raffaello.webp", imageKind: "generated" },
+      { id: "tart", name: "Tart", price: 220, description: "Badem ile yoğrulmuş tart, pastacı kreması ve kırmızı meyveler.", image: "/menu/images/products/pasta/tart.webp", imageKind: "generated" },
+      { id: "amerikan-brownie", name: "Amerikan Brownie", price: 200, description: "Sütlü Belçika çikolatası ve vanilyalı dondurma ile servis edilir.", image: "/menu/images/products/pasta/amerikan-brownie.webp", imageKind: "generated" },
+      { id: "citir-belcika-cikolatali-mono", name: "Çıtır Belçika Çikolatalı Mono", price: 220, description: "Moelleux kek, pastacı kreması, çikolata sos, fındıklı çikolata kaplama ve mevsim meyveleri.", image: "/menu/images/products/pasta/citir-belcika-cikolatali-mono.webp", imageKind: "generated" },
+      { id: "fistikli-mono", name: "Fıstıklı Mono", price: 220, description: "İç dolgusunda sütlü Belçika çikolatası, dış kısmında fıstıklı kaplama.", image: "/menu/images/products/pasta/fistikli-mono.webp", imageKind: "generated" },
+      { id: "orman-meyveli-spoonful", name: "Orman Meyveli Spoonful", price: 220, description: "Böğürtlen, frambuaz, yaban mersini ve orman meyveleri.", image: "/menu/images/products/pasta/orman-meyveli-spoonful.webp", imageKind: "generated" },
+      { id: "sutlu-cikolata-spoonful", name: "Sütlü Çikolata Spoonful", price: 220, image: "/menu/images/products/pasta/sutlu-cikolata-spoonful.webp", imageKind: "generated" },
+      { id: "lotus-spoonful", name: "Lotus Spoonful", price: 220, image: "/menu/images/products/pasta/lotus-spoonful.webp", imageKind: "generated" },
+      { id: "san-sebastian", name: "San Sebastian", price: 220, description: "Şefin özel tarifi.", image: "/menu/images/products/pasta/san-sebastian.webp", imageKind: "generated" },
+      { id: "san-sebastian-sutlu-cikolata", name: "San Sebastian Sütlü Çikolata", price: 220, image: "/menu/images/products/pasta/san-sebastian-sutlu-cikolata.webp", imageKind: "generated" },
+      { id: "orman-meyveli-cheesecake", name: "Orman Meyveli Cheesecake", price: 220, description: "Dilim olarak servis edilir.", image: "/menu/images/products/pasta/orman-meyveli-cheesecake.webp", imageKind: "generated" },
+      { id: "ekstra-muz", name: "Ekstra Muz", price: 50, image: "/menu/images/products/pasta/ekstra-muz.webp", imageKind: "generated" },
+      { id: "ekstra-cilek", name: "Ekstra Çilek", price: 50, image: "/menu/images/products/pasta/ekstra-cilek.webp", imageKind: "generated" },
+      { id: "ekstra-cikolata", name: "Ekstra Çikolata", price: 50, image: "/assets/logo-original.jpg", imageKind: "logo" },
+      { id: "dogum-gunu-pastasi", name: "Doğum Günü Pastası", image: "/menu/images/products/pasta/dogum-gunu-pastasi.webp", imageKind: "generated" },
+      { id: "magnolya", name: "Magnolya", price: 220 },
+      { id: "pavlova", name: "Pavlova", price: 220, description: "Çilek, orman meyveleri ve Hindistan cevizi." },
+      { id: "profiterol", name: "Profiterol", price: 220 },
+      { id: "budapeste", name: "Budapeşte", price: 220, description: "Fındık unu, çilek ve prenses kreması." },
+      { id: "frambuaz", name: "Frambuaz", price: 220 },
+      { id: "fransiz-ekler", name: "Fransız Ekler", price: 150 },
+      { id: "rulo-pasta-muzlu-cikolata", name: "Rulo Pasta Muzlu Çikolata", price: 220, description: "Muz ve çikolata." },
+      { id: "cupta-cikolatali-spoonful", name: "Cupta Çikolatalı Spoonful", price: 150 },
+      { id: "cupta-orman-meyveli-spoonful", name: "Cupta Orman Meyveli Spoonful", price: 150 },
+      { id: "ruby-mono", name: "Ruby Mono", price: 220 }
     ]
   },
   {
-    id: "hamburger-menu", name: "Hamburger Menü", icon: "hamburger", items: [
-      { id: "klasik-hamburger", name: "Klasik Hamburger" },
-      { id: "relish-hamburger", name: "Relish Hamburger" },
-      { id: "truf-hamburger", name: "Trüf Hamburger" },
-      { id: "tavuk-truf-hamburger", name: "Tavuk Trüf Hamburger" },
-      { id: "tavuk-klasik-hamburger", name: "Tavuk Klasik Hamburger" },
-      { id: "tavuk-relish-hamburger", name: "Tavuk Relish Hamburger" },
-      { id: "cocuk-et-menu", name: "Çocuk Et Menü" },
-      { id: "cocuk-tavuk-menu", name: "Çocuk Tavuk Menü" },
-      { id: "patates-kizartmasi", name: "Patates Kızartması" }
-    ]
-  },
-  {
-    id: "sweet-croissant", name: "Sweet Croissant", icon: "croissant", items: [
-      { id: "nutella-kruvasan", name: "Nutella Kruvasan", image: "/menu/images/products/sweet-croissant/nutella-kruvasan.webp", imageKind: "generated" },
-      { id: "berry-milk", name: "Berry Milk", image: "/menu/images/products/sweet-croissant/berry-milk.webp", imageKind: "generated" },
-      { id: "badem-dolgulu-kruvasan", name: "Badem Dolgulu Kruvasan", image: "/menu/images/products/sweet-croissant/badem-dolgulu-kruvasan.webp", imageKind: "generated" },
-      { id: "beyaz-cikolatali-kruvasan", name: "Beyaz Çikolatalı Kruvasan", image: "/menu/images/products/sweet-croissant/beyaz-cikolatali-kruvasan.webp", imageKind: "generated" },
-      { id: "sutlu-cikolatali-kruvasan", name: "Sütlü Çikolatalı Kruvasan", image: "/menu/images/products/sweet-croissant/sutlu-cikolatali-kruvasan.webp", imageKind: "generated" },
-      { id: "lotus-dolgulu-kruvasan", name: "Lotus Dolgulu Kruvasan", image: "/menu/images/products/sweet-croissant/lotus-dolgulu-kruvasan.webp", imageKind: "generated" },
-      { id: "cikolata-kremali-kruvasan", name: "Çikolata Kremalı Kruvasan", image: "/menu/images/products/sweet-croissant/cikolata-kremali-kruvasan.webp", imageKind: "generated" },
-      { id: "rubyon", name: "RubyOn", image: "/menu/images/products/sweet-croissant/rubyon.webp", imageKind: "generated" },
-      { id: "sweets", name: "Sweets", image: "/menu/images/products/sweet-croissant/sweets.webp", imageKind: "generated" },
-      { id: "trio", name: "Trio", image: "/menu/images/products/sweet-croissant/trio.webp", imageKind: "generated" },
-      "ekstra-cikolata"
-    ]
-  },
-  {
-    id: "coffee", name: "Coffee", icon: "coffee", items: [
-      { id: "latte", name: "Latte" },
-      { id: "laktozsuz-latte", name: "Laktozsuz Latte" },
-      { id: "filtre-kahve", name: "Filtre Kahve" },
-      { id: "sutlu-filtre", name: "Sütlü Filtre" },
-      { id: "single-americano", name: "Single Americano" },
-      { id: "double-americano", name: "Double Americano" },
-      { id: "flat-white", name: "Flat White" },
-      { id: "cappucino", name: "Cappucino" },
-      { id: "turk-kahvesi", name: "Türk Kahvesi" },
-      { id: "mocha", name: "Mocha" },
-      { id: "white-chocolate-mocha", name: "White Chocolate Mocha" },
-      { id: "zebra-mocha", name: "Zebra Mocha" },
-      { id: "berrywhite-latte", name: "BerryWhite Latte" },
-      { id: "caramel-macchiato", name: "Caramel Macchiato" },
-      { id: "irish-cream-macchiato", name: "Irish Cream Macchiato" },
-      { id: "kis-lattesi", name: "Kış Lattesi" },
-      { id: "vanilya-latte", name: "Vanilya Latte" },
-      { id: "cookies-latte", name: "Cookies Latte" },
-      { id: "hazelnut-latte", name: "Hazelnut Latte" },
-      { id: "toffee-nut-latte", name: "Toffee Nut Latte" },
-      { id: "chai-tea-latte", name: "Chai Tea Latte" },
-      { id: "cortado", name: "Cortado" },
-      { id: "espresso", name: "Espresso" },
-      { id: "ekstra-shot", name: "Ekstra Shot" },
-      { id: "ekstra-aroma", name: "Ekstra Aroma" },
-      { id: "espresso-cekirdegi-1-kg", name: "1 kg Espresso çekirdeği" }
+    id: "coffee", name: "Sıcak İçecekler", icon: "coffee", items: [
+      { id: "latte", name: "Latte", price: 150 },
+      { id: "filtre-kahve", name: "Filtre Kahve", price: 150, description: "Moccamaster." },
+      { id: "sutlu-filtre", name: "Sütlü Filtre", price: 175, description: "Moccamaster." },
+      { id: "single-americano", name: "Single Americano", price: 150 },
+      { id: "double-americano", name: "Double Americano", price: 175 },
+      { id: "cappucino", name: "Cappucino", price: 175 },
+      { id: "turk-kahvesi", name: "Türk Kahvesi", price: 100 },
+      { id: "mocha", name: "Mocha", price: 175 },
+      { id: "white-chocolate-mocha", name: "White Chocolate Mocha", price: 175 },
+      { id: "caramel-macchiato", name: "Caramel Macchiato", price: 200 },
+      { id: "vanilya-latte", name: "Vanilya Latte", price: 175 },
+      { id: "hazelnut-latte", name: "Hazelnut Latte", price: 175 },
+      { id: "espresso", name: "Espresso", price: 175 },
+      { id: "ekstra-shot", name: "Ekstra Shot", price: 50 },
+      { id: "ekstra-aroma", name: "Ekstra Aroma", price: 50 }
     ]
   },
   {
     id: "icecekler", name: "İçecekler", icon: "cup-soda", items: [
-      { id: "su", name: "Su" },
-      { id: "cay", name: "Çay" },
-      { id: "soda", name: "Soda" },
-      { id: "limonata", name: "Limonata" },
-      { id: "cola", name: "Cola" },
-      { id: "fanta", name: "Fanta" },
-      { id: "sprite", name: "Sprite" },
-      { id: "churchill", name: "Churchill" },
+      { id: "su", name: "Su", price: 40 },
+      { id: "cay", name: "Çay", price: 40 },
+      { id: "soda", name: "Soda", price: 60 },
+      { id: "limonata", name: "Limonata", price: 150 },
+      { id: "cola", name: "Cola", price: 100 },
+      { id: "fanta", name: "Fanta", price: 100 },
+      { id: "sprite", name: "Sprite", price: 80 },
+      { id: "churchill", name: "Churchill", price: 150 },
       "turk-kahvesi",
-      { id: "double-turk-kahvesi", name: "Double Türk Kahvesi" },
-      { id: "salep", name: "Salep" },
-      { id: "fincan-cay", name: "Fincan Çay" },
-      { id: "sut", name: "Süt" },
-      { id: "portakal-suyu", name: "Portakal Suyu" },
-      { id: "red-bull", name: "Red Bull" },
-      { id: "sicak-cikolata", name: "Sıcak Çikolata" },
-      { id: "mojito", name: "Mojito" },
-      { id: "cilekli-mojito", name: "Çilekli Mojito" },
-      { id: "ayran", name: "Ayran" }
-    ]
-  },
-  {
-    id: "matcha", name: "Matcha", icon: "leaf", items: [
-      { id: "matcha-latte", name: "Matcha Latte" },
-      { id: "caramel-matcha-latte", name: "Caramel Matcha Latte" },
-      { id: "strawberry-matcha-latte", name: "Strawberry Matcha Latte" },
-      { id: "raspberry-matcha-latte", name: "Raspberry Matcha Latte" },
-      { id: "vanilya-matcha-latte", name: "Vanilya Matcha Latte" }
+      { id: "double-turk-kahvesi", name: "Double Türk Kahvesi", price: 150 },
+      { id: "salep", name: "Salep", price: 150, description: "Tarçın ile servis edilir." },
+      { id: "fincan-cay", name: "Fincan Çay", price: 60 },
+      { id: "sut", name: "Süt", price: 70 },
+      { id: "portakal-suyu", name: "Portakal Suyu", price: 150 },
+      { id: "red-bull", name: "Red Bull", price: 150 },
+      { id: "sicak-cikolata", name: "Sıcak Çikolata", price: 150 },
+      { id: "mojito", name: "Mojito", price: 225 },
+      { id: "cilekli-mojito", name: "Çilekli Mojito", price: 225 },
+      { id: "ayran", name: "Ayran", price: 60 }
     ]
   },
   {
     id: "bitki-caylari", name: "Bitki Çayları", icon: "flower-2", items: [
-      { id: "yesil-cay", name: "Yeşil Çay" },
-      { id: "elma-tarcin", name: "Elma & Tarçın" },
-      { id: "kirmizi-orman-meyveleri", name: "Kırmızı Orman Meyveleri" },
-      { id: "kis-cayi", name: "Kış Çayı" },
-      { id: "nane-limon", name: "Nane Limon" }
+      { id: "papatya-cayi", name: "Papatya Çayı", price: 120 },
+      { id: "yesil-cay", name: "Yeşil Çay", price: 120, description: "Bal ile servis edilir." },
+      { id: "kis-cayi", name: "Kış Çayı", price: 120, description: "Hibiskus, kuşburnu, portakal kabuğu, elma, karanfil, zencefil, limon, tarçın ve adaçayı." },
+      { id: "nane-limon", name: "Nane Limon", price: 120 },
+      { id: "ihlamur", name: "Ihlamur", price: 120 }
     ]
   },
   {
-    id: "kahvalti", name: "Kahvaltı", icon: "utensils-crossed", items: [
-      { id: "kruvasan", name: "Kruvasan" },
-      { id: "ala-kahvalti", name: "Alâ Kahvaltı" },
-      "nutella-kruvasan",
-      { id: "sebzeli-omlet", name: "Sebzeli Omlet" },
-      { id: "tulum-peynirli-omlet", name: "Tulum Peynirli Omlet" },
-      { id: "kruvasan-dana-fume-sandvic", name: "Kruvasan Dana Füme Sandviç" },
-      { id: "kruvasan-dana-jambon-sandvic", name: "Kruvasan Dana Jambon Sandviç" },
-      "patates-kizartmasi",
-      { id: "kruvasan-vejeteryan-sandvic", name: "Kruvasan Vejeteryan Sandviç" },
-      { id: "tam-bugday-sandvic", name: "Tam Buğday Sandviç" }
-    ]
-  },
-  {
-    id: "ice-coffee", name: "Ice Coffee", icon: "glass-water", items: [
-      { id: "ice-latte", name: "Ice Latte" },
-      { id: "ice-latte-laktozsuz", name: "Ice Latte (Laktozsuz)" },
-      { id: "ice-filtre-kahve", name: "Ice Filtre Kahve" },
-      { id: "ice-sutlu-filtre-kahve", name: "Ice Sütlü Filtre Kahve" },
-      { id: "ice-single-americano", name: "Ice Single Americano" },
-      { id: "ice-double-americano", name: "Ice Double Americano" },
-      { id: "ice-mocha", name: "Ice Mocha" },
-      { id: "ice-white-chocolate-mocha", name: "Ice White Chocolate Mocha" },
-      { id: "ice-zebra-mocha", name: "Zebra Mocha" },
-      { id: "ice-berrywhite-latte", name: "Ice BerryWhite Latte" },
-      { id: "ice-caramel-macchiato", name: "Ice Caramel Macchiato" },
-      { id: "ice-cookies-latte", name: "Ice Cookies Latte" },
-      { id: "ice-vanilya-latte", name: "Ice Vanilya Latte" },
-      { id: "ice-irish-cream-macchiato", name: "Ice Irish Cream Macchiato" },
-      { id: "ice-toffee-nut-latte", name: "Ice Toffee Nut Latte" },
-      { id: "ice-chai-tea-latte", name: "Ice Chai Tea Latte" },
-      { id: "ice-hazelnut-latte", name: "Ice Hazelnut Latte" }
+    id: "ice-coffee", name: "Soğuk Kahveler", icon: "glass-water", items: [
+      { id: "ice-latte", name: "Ice Latte", price: 180 },
+      { id: "ice-filtre-kahve", name: "Ice Filtre Kahve", price: 180 },
+      { id: "ice-sutlu-filtre-kahve", name: "Ice Sütlü Filtre Kahve", price: 180 },
+      { id: "ice-single-americano", name: "Ice Single Americano", price: 180 },
+      { id: "ice-double-americano", name: "Ice Double Americano", price: 180 },
+      { id: "ice-mocha", name: "Ice Mocha", price: 180 },
+      { id: "ice-white-chocolate-mocha", name: "Ice White Chocolate Mocha", price: 180 },
+      { id: "ice-vanilya-latte", name: "Ice Vanilya Latte", price: 180 },
+      { id: "ice-chai-tea-latte", name: "Ice Chai Tea Latte", price: 180 }
     ]
   },
   {
     id: "kokteyl", name: "Kokteyl", icon: "martini", items: [
-      { id: "green-apple-kokteyl", name: "Green Apple Kokteyl" },
-      { id: "kuzu-kulagi", name: "Kuzu Kulağı" },
-      { id: "passion", name: "Passion" },
-      { id: "meyveli-soguk-cay", name: "Meyveli Soğuk Çay" },
-      { id: "french-kiss", name: "French Kiss" },
-      { id: "hawana-special", name: "Hawana Special" },
-      { id: "kamikaze-redbull", name: "Kamikaze (RedBULL)" },
-      { id: "daffy-duck-redbull", name: "Daffy Duck (RedBULL)" },
-      { id: "apex-redbull", name: "Apex (RedBULL)" },
-      { id: "flamingo-milkshake", name: "Flamingo Milkshake" },
-      { id: "coko-coko-milkshake", name: "ÇOKO ÇOKO Milkshake" },
-      { id: "berry-margarita", name: "Berry Margarita" },
-      { id: "tropical-rush", name: "Tropical Rush" },
+      { id: "green-apple-kokteyl", name: "Green Apple Kokteyl", price: 200, description: "Elma, limon ve nane." },
+      { id: "kuzu-kulagi", name: "Kuzu Kulağı", price: 200 },
+      { id: "passion", name: "Passion", description: "Mango, şeftali, limon ve portakal." },
+      { id: "meyveli-soguk-cay", name: "Meyveli Soğuk Çay", description: "Elma, çilek, portakal suyu ve gül reyhanı." },
+      { id: "french-kiss", name: "French Kiss", description: "Yeşil elma, limon, turunçgiller ve nane." },
+      { id: "hawana-special", name: "Hawana Special", description: "Kavun, turunçgiller, limon ve ananas." },
+      { id: "kamikaze-redbull", name: "Kamikaze (RedBULL)", description: "Kivi, limon, ananas, nane ve Red Bull." },
+      { id: "daffy-duck-redbull", name: "Daffy Duck (RedBULL)", description: "Kavun, frambuaz, limon, portakal, nane ve Red Bull." },
+      { id: "apex-redbull", name: "Apex (RedBULL)", description: "Mango, ananas, kavun, limon ve Red Bull." },
+      { id: "flamingo-milkshake", name: "Flamingo Milkshake Çilekli", price: 225 },
+      { id: "coko-coko-milkshake", name: "COKO COKO Milkshake Çikolatalı", price: 225 },
+      { id: "berry-margarita", name: "Berry Margarita", description: "Karadut, frambuaz ve nar." },
+      { id: "tropical-rush", name: "Tropical Rush", description: "Mango, ananas, limon, vanilya, nane ve soda." },
       "limonata",
-      { id: "naneli-limonata", name: "Naneli Limonata" },
-      { id: "cilekli-limonata", name: "Çilekli Limonata" },
-      { id: "kuzukulakli-limonata", name: "Kuzukulaklı Limonata" },
       "mojito",
-      "cilekli-mojito",
-      { id: "yesil-elma-limonata", name: "Yeşil Elma Limonata" }
+      "cilekli-mojito"
     ]
   }
 ];

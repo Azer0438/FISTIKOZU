@@ -25,7 +25,7 @@ Build, `public/` içine sayfaları, görselleri, veri dosyalarını, robots.txt 
 
 ### Menü
 
-Kalıcı adres `/menu/` değişmez. QR menü, `menu/data/catalog.js` içindeki onaylanmış ürün adlarını kullanır. Fiyatlar, fotoğraflar ve içerik açıklamaları doğrulanana kadar boş kalır. Eski `?demo=1` bağlantısı da artık gerçek kataloğu açar. Aşağıdaki eski tekil `category` şeması ana sayfa ürün bölümü içindir; QR içerik girişi için [menü dokümanını](menu/README.md) kullanın.
+Kalıcı adres `/menu/` değişmez. QR menü, `menu/data/catalog.js` içindeki müşteri onaylı ürünleri, fiyatları ve içerik açıklamalarını kullanır; doğrulanmayan alanlar boş kalır. Eski `?demo=1` bağlantısı da gerçek kataloğu açar. Aşağıdaki eski tekil `category` şeması ana sayfa ürün bölümü içindir; QR içerik girişi için [menü dokümanını](menu/README.md) kullanın.
 
 Kategori şeması (yalnızca dokümantasyon):
 
