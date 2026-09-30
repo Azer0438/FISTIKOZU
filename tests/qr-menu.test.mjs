@@ -242,11 +242,13 @@ test("photo fields and per-category order overrides survive catalog normalizatio
 test("provided Pasta images are connected to the matching products", () => {
   const pastaProducts = products.filter(product => product.categories.includes("pasta"));
   const withImages = pastaProducts.filter(product => product.image);
-  const latestIds = ["budapeste", "frambuaz", "fransiz-ekler", "lotus-spoonful", "magnolya", "pavlova", "profiterol", "ruby-mono"];
-  assert.equal(withImages.length, 23);
-  assert.deepEqual(pastaProducts.filter(product => !product.image).map(product => product.id), [
-    "rulo-pasta-muzlu-cikolata", "cupta-cikolatali-spoonful", "cupta-orman-meyveli-spoonful"
-  ]);
+  const latestIds = [
+    "budapeste", "frambuaz", "fransiz-ekler", "lotus-spoonful", "magnolya", "pavlova",
+    "profiterol", "ruby-mono", "rulo-pasta-muzlu-cikolata", "cupta-cikolatali-spoonful",
+    "cupta-orman-meyveli-spoonful"
+  ];
+  assert.equal(withImages.length, 26);
+  assert.deepEqual(pastaProducts.filter(product => !product.image), []);
   assert.equal(latestIds.every(id => products.find(product => product.id === id).description), true);
 
   for (const product of withImages.filter(product => product.id !== "ekstra-cikolata")) {
@@ -263,12 +265,9 @@ test("provided Pasta images are connected to the matching products", () => {
 test("provided hot drink images and brief descriptions are connected", () => {
   const hotDrinks = products.filter(product => product.categories.includes("coffee"));
   const withImages = hotDrinks.filter(product => product.image);
-  assert.equal(withImages.length, 13);
-  assert.deepEqual(hotDrinks.filter(product => !product.image).map(product => product.id), [
-    "menengic", "damla-sakizli-turk-kahvesi", "sutlu-turk-kahvesi", "cafe-milano",
-    "bal-badem-salep", "damla-sakizli-salep", "chai-tea-latte"
-  ]);
-  assert.equal(hotDrinks.filter(product => product.description).length, 12);
+  assert.equal(withImages.length, 20);
+  assert.deepEqual(hotDrinks.filter(product => !product.image), []);
+  assert.equal(hotDrinks.filter(product => product.description).length, 19);
   assert.equal(products.find(product => product.id === "cappucino").name, "Cappuccino");
 
   for (const product of withImages.filter(product => !["ekstra-aroma", "turk-kahvesi"].includes(product.id))) {
@@ -305,9 +304,9 @@ test("provided herbal tea images and brief descriptions are connected", () => {
   const herbalTeas = products.filter(product => product.categories.includes("bitki-caylari"));
   const withImages = herbalTeas.filter(product => product.image);
   assert.equal(herbalTeas.length, 6);
-  assert.equal(herbalTeas.filter(product => product.image).length, 5);
-  assert.equal(herbalTeas.filter(product => product.description).length, 5);
-  assert.deepEqual(herbalTeas.filter(product => !product.image).map(product => product.id), ["hibiscus-cayi"]);
+  assert.equal(withImages.length, 6);
+  assert.equal(herbalTeas.filter(product => product.description).length, 6);
+  assert.deepEqual(herbalTeas.filter(product => !product.image), []);
 
   for (const product of withImages) {
     assert.match(product.image, /^\/menu\/images\/products\/herbal-tea\/[a-z0-9-]+\.webp$/);
@@ -320,11 +319,9 @@ test("provided cold coffee images and brief descriptions are connected", () => {
   const coldCoffees = products.filter(product => product.categories.includes("ice-coffee"));
   const withImages = coldCoffees.filter(product => product.image);
   assert.equal(coldCoffees.length, 10);
-  assert.equal(withImages.length, 7);
-  assert.equal(coldCoffees.filter(product => product.description).length, 7);
-  assert.deepEqual(coldCoffees.filter(product => !product.image).map(product => product.id), [
-    "ice-milano", "ice-karamel-latte", "ice-turk-kahvesi"
-  ]);
+  assert.equal(withImages.length, 10);
+  assert.equal(coldCoffees.filter(product => product.description).length, 10);
+  assert.deepEqual(coldCoffees.filter(product => !product.image), []);
   assert.equal(coldCoffees.find(product => product.id === "ice-double-americano").name, "Ice Americano");
 
   for (const product of withImages) {
@@ -334,15 +331,33 @@ test("provided cold coffee images and brief descriptions are connected", () => {
   }
 });
 
+test("new cold drink categories use the provided images and brief descriptions", () => {
+  const expectedCounts = { milkshake: 3, frozen: 5, frappe: 4, limonata: 3 };
+
+  for (const [category, count] of Object.entries(expectedCounts)) {
+    const categoryProducts = products.filter(product => product.categories.includes(category));
+    assert.equal(categoryProducts.length, count, category);
+    assert.equal(categoryProducts.filter(product => product.description).length, count, `${category} descriptions`);
+    assert.equal(categoryProducts.filter(product => product.image).length, count, `${category} images`);
+
+    for (const product of categoryProducts) {
+      assert.match(product.image, new RegExp(`^/menu/images/products/${category}/[a-z0-9-]+\\.webp$`));
+      assert.equal(product.imageKind, "generated");
+      assert.ok(existsSync(fileURLToPath(new URL(`..${product.image}`, import.meta.url))), `missing ${product.image}`);
+    }
+  }
+});
+
 test("provided cocktail images, descriptions and corrected COKO name are connected", () => {
   const cocktails = products.filter(product => product.categories.includes("kokteyl"));
-  const providedIds = ["flamingo-milkshake", "coko-coko-milkshake"];
+  const providedIds = [
+    "flamingo-milkshake", "coko-coko-milkshake", "sakura", "turunc-bahcesi",
+    "kirmizi-bahar", "blody-jack", "cindirella"
+  ];
   assert.equal(cocktails.length, 10);
-  assert.equal(cocktails.filter(product => product.image).length, 5);
-  assert.equal(cocktails.filter(product => product.description).length, 5);
-  assert.deepEqual(cocktails.filter(product => !product.image).map(product => product.id), [
-    "sakura", "turunc-bahcesi", "kirmizi-bahar", "blody-jack", "cindirella"
-  ]);
+  assert.equal(cocktails.filter(product => product.image).length, 10);
+  assert.equal(cocktails.filter(product => product.description).length, 10);
+  assert.deepEqual(cocktails.filter(product => !product.image), []);
   assert.equal(products.find(product => product.id === "coko-coko-milkshake").name, "COKO Milkshake Çikolatalı");
 
   for (const id of providedIds) {
@@ -355,7 +370,7 @@ test("provided cocktail images, descriptions and corrected COKO name are connect
 
 test("screenshot descriptions are available without the removed competitor name", () => {
   const described = products.filter(product => product.description);
-  assert.equal(described.length, 62);
+  assert.equal(described.length, 95);
   assert.match(products.find(product => product.id === "tiramisu").description, /Mascarpone.*espresso/i);
   assert.match(products.find(product => product.id === "kis-cayi").description, /Hibiskus.*adaçayı/i);
   assert.match(products.find(product => product.id === "coko-coko-milkshake").description, /Çikolata.*süt/i);

@@ -26,9 +26,9 @@ const sections = [
       { id: "budapeste", name: "Budapeşte", price: 220, description: "Fındık unu, çilek ve prenses kreması.", image: "/menu/images/products/pasta/budapeste.webp", imageKind: "generated" },
       { id: "frambuaz", name: "Frambuaz", price: 220, description: "Frambuaz, krema ve kakaolu katlarla hazırlanan pasta.", image: "/menu/images/products/pasta/frambuaz.webp", imageKind: "generated" },
       { id: "fransiz-ekler", name: "Fransız Ekler", price: 150, description: "Pastacı kreması dolgulu, çikolata kaplı ekler; Antep fıstığı ile.", image: "/menu/images/products/pasta/fransiz-ekler.webp", imageKind: "generated" },
-      { id: "rulo-pasta-muzlu-cikolata", name: "Rulo Pasta Muzlu Çikolata", price: 220, description: "Muz ve çikolata." },
-      { id: "cupta-cikolatali-spoonful", name: "Cupta Çikolatalı Spoonful", price: 150 },
-      { id: "cupta-orman-meyveli-spoonful", name: "Cupta Orman Meyveli Spoonful", price: 150 },
+      { id: "rulo-pasta-muzlu-cikolata", name: "Rulo Pasta Muzlu Çikolata", price: 220, description: "Kakaolu rulo kek, muz, krema ve çikolata sosu.", image: "/menu/images/products/pasta/rulo-pasta-muzlu-cikolata.webp", imageKind: "generated" },
+      { id: "cupta-cikolatali-spoonful", name: "Cupta Çikolatalı Spoonful", price: 150, description: "Kakaolu kek, çikolatalı krema ve çikolata parçaları.", image: "/menu/images/products/pasta/cupta-cikolatali-spoonful.webp", imageKind: "generated" },
+      { id: "cupta-orman-meyveli-spoonful", name: "Cupta Orman Meyveli Spoonful", price: 150, description: "Kakaolu kek, krema ve orman meyveleri.", image: "/menu/images/products/pasta/cupta-orman-meyveli-spoonful.webp", imageKind: "generated" },
       { id: "ruby-mono", name: "Ruby Mono", price: 220, description: "Ruby çikolata kaplama, krema, orman meyveleri ve Antep fıstığı.", image: "/menu/images/products/pasta/ruby-mono.webp", imageKind: "generated" }
     ]
   },
@@ -47,13 +47,13 @@ const sections = [
       { id: "espresso", name: "Espresso", price: 175, description: "Yoğun gövdeli tek shot espresso.", image: "/menu/images/products/coffee/espresso.webp", imageKind: "generated" },
       { id: "ekstra-shot", name: "Ekstra Shot", price: 50, description: "Seçtiğiniz içeceğe eklenen tek shot espresso.", image: "/menu/images/products/coffee/ekstra-shot.webp", imageKind: "generated" },
       { id: "ekstra-aroma", name: "Ekstra Aroma", price: 50, image: "/assets/logo-original.jpg", imageKind: "logo" },
-      { id: "menengic", name: "Menengiç", price: 120 },
-      { id: "damla-sakizli-turk-kahvesi", name: "Damla Sakızlı Türk Kahvesi", price: 120 },
-      { id: "sutlu-turk-kahvesi", name: "Sütlü Türk Kahvesi", price: 120 },
-      { id: "cafe-milano", name: "Cafe Milano", price: 180 },
-      { id: "bal-badem-salep", name: "Bal Badem Salep", price: 165 },
-      { id: "damla-sakizli-salep", name: "Damla Sakızlı Salep", price: 165 },
-      { id: "chai-tea-latte", name: "Chai Tea Latte", price: 165 }
+      { id: "menengic", name: "Menengiç", price: 120, description: "Menengiç kahvesiyle hazırlanan yumuşak içimli sıcak içecek.", image: "/menu/images/products/coffee/menengic.webp", imageKind: "generated" },
+      { id: "damla-sakizli-turk-kahvesi", name: "Damla Sakızlı Türk Kahvesi", price: 120, description: "Geleneksel Türk kahvesi ve damla sakızı aroması.", image: "/menu/images/products/coffee/damla-sakizli-turk-kahvesi.webp", imageKind: "generated" },
+      { id: "sutlu-turk-kahvesi", name: "Sütlü Türk Kahvesi", price: 120, description: "Türk kahvesi ve sütle hazırlanan yumuşak içimli kahve.", image: "/menu/images/products/coffee/sutlu-turk-kahvesi.webp", imageKind: "generated" },
+      { id: "cafe-milano", name: "Cafe Milano", price: 180, description: "Kahve, süt ve çikolata dokunuşuyla hazırlanan kremalı sıcak içecek.", image: "/menu/images/products/coffee/cafe-milano.webp", imageKind: "generated" },
+      { id: "bal-badem-salep", name: "Bal Badem Salep", price: 165, description: "Sütlü salep, bal, badem ve tarçın.", image: "/menu/images/products/coffee/bal-badem-salep.webp", imageKind: "generated" },
+      { id: "damla-sakizli-salep", name: "Damla Sakızlı Salep", price: 165, description: "Damla sakızı aromalı sütlü salep; tarçınla servis edilir.", image: "/menu/images/products/coffee/damla-sakizli-salep.webp", imageKind: "generated" },
+      { id: "chai-tea-latte", name: "Chai Tea Latte", price: 165, description: "Chai baharatları ve sıcak sütle hazırlanan aromatik latte.", image: "/menu/images/products/coffee/chai-tea-latte.webp", imageKind: "generated" }
     ]
   },
   {
@@ -86,7 +86,7 @@ const sections = [
       { id: "kis-cayi", name: "Kış Çayı", price: 120, description: "Hibiskus, kuşburnu, portakal kabuğu, elma, karanfil, zencefil, limon, tarçın ve adaçayı.", image: "/menu/images/products/herbal-tea/kis-cayi.webp", imageKind: "generated" },
       { id: "nane-limon", name: "Nane Limon", price: 120, description: "Nane ve limonla hazırlanan ferahlatıcı bitki çayı.", image: "/menu/images/products/herbal-tea/nane-limon.webp", imageKind: "generated" },
       { id: "ihlamur", name: "Ihlamur", price: 120, description: "Ihlamur çiçekleriyle hazırlanan hafif içimli bitki çayı; bal ile servis edilir.", image: "/menu/images/products/herbal-tea/ihlamur.webp", imageKind: "generated" },
-      { id: "hibiscus-cayi", name: "Hibiscus Çayı", price: 130 }
+      { id: "hibiscus-cayi", name: "Hibiscus Çayı", price: 130, description: "Hibiscus çiçekleriyle hazırlanan canlı renkli bitki çayı.", image: "/menu/images/products/herbal-tea/hibiscus-cayi.webp", imageKind: "generated" }
     ]
   },
   {
@@ -98,40 +98,40 @@ const sections = [
       { id: "ice-mocha", name: "Ice Mocha", price: 180, description: "Espresso, soğuk süt, çikolata ve buz.", image: "/menu/images/products/cold-coffee/ice-mocha.webp", imageKind: "generated" },
       { id: "ice-white-chocolate-mocha", name: "Ice White Chocolate Mocha", price: 180, description: "Espresso, soğuk süt, beyaz çikolata ve buz.", image: "/menu/images/products/cold-coffee/ice-white-chocolate-mocha.webp", imageKind: "generated" },
       { id: "ice-vanilya-latte", name: "Ice Vanilya Latte", price: 180, description: "Espresso, soğuk süt, vanilya aroması ve buz.", image: "/menu/images/products/cold-coffee/ice-vanilya-latte.webp", imageKind: "generated" },
-      { id: "ice-milano", name: "Ice Milano", price: 180 },
-      { id: "ice-karamel-latte", name: "Ice Karamel Latte", price: 180 },
-      { id: "ice-turk-kahvesi", name: "Ice Türk Kahvesi", price: 180 }
+      { id: "ice-milano", name: "Ice Milano", price: 180, description: "Espresso, soğuk süt, çikolata dokunuşu ve buz.", image: "/menu/images/products/cold-coffee/ice-milano.webp", imageKind: "generated" },
+      { id: "ice-karamel-latte", name: "Ice Karamel Latte", price: 180, description: "Espresso, soğuk süt, karamel ve buz.", image: "/menu/images/products/cold-coffee/ice-karamel-latte.webp", imageKind: "generated" },
+      { id: "ice-turk-kahvesi", name: "Ice Türk Kahvesi", price: 180, description: "Türk kahvesi, soğuk süt ve buz.", image: "/menu/images/products/cold-coffee/ice-turk-kahvesi.webp", imageKind: "generated" }
     ]
   },
   {
     id: "milkshake", name: "Milkshake", icon: "cup-soda", items: [
-      { id: "milkshake-vanilya", name: "Vanilya", price: 225 },
-      { id: "milkshake-karamel", name: "Karamel", price: 225 },
-      { id: "milkshake-orman-meyve", name: "Orman Meyve", price: 225 }
+      { id: "milkshake-vanilya", name: "Vanilya", price: 225, description: "Vanilya ve sütle hazırlanan kremalı milkshake.", image: "/menu/images/products/milkshake/milkshake-vanilya.webp", imageKind: "generated" },
+      { id: "milkshake-karamel", name: "Karamel", price: 225, description: "Karamel ve sütle hazırlanan kremalı milkshake.", image: "/menu/images/products/milkshake/milkshake-karamel.webp", imageKind: "generated" },
+      { id: "milkshake-orman-meyve", name: "Orman Meyve", price: 225, description: "Orman meyveleri ve sütle hazırlanan kremalı milkshake.", image: "/menu/images/products/milkshake/milkshake-orman-meyve.webp", imageKind: "generated" }
     ]
   },
   {
     id: "frozen", name: "Frozen", icon: "glass-water", items: [
-      { id: "frozen-cilek", name: "Çilek", price: 210 },
-      { id: "frozen-karpuz", name: "Karpuz", price: 210 },
-      { id: "frozen-kavun", name: "Kavun", price: 210 },
-      { id: "frozen-orman-meyve", name: "Orman Meyve", price: 210 },
-      { id: "frozen-frambuaz", name: "Frambuaz", price: 210 }
+      { id: "frozen-cilek", name: "Çilek", price: 210, description: "Çilek ve kırılmış buzla hazırlanan ferahlatıcı frozen.", image: "/menu/images/products/frozen/frozen-cilek.webp", imageKind: "generated" },
+      { id: "frozen-karpuz", name: "Karpuz", price: 210, description: "Karpuz ve kırılmış buzla hazırlanan ferahlatıcı frozen.", image: "/menu/images/products/frozen/frozen-karpuz.webp", imageKind: "generated" },
+      { id: "frozen-kavun", name: "Kavun", price: 210, description: "Kavun ve kırılmış buzla hazırlanan ferahlatıcı frozen.", image: "/menu/images/products/frozen/frozen-kavun.webp", imageKind: "generated" },
+      { id: "frozen-orman-meyve", name: "Orman Meyve", price: 210, description: "Orman meyveleri ve kırılmış buzla hazırlanan frozen.", image: "/menu/images/products/frozen/frozen-orman-meyve.webp", imageKind: "generated" },
+      { id: "frozen-frambuaz", name: "Frambuaz", price: 210, description: "Frambuaz ve kırılmış buzla hazırlanan ferahlatıcı frozen.", image: "/menu/images/products/frozen/frozen-frambuaz.webp", imageKind: "generated" }
     ]
   },
   {
     id: "frappe", name: "Frappe", icon: "coffee", items: [
-      { id: "frappe-cikolata", name: "Çikolata", price: 225 },
-      { id: "frappe-orman-meyve", name: "Orman Meyve", price: 225 },
-      { id: "frappe-karamel", name: "Karamel", price: 225 },
-      { id: "frappe-vanilya", name: "Vanilya", price: 225 }
+      { id: "frappe-cikolata", name: "Çikolata", price: 225, description: "Çikolata, süt ve buzla hazırlanan kremalı frappe.", image: "/menu/images/products/frappe/frappe-cikolata.webp", imageKind: "generated" },
+      { id: "frappe-orman-meyve", name: "Orman Meyve", price: 225, description: "Orman meyveleri ve buzla hazırlanan yoğun kıvamlı frappe.", image: "/menu/images/products/frappe/frappe-orman-meyve.webp", imageKind: "generated" },
+      { id: "frappe-karamel", name: "Karamel", price: 225, description: "Karamel, süt ve buzla hazırlanan kremalı frappe.", image: "/menu/images/products/frappe/frappe-karamel.webp", imageKind: "generated" },
+      { id: "frappe-vanilya", name: "Vanilya", price: 225, description: "Vanilya, süt ve buzla hazırlanan kremalı frappe.", image: "/menu/images/products/frappe/frappe-vanilya.webp", imageKind: "generated" }
     ]
   },
   {
     id: "limonata", name: "Limonata", icon: "leaf", items: [
-      { id: "limonata-kavunlu", name: "Kavunlu", price: 160 },
-      { id: "limonata-cilekli", name: "Çilekli", price: 160 },
-      { id: "limonata-naneli", name: "Naneli", price: 160 }
+      { id: "limonata-kavunlu", name: "Kavunlu", price: 160, description: "Kavun, limon ve buzla hazırlanan ferahlatıcı limonata.", image: "/menu/images/products/limonata/limonata-kavunlu.webp", imageKind: "generated" },
+      { id: "limonata-cilekli", name: "Çilekli", price: 160, description: "Çilek, limon ve buzla hazırlanan ferahlatıcı limonata.", image: "/menu/images/products/limonata/limonata-cilekli.webp", imageKind: "generated" },
+      { id: "limonata-naneli", name: "Naneli", price: 160, description: "Taze nane, limon ve buzla hazırlanan ferahlatıcı limonata.", image: "/menu/images/products/limonata/limonata-naneli.webp", imageKind: "generated" }
     ]
   },
   {
@@ -141,11 +141,11 @@ const sections = [
       "limonata",
       "mojito",
       "cilekli-mojito",
-      { id: "sakura", name: "Sakura", price: 160 },
-      { id: "turunc-bahcesi", name: "Turunç Bahçesi", price: 160 },
-      { id: "kirmizi-bahar", name: "Kırmızı Bahar", price: 160 },
-      { id: "blody-jack", name: "Blody Jack", price: 240 },
-      { id: "cindirella", name: "Cindirella", price: 240 }
+      { id: "sakura", name: "Sakura", price: 160, description: "Sakura aroması, limon ve buzla hazırlanan ferahlatıcı kokteyl.", image: "/menu/images/products/cocktails/sakura.webp", imageKind: "generated" },
+      { id: "turunc-bahcesi", name: "Turunç Bahçesi", price: 160, description: "Turunçgiller, taze nane ve buzla hazırlanan kokteyl.", image: "/menu/images/products/cocktails/turunc-bahcesi.webp", imageKind: "generated" },
+      { id: "kirmizi-bahar", name: "Kırmızı Bahar", price: 160, description: "Kırmızı meyveler, limon ve taze naneyle hazırlanan kokteyl.", image: "/menu/images/products/cocktails/kirmizi-bahar.webp", imageKind: "generated" },
+      { id: "blody-jack", name: "Blody Jack", price: 240, description: "Kırmızı meyveler, portakal ve taze naneyle hazırlanan kokteyl.", image: "/menu/images/products/cocktails/blody-jack.webp", imageKind: "generated" },
+      { id: "cindirella", name: "Cindirella", price: 240, description: "Turunçgiller, ananas ve taze naneyle hazırlanan kokteyl.", image: "/menu/images/products/cocktails/cindirella.webp", imageKind: "generated" }
     ]
   }
 ];
