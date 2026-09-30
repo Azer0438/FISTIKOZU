@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { buildCatalog, findProducts, readContext, readCategory, categoryHash } from "../menu/utils/catalog.js";
+import { buildCatalog, findProducts, getCategoryCoverProduct, readContext, readCategory, categoryHash } from "../menu/utils/catalog.js";
 import { menuData } from "../menu/data/menu-data.js";
 import { categories, products } from "../menu/data/catalog.js";
 import { siteData } from "../data/site-data.js";
@@ -237,6 +237,21 @@ test("photo fields and per-category order overrides survive catalog normalizatio
   ] });
   assert.deepEqual(findProducts(catalog, "", "a").map(item => item.id), ["second", "first"]);
   assert.equal(catalog.products[1].imageKind, "generated");
+});
+
+test("category covers follow the first product in each category order", () => {
+  const catalog = buildCatalog(menuData);
+  for (const category of catalog.categories) {
+    const firstProduct = findProducts(catalog, "", category.id)[0];
+    assert.equal(getCategoryCoverProduct(catalog, category.id)?.id, firstProduct.id, category.id);
+    assert.ok(firstProduct.image, `${category.id} cover image`);
+  }
+
+  const reordered = buildCatalog({ categories: [{ id: "a", name: "TEST" }], products: [
+    { id: "first", name: "First", categories: ["a"], order: 1, categoryOrder: { a: 2 }, image: "/first.webp" },
+    { id: "second", name: "Second", categories: ["a"], order: 2, categoryOrder: { a: 1 }, image: "/second.webp" }
+  ] });
+  assert.equal(getCategoryCoverProduct(reordered, "a")?.image, "/second.webp");
 });
 
 test("provided Pasta images are connected to the matching products", () => {

@@ -68,6 +68,10 @@ export function findProducts(catalog, query = "", categoryId = "") {
   return matches;
 }
 
+export function getCategoryCoverProduct(catalog, categoryId) {
+  return findProducts(catalog, "", categoryId)[0] || null;
+}
+
 export function categoryHash(id) {
   return id ? `#kategori/${encodeURIComponent(id)}` : "";
 }

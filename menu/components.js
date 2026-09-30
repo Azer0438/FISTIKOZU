@@ -42,23 +42,25 @@ export function media(src, alt, logo, eager = false, imageKind = "") {
   return frame;
 }
 
-export function categoryCard(category, logo, index) {
+export function categoryCard(category, firstProduct, logo, index) {
   const item = node("li");
   const link = node("a", "qr-category-card");
   link.href = categoryHash(category.id);
   link.dataset.category = category.id;
-  if (safeLink(category.image)) {
-    link.append(media(category.image, category.name, logo, index < 3, category.imageKind));
-  } else {
-    link.classList.add("is-text-category");
-    const symbol = icon(/^[a-z0-9-]+$/.test(category.icon || "") ? category.icon : "utensils-crossed", "/menu/icons");
-    symbol.classList.add("qr-category-symbol");
-    link.append(symbol);
-  }
+  link.dataset.coverProduct = firstProduct?.id || "";
+  link.append(media(
+    firstProduct?.image,
+    firstProduct ? `${category.name}: ${firstProduct.name}` : `${category.name} kategorisi`,
+    logo,
+    index < 3,
+    firstProduct?.imageKind
+  ));
   const caption = node("div", "qr-category-caption");
   const copy = node("div");
+  const arrow = node("span", "qr-category-arrow");
+  arrow.append(icon("arrow-right"));
   copy.append(node("h3", "", category.name), node("span", "qr-category-count", `${category.count} ürün`));
-  caption.append(copy, icon("arrow-up-right"));
+  caption.append(copy, arrow);
   link.append(caption);
   item.append(link);
   return item;

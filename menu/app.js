@@ -2,7 +2,7 @@ import { siteData } from "../data/site-data.js";
 import { menuData } from "./data/menu-data.js";
 import { safeLink } from "../assets/content.js";
 import { createStructuredData } from "../assets/seo.js";
-import { buildCatalog, readContext, findProducts, categoryHash, readCategory } from "./utils/catalog.js";
+import { buildCatalog, readContext, findProducts, getCategoryCoverProduct, categoryHash, readCategory } from "./utils/catalog.js";
 import { node, icon, categoryCard, productCard, productDetail } from "./components.js";
 
 const $ = (selector) => document.querySelector(selector);
@@ -113,7 +113,9 @@ function render() {
   });
 }
 
-categoryGrid.replaceChildren(...catalog.categories.map((category, index) => categoryCard(category, logo, index)));
+categoryGrid.replaceChildren(...catalog.categories.map((category, index) => (
+  categoryCard(category, getCategoryCoverProduct(catalog, category.id), logo, index)
+)));
 for (const category of [{ id: "", name: "Ana menü" }, ...catalog.categories]) {
   const link = node("a", "qr-sheet-link");
   link.href = category.id ? categoryHash(category.id) : homeUrl.href;
