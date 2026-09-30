@@ -198,11 +198,12 @@ test("photo fields and per-category order overrides survive catalog normalizatio
 test("provided Pasta images are connected to the matching products", () => {
   const pastaProducts = products.filter(product => product.categories.includes("pasta"));
   const withImages = pastaProducts.filter(product => product.image);
-  assert.equal(withImages.length, 16);
+  const latestIds = ["budapeste", "frambuaz", "fransiz-ekler", "lotus-spoonful", "magnolya", "pavlova", "profiterol", "ruby-mono"];
+  assert.equal(withImages.length, 23);
   assert.deepEqual(pastaProducts.filter(product => !product.image).map(product => product.id), [
-    "magnolya", "pavlova", "profiterol", "budapeste", "frambuaz", "fransiz-ekler",
-    "rulo-pasta-muzlu-cikolata", "cupta-cikolatali-spoonful", "cupta-orman-meyveli-spoonful", "ruby-mono"
+    "rulo-pasta-muzlu-cikolata", "cupta-cikolatali-spoonful", "cupta-orman-meyveli-spoonful"
   ]);
+  assert.equal(latestIds.every(id => products.find(product => product.id === id).description), true);
 
   for (const product of withImages.filter(product => product.id !== "ekstra-cikolata")) {
     assert.match(product.image, /^\/menu\/images\/products\/pasta\/[a-z0-9-]+\.webp$/);
@@ -297,7 +298,7 @@ test("provided cocktail images, descriptions and corrected COKO name are connect
 
 test("screenshot descriptions are available without the removed competitor name", () => {
   const described = products.filter(product => product.description);
-  assert.equal(described.length, 62);
+  assert.equal(described.length, 68);
   assert.match(products.find(product => product.id === "tiramisu").description, /Mascarpone.*espresso/i);
   assert.match(products.find(product => product.id === "kis-cayi").description, /Hibiskus.*adaçayı/i);
   assert.match(products.find(product => product.id === "green-apple-kokteyl").description, /Elma.*nane/i);

@@ -12,7 +12,7 @@ const sections = [
       { id: "fistikli-mono", name: "Fıstıklı Mono", price: 220, description: "İç dolgusunda sütlü Belçika çikolatası, dış kısmında fıstıklı kaplama.", image: "/menu/images/products/pasta/fistikli-mono.webp", imageKind: "generated" },
       { id: "orman-meyveli-spoonful", name: "Orman Meyveli Spoonful", price: 220, description: "Böğürtlen, frambuaz, yaban mersini ve orman meyveleri.", image: "/menu/images/products/pasta/orman-meyveli-spoonful.webp", imageKind: "generated" },
       { id: "sutlu-cikolata-spoonful", name: "Sütlü Çikolata Spoonful", price: 220, image: "/menu/images/products/pasta/sutlu-cikolata-spoonful.webp", imageKind: "generated" },
-      { id: "lotus-spoonful", name: "Lotus Spoonful", price: 220, image: "/menu/images/products/pasta/lotus-spoonful.webp", imageKind: "generated" },
+      { id: "lotus-spoonful", name: "Lotus Spoonful", price: 220, description: "Lotus bisküvi, krema ve karamelize bisküvi sosu.", image: "/menu/images/products/pasta/lotus-spoonful-v2.webp", imageKind: "generated" },
       { id: "san-sebastian", name: "San Sebastian", price: 220, description: "Şefin özel tarifi.", image: "/menu/images/products/pasta/san-sebastian.webp", imageKind: "generated" },
       { id: "san-sebastian-sutlu-cikolata", name: "San Sebastian Sütlü Çikolata", price: 220, image: "/menu/images/products/pasta/san-sebastian-sutlu-cikolata.webp", imageKind: "generated" },
       { id: "orman-meyveli-cheesecake", name: "Orman Meyveli Cheesecake", price: 220, description: "Dilim olarak servis edilir.", image: "/menu/images/products/pasta/orman-meyveli-cheesecake.webp", imageKind: "generated" },
@@ -20,16 +20,16 @@ const sections = [
       { id: "ekstra-cilek", name: "Ekstra Çilek", price: 50, image: "/menu/images/products/pasta/ekstra-cilek.webp", imageKind: "generated" },
       { id: "ekstra-cikolata", name: "Ekstra Çikolata", price: 50, image: "/assets/logo-original.jpg", imageKind: "logo" },
       { id: "dogum-gunu-pastasi", name: "Doğum Günü Pastası", image: "/menu/images/products/pasta/dogum-gunu-pastasi.webp", imageKind: "generated" },
-      { id: "magnolya", name: "Magnolya", price: 220 },
-      { id: "pavlova", name: "Pavlova", price: 220, description: "Çilek, orman meyveleri ve Hindistan cevizi." },
-      { id: "profiterol", name: "Profiterol", price: 220 },
-      { id: "budapeste", name: "Budapeşte", price: 220, description: "Fındık unu, çilek ve prenses kreması." },
-      { id: "frambuaz", name: "Frambuaz", price: 220 },
-      { id: "fransiz-ekler", name: "Fransız Ekler", price: 150 },
+      { id: "magnolya", name: "Magnolya", price: 220, description: "Pastacı kreması, bisküvi ve orman meyveleri.", image: "/menu/images/products/pasta/magnolya.webp", imageKind: "generated" },
+      { id: "pavlova", name: "Pavlova", price: 220, description: "Beze rulo, çilek, orman meyveleri, krema ve Hindistan cevizi.", image: "/menu/images/products/pasta/pavlova.webp", imageKind: "generated" },
+      { id: "profiterol", name: "Profiterol", price: 220, description: "Pastacı kreması dolgulu profiterol topları, çikolata sosu ve Antep fıstığı.", image: "/menu/images/products/pasta/profiterol.webp", imageKind: "generated" },
+      { id: "budapeste", name: "Budapeşte", price: 220, description: "Fındık unu, çilek ve prenses kreması.", image: "/menu/images/products/pasta/budapeste.webp", imageKind: "generated" },
+      { id: "frambuaz", name: "Frambuaz", price: 220, description: "Frambuaz, krema ve kakaolu katlarla hazırlanan pasta.", image: "/menu/images/products/pasta/frambuaz.webp", imageKind: "generated" },
+      { id: "fransiz-ekler", name: "Fransız Ekler", price: 150, description: "Pastacı kreması dolgulu, çikolata kaplı ekler; Antep fıstığı ile.", image: "/menu/images/products/pasta/fransiz-ekler.webp", imageKind: "generated" },
       { id: "rulo-pasta-muzlu-cikolata", name: "Rulo Pasta Muzlu Çikolata", price: 220, description: "Muz ve çikolata." },
       { id: "cupta-cikolatali-spoonful", name: "Cupta Çikolatalı Spoonful", price: 150 },
       { id: "cupta-orman-meyveli-spoonful", name: "Cupta Orman Meyveli Spoonful", price: 150 },
-      { id: "ruby-mono", name: "Ruby Mono", price: 220 }
+      { id: "ruby-mono", name: "Ruby Mono", price: 220, description: "Ruby çikolata kaplama, krema, orman meyveleri ve Antep fıstığı.", image: "/menu/images/products/pasta/ruby-mono.webp", imageKind: "generated" }
     ]
   },
   {
