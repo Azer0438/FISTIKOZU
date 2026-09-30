@@ -85,15 +85,15 @@ const sections = [
   },
   {
     id: "ice-coffee", name: "Soğuk Kahveler", icon: "glass-water", items: [
-      { id: "ice-latte", name: "Ice Latte", price: 180 },
-      { id: "ice-filtre-kahve", name: "Ice Filtre Kahve", price: 180 },
-      { id: "ice-sutlu-filtre-kahve", name: "Ice Sütlü Filtre Kahve", price: 180 },
-      { id: "ice-single-americano", name: "Ice Single Americano", price: 180 },
-      { id: "ice-double-americano", name: "Ice Double Americano", price: 180 },
-      { id: "ice-mocha", name: "Ice Mocha", price: 180 },
-      { id: "ice-white-chocolate-mocha", name: "Ice White Chocolate Mocha", price: 180 },
-      { id: "ice-vanilya-latte", name: "Ice Vanilya Latte", price: 180 },
-      { id: "ice-chai-tea-latte", name: "Ice Chai Tea Latte", price: 180 }
+      { id: "ice-latte", name: "Ice Latte", price: 180, description: "Espresso, soğuk süt ve buz.", image: "/menu/images/products/cold-coffee/ice-latte.webp", imageKind: "generated" },
+      { id: "ice-filtre-kahve", name: "Ice Filtre Kahve", price: 180, description: "Soğuk servis edilen filtre kahve ve buz.", image: "/menu/images/products/cold-coffee/ice-filtre-kahve.webp", imageKind: "generated" },
+      { id: "ice-sutlu-filtre-kahve", name: "Ice Sütlü Filtre Kahve", price: 180, description: "Filtre kahve, soğuk süt ve buz.", image: "/menu/images/products/cold-coffee/ice-sutlu-filtre-kahve.webp", imageKind: "generated" },
+      { id: "ice-single-americano", name: "Ice Single Americano", price: 180, description: "Tek shot espresso, soğuk su ve buz.", image: "/menu/images/products/cold-coffee/ice-single-americano.webp", imageKind: "generated" },
+      { id: "ice-double-americano", name: "Ice Double Americano", price: 180, description: "Çift shot espresso, soğuk su ve buz.", image: "/menu/images/products/cold-coffee/ice-double-americano.webp", imageKind: "generated" },
+      { id: "ice-mocha", name: "Ice Mocha", price: 180, description: "Espresso, soğuk süt, çikolata ve buz.", image: "/menu/images/products/cold-coffee/ice-mocha.webp", imageKind: "generated" },
+      { id: "ice-white-chocolate-mocha", name: "Ice White Chocolate Mocha", price: 180, description: "Espresso, soğuk süt, beyaz çikolata ve buz.", image: "/menu/images/products/cold-coffee/ice-white-chocolate-mocha.webp", imageKind: "generated" },
+      { id: "ice-vanilya-latte", name: "Ice Vanilya Latte", price: 180, description: "Espresso, soğuk süt, vanilya aroması ve buz.", image: "/menu/images/products/cold-coffee/ice-vanilya-latte.webp", imageKind: "generated" },
+      { id: "ice-chai-tea-latte", name: "Ice Chai Tea Latte", price: 180, description: "Chai baharatları, soğuk süt ve buz.", image: "/menu/images/products/cold-coffee/ice-chai-tea-latte.webp", imageKind: "generated" }
     ]
   },
   {
