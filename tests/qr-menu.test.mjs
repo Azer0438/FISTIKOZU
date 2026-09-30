@@ -279,9 +279,25 @@ test("provided cold coffee images and brief descriptions are connected", () => {
   }
 });
 
+test("provided cocktail images, descriptions and corrected COKO name are connected", () => {
+  const cocktails = products.filter(product => product.categories.includes("kokteyl"));
+  const providedIds = ["green-apple-kokteyl", "kuzu-kulagi", "flamingo-milkshake", "coko-coko-milkshake"];
+  assert.equal(cocktails.length, 7);
+  assert.equal(cocktails.filter(product => product.image).length, 7);
+  assert.equal(cocktails.filter(product => product.description).length, 7);
+  assert.equal(products.find(product => product.id === "coko-coko-milkshake").name, "COKO Milkshake Çikolatalı");
+
+  for (const id of providedIds) {
+    const product = products.find(candidate => candidate.id === id);
+    assert.match(product.image, /^\/menu\/images\/products\/cocktails\/[a-z0-9-]+\.webp$/);
+    assert.equal(product.imageKind, "generated");
+    assert.ok(existsSync(fileURLToPath(new URL(`..${product.image}`, import.meta.url))), `missing ${product.image}`);
+  }
+});
+
 test("screenshot descriptions are available without the removed competitor name", () => {
   const described = products.filter(product => product.description);
-  assert.equal(described.length, 59);
+  assert.equal(described.length, 62);
   assert.match(products.find(product => product.id === "tiramisu").description, /Mascarpone.*espresso/i);
   assert.match(products.find(product => product.id === "kis-cayi").description, /Hibiskus.*adaçayı/i);
   assert.match(products.find(product => product.id === "green-apple-kokteyl").description, /Elma.*nane/i);

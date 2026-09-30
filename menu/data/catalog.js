@@ -98,10 +98,10 @@ const sections = [
   },
   {
     id: "kokteyl", name: "Kokteyl", icon: "martini", items: [
-      { id: "green-apple-kokteyl", name: "Green Apple Kokteyl", price: 200, description: "Elma, limon ve nane." },
-      { id: "kuzu-kulagi", name: "Kuzu Kulağı", price: 200 },
-      { id: "flamingo-milkshake", name: "Flamingo Milkshake Çilekli", price: 225 },
-      { id: "coko-coko-milkshake", name: "COKO COKO Milkshake Çikolatalı", price: 225 },
+      { id: "green-apple-kokteyl", name: "Green Apple Kokteyl", price: 200, description: "Elma, limon ve nane.", image: "/menu/images/products/cocktails/green-apple-kokteyl.webp", imageKind: "generated" },
+      { id: "kuzu-kulagi", name: "Kuzu Kulağı", price: 200, description: "Kuzu kulağı, limon ve taze nane.", image: "/menu/images/products/cocktails/kuzu-kulagi.webp", imageKind: "generated" },
+      { id: "flamingo-milkshake", name: "Flamingo Milkshake Çilekli", price: 225, description: "Çilek ve sütle hazırlanan kremalı milkshake.", image: "/menu/images/products/cocktails/flamingo-milkshake.webp", imageKind: "generated" },
+      { id: "coko-coko-milkshake", name: "COKO Milkshake Çikolatalı", price: 225, description: "Çikolata ve sütle hazırlanan kremalı milkshake.", image: "/menu/images/products/cocktails/coko-coko-milkshake.webp", imageKind: "generated" },
       "limonata",
       "mojito",
       "cilekli-mojito"
