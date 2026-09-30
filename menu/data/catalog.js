@@ -151,6 +151,10 @@ const sections = [
 ];
 
 // Paylaşılan ürünler tek kayıttır; her kategorideki özgün sıraları ayrıca korunur.
+const menuCategoryOrder = [
+  "pasta", "coffee", "ice-coffee", "bitki-caylari", "icecekler",
+  "milkshake", "frozen", "frappe", "limonata", "kokteyl"
+];
 const byId = new Map();
 export const categories = sections.map(({ items, ...category }, index) => {
   items.forEach((item, position) => {
@@ -164,6 +168,7 @@ export const categories = sections.map(({ items, ...category }, index) => {
     product.categoryOrder[category.id] = position + 1;
     byId.set(product.id, product);
   });
-  return { image: "", active: true, order: index + 1, ...category };
-});
+  const publishedPosition = menuCategoryOrder.indexOf(category.id);
+  return { image: "", active: true, order: publishedPosition < 0 ? menuCategoryOrder.length + index + 1 : publishedPosition + 1, ...category };
+}).sort((a, b) => a.order - b.order);
 export const products = [...byId.values()];
