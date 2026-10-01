@@ -37,7 +37,7 @@ const sections = [
       { id: "latte", name: "Latte", price: 175, description: "Espresso ve sıcak sütle hazırlanan yumuşak içimli kahve.", image: "/menu/images/products/coffee/latte.webp", imageKind: "generated" },
       { id: "filtre-kahve", name: "Filtre Kahve", price: 150, description: "Moccamaster ile demlenen sade filtre kahve.", image: "/menu/images/products/coffee/filtre-kahve.webp", imageKind: "generated" },
       { id: "sutlu-filtre", name: "Sütlü Filtre", price: 175, description: "Moccamaster ile demlenen filtre kahve ve süt.", image: "/menu/images/products/coffee/sutlu-filtre.webp", imageKind: "generated" },
-      { id: "double-americano", name: "Double Americano", price: 175, description: "Çift shot espresso ve sıcak su.", image: "/menu/images/products/coffee/double-americano.webp", imageKind: "generated" },
+      { id: "double-americano", name: "Americano", price: 175, description: "Çift shot espresso ve sıcak su.", image: "/menu/images/products/coffee/double-americano.webp", imageKind: "generated" },
       { id: "cappucino", name: "Cappuccino", price: 220, description: "Espresso, sıcak süt ve yoğun süt köpüğü.", image: "/menu/images/products/coffee/cappucino.webp", imageKind: "generated" },
       { id: "turk-kahvesi", name: "Türk Kahvesi", price: 100, description: "İnce öğütülmüş kahveyle geleneksel usulde hazırlanır.", image: "/menu/images/products/drinks/turk-kahvesi.webp", imageKind: "generated" },
       { id: "mocha", name: "Mocha", price: 190, description: "Espresso, süt ve çikolata.", image: "/menu/images/products/coffee/mocha.webp", imageKind: "generated" },
@@ -78,12 +78,12 @@ const sections = [
   },
   {
     id: "bitki-caylari", name: "Bitki Çayları", icon: "flower-2", items: [
-      { id: "papatya-cayi", name: "Papatya Çayı", price: 120, description: "Papatya çiçekleriyle hazırlanan yumuşak içimli bitki çayı.", image: "/menu/images/products/herbal-tea/papatya-cayi.webp", imageKind: "generated" },
-      { id: "yesil-cay", name: "Yeşil Çay", price: 120, description: "Yeşil çay yapraklarıyla hazırlanan hafif içimli çay; bal ile servis edilir.", image: "/menu/images/products/herbal-tea/yesil-cay.webp", imageKind: "generated" },
-      { id: "kis-cayi", name: "Kış Çayı", price: 120, description: "Hibiskus, kuşburnu, portakal kabuğu, elma, karanfil, zencefil, limon, tarçın ve adaçayı.", image: "/menu/images/products/herbal-tea/kis-cayi.webp", imageKind: "generated" },
-      { id: "nane-limon", name: "Nane Limon", price: 120, description: "Nane ve limonla hazırlanan ferahlatıcı bitki çayı.", image: "/menu/images/products/herbal-tea/nane-limon.webp", imageKind: "generated" },
-      { id: "ihlamur", name: "Ihlamur", price: 120, description: "Ihlamur çiçekleriyle hazırlanan hafif içimli bitki çayı; bal ile servis edilir.", image: "/menu/images/products/herbal-tea/ihlamur.webp", imageKind: "generated" },
-      { id: "hibiscus-cayi", name: "Hibiscus Çayı", price: 130, description: "Hibiscus çiçekleriyle hazırlanan canlı renkli bitki çayı.", image: "/menu/images/products/herbal-tea/hibiscus-cayi.webp", imageKind: "generated" }
+      { id: "papatya-cayi", name: "Papatya Çayı", price: 175, description: "Papatya çiçekleriyle hazırlanan yumuşak içimli bitki çayı.", image: "/menu/images/products/herbal-tea/papatya-cayi.webp", imageKind: "generated" },
+      { id: "yesil-cay", name: "Yeşil Çay", price: 175, description: "Yeşil çay yapraklarıyla hazırlanan hafif içimli çay; bal ile servis edilir.", image: "/menu/images/products/herbal-tea/yesil-cay.webp", imageKind: "generated" },
+      { id: "kis-cayi", name: "Kış Çayı", price: 175, description: "Hibiskus, kuşburnu, portakal kabuğu, elma, karanfil, zencefil, limon, tarçın ve adaçayı.", image: "/menu/images/products/herbal-tea/kis-cayi.webp", imageKind: "generated" },
+      { id: "nane-limon", name: "Nane Limon", price: 175, description: "Nane ve limonla hazırlanan ferahlatıcı bitki çayı.", image: "/menu/images/products/herbal-tea/nane-limon.webp", imageKind: "generated" },
+      { id: "ihlamur", name: "Ihlamur", price: 175, description: "Ihlamur çiçekleriyle hazırlanan hafif içimli bitki çayı; bal ile servis edilir.", image: "/menu/images/products/herbal-tea/ihlamur.webp", imageKind: "generated" },
+      { id: "hibiscus-cayi", name: "Hibiscus Çayı", price: 175, description: "Hibiscus çiçekleriyle hazırlanan canlı renkli bitki çayı.", image: "/menu/images/products/herbal-tea/hibiscus-cayi.webp", imageKind: "generated" }
     ]
   },
   {

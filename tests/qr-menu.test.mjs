@@ -172,8 +172,8 @@ test("customer-approved prices and the intentionally unpriced birthday cake are 
     "sprite": 80, "churchill": 150, "double-turk-kahvesi": 150, "salep": 150,
     "fincan-cay": 60, "sut": 90, "portakal-suyu": 150, "red-bull": 150,
     "sicak-cikolata": 150, "ayran": 60,
-    "papatya-cayi": 120, "yesil-cay": 120, "kis-cayi": 120, "nane-limon": 120, "ihlamur": 120,
-    "hibiscus-cayi": 130,
+    "papatya-cayi": 175, "yesil-cay": 175, "kis-cayi": 175, "nane-limon": 175, "ihlamur": 175,
+    "hibiscus-cayi": 175,
     "ice-latte": 210, "ice-filtre-kahve": 180, "ice-sutlu-filtre-kahve": 210,
     "ice-double-americano": 200, "ice-mocha": 210, "ice-white-chocolate-mocha": 210,
     "ice-vanilya-latte": 210, "ice-milano": 210, "ice-karamel-latte": 210,
@@ -193,6 +193,7 @@ test("customer-approved prices and the intentionally unpriced birthday cake are 
   }
   assert.deepEqual(products.filter(product => product.price === null).map(product => product.id), ["dogum-gunu-pastasi"]);
   assert.equal(products.find(product => product.id === "sut").name, "Sıcak Süt");
+  assert.equal(products.find(product => product.id === "double-americano").name, "Americano");
 });
 
 test("barista revision products are searchable and removed records stay hidden", () => {

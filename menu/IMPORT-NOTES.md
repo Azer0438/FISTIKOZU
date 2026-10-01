@@ -24,6 +24,7 @@ Toplam 101 kategori üyeliği ve 99 farklı ürün vardır. Türk Kahvesi ve Lim
 - Müşterinin "olmasın", "kalksın", "çıkacak" veya "çıkarılacak" dediği ürünler katalogdan kaldırıldı.
 - Mojito, Çilekli Mojito ve Caramel Macchiato kaldırıldı; Süt adı Sıcak Süt olarak ve fiyatı 90 TL olarak güncellendi.
 - Sıcak içecekler, soğuk kahveler ve üç kokteylin 1 Ekim tarihli fiyat revizyonu uygulandı.
+- Tüm Bitki Çayları 175 TL olarak güncellendi; Double Americano adı Americano olarak değiştirildi.
 - Pasta kategorisine Magnolya, Pavlova, Profiterol, Budapeşte, Frambuaz, Fransız Ekler, Rulo Pasta Muzlu Çikolata, iki Cupta Spoonful çeşidi ve Ruby Mono eklendi.
 - Ice Chai Tea Latte, Ice Single Americano, Vanilya Latte, Single Americano, Kuzu Kulağı ve Green Apple Kokteyl kaldırıldı.
 - Ice Double Americano adı Ice Americano olarak güncellendi.
