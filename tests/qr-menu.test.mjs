@@ -109,22 +109,22 @@ test("menu is independent from homepage script and styles; all module syntax is 
 test("the final customer-approved categories and product groups are published", () => {
   const expected = [
     ["pasta", "Pasta", 26],
-    ["coffee", "Sıcak İçecekler", 20],
+    ["coffee", "Sıcak İçecekler", 19],
     ["ice-coffee", "Soğuk Kahveler", 10],
     ["bitki-caylari", "Bitki Çayları", 6],
-    ["icecekler", "İçecekler", 19],
+    ["icecekler", "İçecekler", 17],
     ["milkshake", "Milkshake", 3],
     ["frozen", "Frozen", 5],
     ["frappe", "Frappe", 4],
     ["limonata", "Limonata", 3],
-    ["kokteyl", "Kokteyl", 10]
+    ["kokteyl", "Kokteyl", 8]
   ];
   assert.deepEqual(categories.map(category => [
     category.id,
     category.name,
     products.filter(product => product.categories.includes(category.id)).length
   ]), expected);
-  assert.equal(products.length, 102);
+  assert.equal(products.length, 99);
   assert.equal(new Set(products.map(product => product.id)).size, products.length);
   assert.ok(products.every(product => product.categories.every(id => categories.some(category => category.id === id))));
   assert.doesNotMatch(JSON.stringify({ categories, products }), /fl[aâ]neur|fl[aâ]nöz|demo-/i);
@@ -135,6 +135,7 @@ test("the final customer-approved categories and product groups are published", 
 
 test("removed product records are not exposed", () => {
   const removed = [
+    "caramel-macchiato", "mojito", "cilekli-mojito",
     "berry-bliss", "dondurmali-cookie", "cikolatali-cookie-dondurmali", "cikolatali-cookie",
     "laktozsuz-latte", "flat-white", "zebra-mocha", "berrywhite-latte", "irish-cream-macchiato",
     "kis-lattesi", "cookies-latte", "toffee-nut-latte", "cortado", "espresso-cekirdegi-1-kg",
@@ -160,37 +161,38 @@ test("customer-approved prices and the intentionally unpriced birthday cake are 
     "profiterol": 220, "budapeste": 220, "frambuaz": 220, "fransiz-ekler": 150,
     "rulo-pasta-muzlu-cikolata": 220, "cupta-cikolatali-spoonful": 150,
     "cupta-orman-meyveli-spoonful": 150, "ruby-mono": 220,
-    "latte": 150, "filtre-kahve": 150, "sutlu-filtre": 175,
-    "double-americano": 175, "cappucino": 175, "turk-kahvesi": 100, "mocha": 175,
-    "white-chocolate-mocha": 175, "caramel-macchiato": 200,
-    "hazelnut-latte": 175, "espresso": 175, "ekstra-shot": 50, "ekstra-aroma": 50,
-    "menengic": 120, "damla-sakizli-turk-kahvesi": 120, "sutlu-turk-kahvesi": 120,
-    "cafe-milano": 180, "bal-badem-salep": 165, "damla-sakizli-salep": 165,
+    "latte": 175, "filtre-kahve": 150, "sutlu-filtre": 175,
+    "double-americano": 175, "cappucino": 220, "turk-kahvesi": 100, "mocha": 190,
+    "white-chocolate-mocha": 190,
+    "hazelnut-latte": 190, "espresso": 175, "ekstra-shot": 50, "ekstra-aroma": 50,
+    "menengic": 140, "damla-sakizli-turk-kahvesi": 140, "sutlu-turk-kahvesi": 140,
+    "cafe-milano": 190, "bal-badem-salep": 165, "damla-sakizli-salep": 165,
     "chai-tea-latte": 165,
     "su": 40, "cay": 40, "soda": 60, "limonata": 150, "cola": 100, "fanta": 100,
     "sprite": 80, "churchill": 150, "double-turk-kahvesi": 150, "salep": 150,
-    "fincan-cay": 60, "sut": 70, "portakal-suyu": 150, "red-bull": 150,
-    "sicak-cikolata": 150, "mojito": 225, "cilekli-mojito": 225, "ayran": 60,
+    "fincan-cay": 60, "sut": 90, "portakal-suyu": 150, "red-bull": 150,
+    "sicak-cikolata": 150, "ayran": 60,
     "papatya-cayi": 120, "yesil-cay": 120, "kis-cayi": 120, "nane-limon": 120, "ihlamur": 120,
     "hibiscus-cayi": 130,
-    "ice-latte": 180, "ice-filtre-kahve": 180, "ice-sutlu-filtre-kahve": 180,
-    "ice-double-americano": 180, "ice-mocha": 180, "ice-white-chocolate-mocha": 180,
-    "ice-vanilya-latte": 180, "ice-milano": 180, "ice-karamel-latte": 180,
-    "ice-turk-kahvesi": 180,
+    "ice-latte": 210, "ice-filtre-kahve": 180, "ice-sutlu-filtre-kahve": 210,
+    "ice-double-americano": 200, "ice-mocha": 210, "ice-white-chocolate-mocha": 210,
+    "ice-vanilya-latte": 210, "ice-milano": 210, "ice-karamel-latte": 210,
+    "ice-turk-kahvesi": 210,
     "milkshake-vanilya": 225, "milkshake-karamel": 225, "milkshake-orman-meyve": 225,
     "frozen-cilek": 210, "frozen-karpuz": 210, "frozen-kavun": 210,
     "frozen-orman-meyve": 210, "frozen-frambuaz": 210,
     "frappe-cikolata": 225, "frappe-orman-meyve": 225, "frappe-karamel": 225,
     "frappe-vanilya": 225,
     "limonata-kavunlu": 160, "limonata-cilekli": 160, "limonata-naneli": 160,
-    "flamingo-milkshake": 225, "coko-coko-milkshake": 225, "sakura": 160,
-    "turunc-bahcesi": 160, "kirmizi-bahar": 160, "blody-jack": 240, "cindirella": 240
+    "flamingo-milkshake": 225, "coko-coko-milkshake": 225, "sakura": 175,
+    "turunc-bahcesi": 175, "kirmizi-bahar": 175, "blody-jack": 240, "cindirella": 240
   };
-  assert.equal(Object.keys(expectedPrices).length, 101);
+  assert.equal(Object.keys(expectedPrices).length, 98);
   for (const [id, price] of Object.entries(expectedPrices)) {
     assert.equal(products.find(product => product.id === id)?.price, price, id);
   }
   assert.deepEqual(products.filter(product => product.price === null).map(product => product.id), ["dogum-gunu-pastasi"]);
+  assert.equal(products.find(product => product.id === "sut").name, "Sıcak Süt");
 });
 
 test("barista revision products are searchable and removed records stay hidden", () => {
@@ -220,14 +222,12 @@ test("barista revision products are searchable and removed records stay hidden",
   }
 });
 
-test("shared items are unique and retain their position in each category", () => {
+test("remaining shared items are unique and retain their position in each category", () => {
   const catalog = buildCatalog(menuData);
   assert.deepEqual(products.find(product => product.id === "turk-kahvesi").categories, ["coffee", "icecekler"]);
   assert.deepEqual(products.find(product => product.id === "limonata").categories, ["icecekler", "kokteyl"]);
-  assert.deepEqual(products.find(product => product.id === "mojito").categories, ["icecekler", "kokteyl"]);
   assert.equal(findProducts(catalog, "", "icecekler")[8].id, "turk-kahvesi");
   assert.equal(findProducts(catalog, "", "kokteyl")[2].id, "limonata");
-  assert.equal(findProducts(catalog, "mojito").length, 2);
 });
 
 test("photo fields and per-category order overrides survive catalog normalization", () => {
@@ -280,9 +280,9 @@ test("provided Pasta images are connected to the matching products", () => {
 test("provided hot drink images and brief descriptions are connected", () => {
   const hotDrinks = products.filter(product => product.categories.includes("coffee"));
   const withImages = hotDrinks.filter(product => product.image);
-  assert.equal(withImages.length, 20);
+  assert.equal(withImages.length, 19);
   assert.deepEqual(hotDrinks.filter(product => !product.image), []);
-  assert.equal(hotDrinks.filter(product => product.description).length, 19);
+  assert.equal(hotDrinks.filter(product => product.description).length, 18);
   assert.equal(products.find(product => product.id === "cappucino").name, "Cappuccino");
 
   for (const product of withImages.filter(product => !["ekstra-aroma", "turk-kahvesi"].includes(product.id))) {
@@ -303,9 +303,9 @@ test("provided hot drink images and brief descriptions are connected", () => {
 test("provided drink images and brief descriptions are connected", () => {
   const drinks = products.filter(product => product.categories.includes("icecekler"));
   const withImages = drinks.filter(product => product.image);
-  assert.equal(withImages.length, 19);
+  assert.equal(withImages.length, 17);
   assert.deepEqual(drinks.filter(product => !product.image).map(product => product.id), []);
-  assert.equal(drinks.filter(product => product.description).length, 19);
+  assert.equal(drinks.filter(product => product.description).length, 17);
   assert.equal(drinks.find(product => product.id === "sprite").image, "/menu/images/products/drinks/soda.webp");
 
   for (const product of withImages) {
@@ -369,9 +369,9 @@ test("provided cocktail images, descriptions and corrected COKO name are connect
     "flamingo-milkshake", "coko-coko-milkshake", "sakura", "turunc-bahcesi",
     "kirmizi-bahar", "blody-jack", "cindirella"
   ];
-  assert.equal(cocktails.length, 10);
-  assert.equal(cocktails.filter(product => product.image).length, 10);
-  assert.equal(cocktails.filter(product => product.description).length, 10);
+  assert.equal(cocktails.length, 8);
+  assert.equal(cocktails.filter(product => product.image).length, 8);
+  assert.equal(cocktails.filter(product => product.description).length, 8);
   assert.deepEqual(cocktails.filter(product => !product.image), []);
   assert.equal(products.find(product => product.id === "coko-coko-milkshake").name, "COKO Milkshake Çikolatalı");
 
@@ -385,7 +385,7 @@ test("provided cocktail images, descriptions and corrected COKO name are connect
 
 test("screenshot descriptions are available without the removed competitor name", () => {
   const described = products.filter(product => product.description);
-  assert.equal(described.length, 95);
+  assert.equal(described.length, 92);
   assert.match(products.find(product => product.id === "tiramisu").description, /Mascarpone.*espresso/i);
   assert.match(products.find(product => product.id === "kis-cayi").description, /Hibiskus.*adaçayı/i);
   assert.match(products.find(product => product.id === "coko-coko-milkshake").description, /Çikolata.*süt/i);
