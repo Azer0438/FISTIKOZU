@@ -9,11 +9,11 @@ Son müşteri revizyonu 1 Ekim 2026 tarihinde işlendi. Ürün adları, fiyatlar
 | İçecekler | 17 |
 | Bitki Çayları | 6 |
 | Soğuk Kahveler | 10 |
-| Milkshake | 3 |
+| Milkshake | 5 |
 | Frozen | 5 |
 | Frappe | 4 |
 | Limonata | 3 |
-| Kokteyl | 8 |
+| Kokteyl | 6 |
 
 Toplam 101 kategori üyeliği ve 99 farklı ürün vardır. Türk Kahvesi ve Limonata tek kayıtla birden fazla kategoride kullanılır.
 
@@ -25,6 +25,7 @@ Toplam 101 kategori üyeliği ve 99 farklı ürün vardır. Türk Kahvesi ve Lim
 - Mojito, Çilekli Mojito ve Caramel Macchiato kaldırıldı; Süt adı Sıcak Süt olarak ve fiyatı 90 TL olarak güncellendi.
 - Sıcak içecekler, soğuk kahveler ve üç kokteylin 1 Ekim tarihli fiyat revizyonu uygulandı.
 - Tüm Bitki Çayları 175 TL olarak güncellendi; Double Americano adı Americano olarak değiştirildi.
+- Flamingo Milkshake Çilekli ve COKO Milkshake Çikolatalı, Kokteyl kategorisinden Milkshake kategorisine taşındı.
 - Pasta kategorisine Magnolya, Pavlova, Profiterol, Budapeşte, Frambuaz, Fransız Ekler, Rulo Pasta Muzlu Çikolata, iki Cupta Spoonful çeşidi ve Ruby Mono eklendi.
 - Ice Chai Tea Latte, Ice Single Americano, Vanilya Latte, Single Americano, Kuzu Kulağı ve Green Apple Kokteyl kaldırıldı.
 - Ice Double Americano adı Ice Americano olarak güncellendi.

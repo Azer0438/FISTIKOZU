@@ -104,7 +104,9 @@ const sections = [
     id: "milkshake", name: "Milkshake", icon: "cup-soda", items: [
       { id: "milkshake-vanilya", name: "Vanilya", price: 225, description: "Vanilya ve sütle hazırlanan kremalı milkshake.", image: "/menu/images/products/milkshake/milkshake-vanilya.webp", imageKind: "generated" },
       { id: "milkshake-karamel", name: "Karamel", price: 225, description: "Karamel ve sütle hazırlanan kremalı milkshake.", image: "/menu/images/products/milkshake/milkshake-karamel.webp", imageKind: "generated" },
-      { id: "milkshake-orman-meyve", name: "Orman Meyve", price: 225, description: "Orman meyveleri ve sütle hazırlanan kremalı milkshake.", image: "/menu/images/products/milkshake/milkshake-orman-meyve.webp", imageKind: "generated" }
+      { id: "milkshake-orman-meyve", name: "Orman Meyve", price: 225, description: "Orman meyveleri ve sütle hazırlanan kremalı milkshake.", image: "/menu/images/products/milkshake/milkshake-orman-meyve.webp", imageKind: "generated" },
+      { id: "flamingo-milkshake", name: "Flamingo Milkshake Çilekli", price: 225, description: "Çilek ve sütle hazırlanan kremalı milkshake.", image: "/menu/images/products/milkshake/flamingo-milkshake.webp", imageKind: "generated" },
+      { id: "coko-coko-milkshake", name: "COKO Milkshake Çikolatalı", price: 225, description: "Çikolata ve sütle hazırlanan kremalı milkshake.", image: "/menu/images/products/milkshake/coko-coko-milkshake.webp", imageKind: "generated" }
     ]
   },
   {
@@ -133,8 +135,6 @@ const sections = [
   },
   {
     id: "kokteyl", name: "Kokteyl", icon: "martini", items: [
-      { id: "flamingo-milkshake", name: "Flamingo Milkshake Çilekli", price: 225, description: "Çilek ve sütle hazırlanan kremalı milkshake.", image: "/menu/images/products/cocktails/flamingo-milkshake.webp", imageKind: "generated" },
-      { id: "coko-coko-milkshake", name: "COKO Milkshake Çikolatalı", price: 225, description: "Çikolata ve sütle hazırlanan kremalı milkshake.", image: "/menu/images/products/cocktails/coko-coko-milkshake.webp", imageKind: "generated" },
       "limonata",
       { id: "sakura", name: "Sakura", price: 175, description: "Sakura aroması, limon ve buzla hazırlanan ferahlatıcı kokteyl.", image: "/menu/images/products/cocktails/sakura.webp", imageKind: "generated" },
       { id: "turunc-bahcesi", name: "Turunç Bahçesi", price: 175, description: "Turunçgiller, taze nane ve buzla hazırlanan kokteyl.", image: "/menu/images/products/cocktails/turunc-bahcesi.webp", imageKind: "generated" },

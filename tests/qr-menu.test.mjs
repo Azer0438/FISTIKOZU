@@ -113,11 +113,11 @@ test("the final customer-approved categories and product groups are published", 
     ["ice-coffee", "Soğuk Kahveler", 10],
     ["bitki-caylari", "Bitki Çayları", 6],
     ["icecekler", "İçecekler", 17],
-    ["milkshake", "Milkshake", 3],
+    ["milkshake", "Milkshake", 5],
     ["frozen", "Frozen", 5],
     ["frappe", "Frappe", 4],
     ["limonata", "Limonata", 3],
-    ["kokteyl", "Kokteyl", 8]
+    ["kokteyl", "Kokteyl", 6]
   ];
   assert.deepEqual(categories.map(category => [
     category.id,
@@ -201,7 +201,10 @@ test("barista revision products are searchable and removed records stay hidden",
   const categoryProducts = (id) => findProducts(catalog, "", id).map(product => product.id);
 
   assert.equal(products.find(product => product.id === "ice-double-americano").name, "Ice Americano");
-  assert.deepEqual(categoryProducts("milkshake"), ["milkshake-vanilya", "milkshake-karamel", "milkshake-orman-meyve"]);
+  assert.deepEqual(categoryProducts("milkshake"), [
+    "milkshake-vanilya", "milkshake-karamel", "milkshake-orman-meyve",
+    "flamingo-milkshake", "coko-coko-milkshake"
+  ]);
   assert.deepEqual(categoryProducts("frozen"), ["frozen-cilek", "frozen-karpuz", "frozen-kavun", "frozen-orman-meyve", "frozen-frambuaz"]);
   assert.deepEqual(categoryProducts("frappe"), ["frappe-cikolata", "frappe-orman-meyve", "frappe-karamel", "frappe-vanilya"]);
   assert.deepEqual(categoryProducts("limonata"), ["limonata-kavunlu", "limonata-cilekli", "limonata-naneli"]);
@@ -228,7 +231,7 @@ test("remaining shared items are unique and retain their position in each catego
   assert.deepEqual(products.find(product => product.id === "turk-kahvesi").categories, ["coffee", "icecekler"]);
   assert.deepEqual(products.find(product => product.id === "limonata").categories, ["icecekler", "kokteyl"]);
   assert.equal(findProducts(catalog, "", "icecekler")[8].id, "turk-kahvesi");
-  assert.equal(findProducts(catalog, "", "kokteyl")[2].id, "limonata");
+  assert.equal(findProducts(catalog, "", "kokteyl")[0].id, "limonata");
 });
 
 test("photo fields and per-category order overrides survive catalog normalization", () => {
@@ -348,7 +351,7 @@ test("provided cold coffee images and brief descriptions are connected", () => {
 });
 
 test("new cold drink categories use the provided images and brief descriptions", () => {
-  const expectedCounts = { milkshake: 3, frozen: 5, frappe: 4, limonata: 3 };
+  const expectedCounts = { milkshake: 5, frozen: 5, frappe: 4, limonata: 3 };
 
   for (const [category, count] of Object.entries(expectedCounts)) {
     const categoryProducts = products.filter(product => product.categories.includes(category));
@@ -362,19 +365,21 @@ test("new cold drink categories use the provided images and brief descriptions",
       assert.ok(existsSync(fileURLToPath(new URL(`..${product.image}`, import.meta.url))), `missing ${product.image}`);
     }
   }
+
+  assert.deepEqual(products.find(product => product.id === "flamingo-milkshake").categories, ["milkshake"]);
+  assert.deepEqual(products.find(product => product.id === "coko-coko-milkshake").categories, ["milkshake"]);
+  assert.equal(products.find(product => product.id === "coko-coko-milkshake").name, "COKO Milkshake Çikolatalı");
 });
 
-test("provided cocktail images, descriptions and corrected COKO name are connected", () => {
+test("provided cocktail images and descriptions are connected", () => {
   const cocktails = products.filter(product => product.categories.includes("kokteyl"));
   const providedIds = [
-    "flamingo-milkshake", "coko-coko-milkshake", "sakura", "turunc-bahcesi",
-    "kirmizi-bahar", "blody-jack", "cindirella"
+    "sakura", "turunc-bahcesi", "kirmizi-bahar", "blody-jack", "cindirella"
   ];
-  assert.equal(cocktails.length, 8);
-  assert.equal(cocktails.filter(product => product.image).length, 8);
-  assert.equal(cocktails.filter(product => product.description).length, 8);
+  assert.equal(cocktails.length, 6);
+  assert.equal(cocktails.filter(product => product.image).length, 6);
+  assert.equal(cocktails.filter(product => product.description).length, 6);
   assert.deepEqual(cocktails.filter(product => !product.image), []);
-  assert.equal(products.find(product => product.id === "coko-coko-milkshake").name, "COKO Milkshake Çikolatalı");
 
   for (const id of providedIds) {
     const product = products.find(candidate => candidate.id === id);
