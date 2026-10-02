@@ -11,7 +11,7 @@ export const siteData = {
 
   about: {
     title: "Geleneğin tadı, bugünün buluşması.",
-    description: "Fıstıközü, geleneksel tatları modern ve özenli bir sunum anlayışıyla buluşturur. Baklavadan bir araya gelmenin keyfine uzanan bu hikâyeyi, şubelerimizde ve Fıstıközü Cafe / Pastane’de paylaşıyoruz."
+    description: "Fıstıközü, geleneksel tatları modern ve özenli bir sunum anlayışıyla buluşturur. Baklavadan bir araya gelmenin keyfine uzanan bu hikâyeyi, şubelerimizde ve Fıstıközü Erkilet Cafe / Pastane’de paylaşıyoruz."
   },
 
   branches: [
@@ -70,9 +70,16 @@ export const siteData = {
       coordinates: null, workingHours: [], workingHoursText: "07:00 - 21:00", menuUrl: ""
     },
     {
-      id: "cafe-pastane", slug: "cafe-pastane", name: "Fıstıközü Cafe / Pastane", label: "Cafe / Pastane", type: "cafe",
-      description: "", image: "", imageAlt: "", images: [], address: null, phone: "",
-      mapsUrl: "", mapEmbed: "", coordinates: null, workingHours: [], menuUrl: "/menu/", qrMenu: true
+      id: "cafe-pastane", slug: "cafe-pastane", name: "Fıstıközü Erkilet Cafe / Pastane", label: "Erkilet Cafe / Pastane", type: "cafe",
+      description: "Fıstıközü Erkilet Cafe / Pastane, tatlı ve pastane lezzetlerini keyifli bir kafe deneyimiyle buluşturuyor. Kahve çeşitleri, sıcak ve soğuk içecekler, tatlılar ve özenle hazırlanan lezzetler eşliğinde günün her anında güzel bir mola için sizi bekliyoruz.",
+      image: "", imageAlt: "", images: [],
+      address: {
+        streetAddress: "Erkilet Bulvarı, Osmangazi Mahallesi, İlkut Apartmanı Altı No: 556/A", postalCode: "38050",
+        addressLocality: "Kocasinan", addressRegion: "Kayseri", addressCountry: "TR"
+      },
+      phone: "+90 507 957 25 15", phones: ["+90 507 957 25 15", "+90 553 305 38 11"],
+      mapsUrl: "", mapEmbed: "", coordinates: null, workingHours: [], workingHoursText: "07:00 - 23:00",
+      menuUrl: "/menu/", qrMenu: true
     }
   ],
 
@@ -81,7 +88,7 @@ export const siteData = {
 
   // Yalnızca onaylanmış gerçek kategori ve ürünler eklenir. Şema README.md'de.
   menu: {
-    title: "Menü", branchName: "Fıstıközü Cafe / Pastane", currency: "TRY",
+    title: "Menü", branchName: "Fıstıközü Erkilet Cafe / Pastane", currency: "TRY",
     categories: [],
     products: []
   }

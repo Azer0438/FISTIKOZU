@@ -30,9 +30,9 @@ let returnCategory = "";
 
 $("[data-year]").textContent = new Date().getFullYear();
 $("[data-branch]").textContent = context.branch?.name || siteData.menu.branchName;
-$("[data-header-branch]").textContent = context.branch?.label || "Cafe / Pastane";
+$("[data-header-branch]").textContent = context.branch?.label || "Erkilet Cafe / Pastane";
 $("[data-brand-link]").href = homeUrl.href;
-$("[data-brand-link]").setAttribute("aria-label", `Fıstıközü ${context.branch?.label || "Cafe / Pastane"}, ana menü`);
+$("[data-brand-link]").setAttribute("aria-label", `Fıstıközü ${context.branch?.label || "Erkilet Cafe / Pastane"}, ana menü`);
 document.querySelectorAll("[data-logo]").forEach((image) => { image.src = logo; });
 
 let schema = $("#structured-data");

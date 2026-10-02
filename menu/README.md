@@ -49,7 +49,7 @@ Dosya adı tek başına fotoğrafı etkinleştirmez; `image` yolu açıkça giri
 - `"hide"`: mevcut olmayan ürünü gizler (varsayılan).
 - `"show"`: mevcut olmayan ürünü açıklayıcı durum bilgisiyle gösterir.
 
-Varsayılan şube Cafe / Pastane'dir. Diğer şubeler aynı kataloğu kullanır. Şube özel değişiklik örneği:
+Varsayılan şube Erkilet Cafe / Pastane'dir. Diğer şubeler aynı kataloğu kullanır. Şube özel değişiklik örneği:
 
 ```js
 branchOverrides: {

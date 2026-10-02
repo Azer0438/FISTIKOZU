@@ -175,6 +175,7 @@ if (!slug) {
 
     if (branch.type === "cafe" && menuUrl) {
       const menuBand = document.querySelector("[data-branch-menu]");
+      document.querySelector("[data-branch-menu-title]").textContent = branch.name;
       document.querySelector("[data-branch-menu-link]").href = menuUrl;
       menuBand.hidden = false;
     }
