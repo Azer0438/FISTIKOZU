@@ -78,7 +78,9 @@ export const siteData = {
         addressLocality: "Kocasinan", addressRegion: "Kayseri", addressCountry: "TR"
       },
       phone: "+90 507 957 25 15", phones: ["+90 507 957 25 15", "+90 553 305 38 11"],
-      mapsUrl: "", mapEmbed: "", coordinates: null, workingHours: [], workingHoursText: "07:00 - 23:00",
+      mapsUrl: "https://maps.app.goo.gl/U8zMd1uaXp7Lz4hB9",
+      mapEmbed: "https://www.google.com/maps?q=38.7868438%2C35.4548983&z=17&output=embed",
+      coordinates: { latitude: 38.7868438, longitude: 35.4548983 }, workingHours: [], workingHoursText: "07:00 - 23:00",
       menuUrl: "/menu/", qrMenu: true
     }
   ],

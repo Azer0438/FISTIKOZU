@@ -93,7 +93,7 @@ test("confirmed Yeni Sanayi details retain both phone numbers and supplied photo
   assert.equal(business.openingHoursSpecification, undefined);
 });
 
-test("confirmed Erkilet Cafe / Pastane details publish without an unconfirmed map or image", () => {
+test("confirmed Erkilet Cafe / Pastane details publish with its map and without an unconfirmed image", () => {
   const branch = siteData.branches.find((item) => item.slug === "cafe-pastane");
   assert.equal(branch.name, "Fıstıközü Erkilet Cafe / Pastane");
   assert.equal(branch.label, "Erkilet Cafe / Pastane");
@@ -101,13 +101,20 @@ test("confirmed Erkilet Cafe / Pastane details publish without an unconfirmed ma
   assert.equal(branch.address.postalCode, "38050");
   assert.deepEqual(branch.phones, ["+90 507 957 25 15", "+90 553 305 38 11"]);
   assert.equal(branch.workingHoursText, "07:00 - 23:00");
-  assert.equal(branch.mapsUrl, "");
+  assert.equal(branch.mapsUrl, "https://maps.app.goo.gl/U8zMd1uaXp7Lz4hB9");
+  assert.match(branch.mapEmbed, /38\.7868438%2C35\.4548983/);
+  assert.deepEqual(branch.coordinates, { latitude: 38.7868438, longitude: 35.4548983 });
   assert.equal(branch.image, "");
   assert.deepEqual(branch.images, []);
   const business = createStructuredData(siteData)["@graph"].find((item) => item.name === branch.name);
   assert.deepEqual(business.telephone, branch.phones);
   assert.equal(business.address.addressLocality, "Kocasinan");
-  assert.equal(business.hasMap, undefined);
+  assert.equal(business.hasMap, branch.mapsUrl);
+  assert.deepEqual(business.geo, {
+    "@type": "GeoCoordinates",
+    latitude: 38.7868438,
+    longitude: 35.4548983
+  });
   assert.equal(business.image, undefined);
 });
 
