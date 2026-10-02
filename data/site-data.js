@@ -18,11 +18,12 @@ export const siteData = {
     {
       id: "organize", slug: "organize", name: "Fıstıközü Baklavaları Organize", label: "Organize", type: "bakery",
       description: "Fıstıközü Baklavaları Organize şubesi olarak Kayseri’de geleneksel lezzetleri özenle hazırlayıp misafirlerimizle buluşturuyoruz.",
-      image: "/assets/images/sube-organize-hero.webp", imageAlt: "Fıstıközü Baklavaları Organize şubesi dış görünümü",
-      imageWidth: 1360, imageHeight: 612,
+      image: "/assets/images/sube-organize-gallery-03.jpg", imageAlt: "Fıstıközü Baklavaları Organize şubesi gece dış görünümü",
+      imageWidth: 1254, imageHeight: 1254,
       images: [
-        { src: "/assets/images/sube-organize-hero.webp", alt: "Fıstıközü Baklavaları Organize şubesi gece görünümü" },
-        { src: "/assets/images/sube-organize-gallery-01.webp", alt: "Fıstıközü Baklavaları Organize şubesi girişi ve baklava sunumu" }
+        { src: "/assets/images/sube-organize-gallery-01.jpg", alt: "Fıstıközü Baklavaları Organize şubesi fırın ürünleri vitrini", width: 1254, height: 1254 },
+        { src: "/assets/images/sube-organize-gallery-02.jpg", alt: "Fıstıközü Baklavaları Organize şubesi gündüz dış görünümü ve baklava sunumu", width: 1254, height: 1254 },
+        { src: "/assets/images/sube-organize-gallery-03.jpg", alt: "Fıstıközü Baklavaları Organize şubesi gece dış görünümü", width: 1254, height: 1254 }
       ],
       address: {
         streetAddress: "Anbar Mahallesi 14. Cadde No: 12", postalCode: "38070",

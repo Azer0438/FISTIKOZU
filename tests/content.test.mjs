@@ -50,7 +50,12 @@ test("confirmed Organize branch details and supplied images are published withou
   assert.equal(branch.phone, "0507 957 25 15");
   assert.equal(branch.workingHoursText, "06:00 - 21:00");
   assert.deepEqual(validHours(branch.workingHours), []);
-  assert.equal(branch.images.length, 2);
+  assert.equal(branch.images.length, 3);
+  assert.deepEqual(branch.images.map((image) => image.src), [
+    "/assets/images/sube-organize-gallery-01.jpg",
+    "/assets/images/sube-organize-gallery-02.jpg",
+    "/assets/images/sube-organize-gallery-03.jpg"
+  ]);
   assert.ok(branch.images.every((image) => safeLink(image.src)));
   const business = createStructuredData(siteData)["@graph"].find((item) => item.name === branch.name);
   assert.equal(business.telephone, branch.phone);

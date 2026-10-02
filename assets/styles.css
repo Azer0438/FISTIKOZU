@@ -163,6 +163,7 @@ p { text-wrap: pretty; }
 .branch-gallery-grid figure:hover img { transform: scale(1.02); }
 .branch-gallery-grid.gallery-count-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .branch-gallery-grid.gallery-count-3 figure { aspect-ratio: 3 / 4; }
+.branch-gallery-grid.gallery-square figure { aspect-ratio: 1; }
 .branch-menu-band { padding-block: 78px; }
 .branch-menu-band-inner { display: flex; align-items: center; justify-content: space-between; gap: 48px; }
 .branch-menu-band .section-kicker { margin-bottom: 12px; }

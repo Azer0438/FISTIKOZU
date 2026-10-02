@@ -167,6 +167,10 @@ if (!slug) {
       galleryGrid.append(figure);
     }
     if (galleryGrid.childElementCount === 3) galleryGrid.classList.add("gallery-count-3");
+    const measuredGalleryImages = galleryImages.filter((item) => typeof item === "object" && Number.isFinite(item.width) && Number.isFinite(item.height));
+    if (measuredGalleryImages.length === galleryGrid.childElementCount && measuredGalleryImages.every((item) => Math.abs(item.width / item.height - 1) <= 0.1)) {
+      galleryGrid.classList.add("gallery-square");
+    }
     gallery.hidden = galleryGrid.childElementCount === 0;
 
     if (branch.type === "cafe" && menuUrl) {
