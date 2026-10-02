@@ -54,9 +54,20 @@ export const siteData = {
     },
     {
       id: "yeni-sanayi", slug: "yeni-sanayi", name: "Fıstıközü Baklavaları Yeni Sanayi", label: "Yeni Sanayi", type: "bakery",
-      description: "", image: "/assets/images/sube-yeni-sanayi.webp", imageAlt: "Fıstıközü Baklavaları Yeni Sanayi şubesi", images: [],
-      imageWidth: 687, imageHeight: 1181, address: null, phone: "", mapsUrl: "", mapEmbed: "",
-      coordinates: null, workingHours: [], menuUrl: ""
+      description: "Fıstıközü Baklavaları Yeni Sanayi Şubesi ile Kalitenin En TATLI Halini Sizlere Sunmaya Devam Ediyoruz.",
+      image: "/assets/images/sube-yeni-sanayi-gece.jpg", imageAlt: "Fıstıközü Baklavaları Yeni Sanayi şubesi gece dış görünümü",
+      imageWidth: 1254, imageHeight: 1254,
+      images: [
+        { src: "/assets/images/sube-yeni-sanayi-gece.jpg", alt: "Fıstıközü Baklavaları Yeni Sanayi şubesinin yağmurlu gece görünümü", width: 1254, height: 1254 }
+      ],
+      address: {
+        streetAddress: "Şeker Mahallesi, 6180. Sokak, Yeni Sanayi Sitesi No: 1", postalCode: "38060",
+        addressLocality: "Kocasinan", addressRegion: "Kayseri", addressCountry: "TR"
+      },
+      phone: "+90 507 957 25 15", phones: ["+90 507 957 25 15", "+90 553 305 38 11"],
+      mapsUrl: "https://maps.app.goo.gl/JFM1i15UoFvT7i5z9",
+      mapEmbed: "https://www.google.com/maps?q=%C5%9Eeker+Mahallesi%2C+6180.+Sokak%2C+Yeni+Sanayi+Sitesi+No%3A+1%2C+38060+Kocasinan%2FKayseri&output=embed",
+      coordinates: null, workingHours: [], workingHoursText: "07:00 - 21:00", menuUrl: ""
     },
     {
       id: "cafe-pastane", slug: "cafe-pastane", name: "Fıstıközü Cafe / Pastane", label: "Cafe / Pastane", type: "cafe",

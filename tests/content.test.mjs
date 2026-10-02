@@ -77,6 +77,20 @@ test("confirmed Şehir Hastanesi details retain both phone numbers without infer
   assert.equal(business.openingHoursSpecification, undefined);
 });
 
+test("confirmed Yeni Sanayi details retain both phone numbers and supplied photo", () => {
+  const branch = siteData.branches.find((item) => item.slug === "yeni-sanayi");
+  assert.equal(branch.address.streetAddress, "Şeker Mahallesi, 6180. Sokak, Yeni Sanayi Sitesi No: 1");
+  assert.equal(branch.address.postalCode, "38060");
+  assert.deepEqual(branch.phones, ["+90 507 957 25 15", "+90 553 305 38 11"]);
+  assert.equal(branch.workingHoursText, "07:00 - 21:00");
+  assert.deepEqual(validHours(branch.workingHours), []);
+  assert.deepEqual(branch.images.map((image) => image.src), ["/assets/images/sube-yeni-sanayi-gece.jpg"]);
+  const business = createStructuredData(siteData)["@graph"].find((item) => item.name === branch.name);
+  assert.deepEqual(business.telephone, branch.phones);
+  assert.equal(business.address.addressLocality, "Kocasinan");
+  assert.equal(business.openingHoursSpecification, undefined);
+});
+
 test("empty menu and unavailable items do not create placeholder categories", () => {
   assert.deepEqual(getMenuGroups(), []);
   assert.equal(getMenuGroups(fixture).length, 2);
