@@ -38,8 +38,9 @@ export const siteData = {
       image: "/assets/images/sube-sehir-hastanesi-hero.jpeg", imageAlt: "Fıstıközü Baklavaları Şehir Hastanesi şubesi dış görünümü",
       imageWidth: 1200, imageHeight: 1600,
       images: [
-        { src: "/assets/images/sube-sehir-hastanesi-hero.jpeg", alt: "Fıstıközü Baklavaları Şehir Hastanesi şubesi dış görünümü" },
-        { src: "/assets/images/sube-sehir-hastanesi-gallery-01.jpeg", alt: "Fıstıközü Baklavaları Şehir Hastanesi şubesi girişi" }
+        { src: "/assets/images/sube-sehir-hastanesi-hero.jpeg", alt: "Fıstıközü Baklavaları Şehir Hastanesi şubesi dış görünümü", width: 1200, height: 1600 },
+        { src: "/assets/images/sube-sehir-hastanesi-gallery-01.jpeg", alt: "Fıstıközü Baklavaları Şehir Hastanesi şubesi girişi", width: 1200, height: 1600 },
+        { src: "/assets/images/sube-sehir-hastanesi-gece.jpg", alt: "Fıstıközü Baklavaları Şehir Hastanesi şubesinin gece görünümü", width: 941, height: 1672 }
       ],
       address: {
         streetAddress: "Şeker Mahallesi, Muhsin Yazıcıoğlu Bulvarı No: 76/76A",

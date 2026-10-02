@@ -38,8 +38,10 @@ test("branch cards and detail routes use the four central branch records", () =>
   assert.match(homeScript, /\/subeler\/\$\{slug\}\//);
   assert.match(branchTemplate, /data-branch-map/);
   assert.match(branchTemplate, /data-branch-gallery/);
+  assert.doesNotMatch(branchTemplate, /data-branch-hero-image/);
   assert.match(branchScript, /branch\.type === "cafe"/);
   assert.match(branchScript, /phoneLink\(number\)/);
+  assert.match(branchScript, /gallery-count-3/);
 });
 
 test("confirmed Organize branch details and supplied images are published without inferred days", () => {
@@ -62,7 +64,8 @@ test("confirmed Şehir Hastanesi details retain both phone numbers without infer
   assert.deepEqual(branch.phones, ["+90 545 218 38 08", "+90 543 846 96 09"]);
   assert.equal(branch.workingHoursText, "05:30 - 00:00");
   assert.deepEqual(validHours(branch.workingHours), []);
-  assert.equal(branch.images.length, 2);
+  assert.equal(branch.images.length, 3);
+  assert.equal(branch.images.at(-1).src, "/assets/images/sube-sehir-hastanesi-gece.jpg");
   const business = createStructuredData(siteData)["@graph"].find((item) => item.name === branch.name);
   assert.deepEqual(business.telephone, branch.phones);
   assert.equal(business.address.addressLocality, "Kocasinan");

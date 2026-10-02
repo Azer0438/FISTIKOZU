@@ -77,22 +77,10 @@ if (!slug) {
       descriptionNode.hidden = false;
     }
 
-    const hero = document.querySelector("[data-branch-hero]");
-    const heroMedia = document.querySelector("[data-branch-hero-media]");
-    const heroImage = document.querySelector("[data-branch-hero-image]");
     if (safeLink(branch.image)) {
-      hero.classList.add("has-media");
-      heroMedia.hidden = false;
-      heroImage.src = branch.image;
-      heroImage.alt = hasText(branch.imageAlt) ? branch.imageAlt : branch.name;
-      heroImage.width = branch.imageWidth || 1200;
-      heroImage.height = branch.imageHeight || 900;
+      const imageAlt = hasText(branch.imageAlt) ? branch.imageAlt : branch.name;
       setMeta('meta[property="og:image"]', new URL(branch.image, siteData.canonicalBase).href);
-      setMeta('meta[property="og:image:alt"]', heroImage.alt);
-      heroImage.addEventListener("error", () => {
-        hero.classList.remove("has-media");
-        heroMedia.hidden = true;
-      }, { once: true });
+      setMeta('meta[property="og:image:alt"]', imageAlt);
     }
 
     const actions = document.querySelector("[data-branch-actions]");
@@ -168,12 +156,17 @@ if (!slug) {
       const image = el("img");
       image.src = source;
       image.alt = typeof item === "object" && hasText(item.alt) ? item.alt : `${branch.name} şubesinden görünüm ${index + 1}`;
+      if (typeof item === "object" && Number.isFinite(item.width) && Number.isFinite(item.height)) {
+        image.width = item.width;
+        image.height = item.height;
+      }
       image.loading = "lazy";
       image.decoding = "async";
       image.addEventListener("error", () => figure.remove(), { once: true });
       figure.append(image);
       galleryGrid.append(figure);
     }
+    if (galleryGrid.childElementCount === 3) galleryGrid.classList.add("gallery-count-3");
     gallery.hidden = galleryGrid.childElementCount === 0;
 
     if (branch.type === "cafe" && menuUrl) {
