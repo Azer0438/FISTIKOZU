@@ -28,6 +28,17 @@ test("an empty catalog stays empty and the permanent menu route is preserved", (
   }
 });
 
+test("BarbarosSoft credit is linked securely from every public footer", () => {
+  const pages = ["../index.html", "../subeler/index.html", "../menu/index.html"];
+  for (const page of pages) {
+    const html = readFileSync(new URL(page, import.meta.url), "utf8");
+    assert.match(html, /Bu sitenin web tasarım ve QR menü hizmetleri/);
+    assert.match(html, /href="https:\/\/barbarossoft\.com\.tr\/"/);
+    assert.match(html, /target="_blank"/);
+    assert.match(html, /rel="noopener noreferrer"/);
+  }
+});
+
 test("branch cards and detail routes use the four central branch records", () => {
   assert.deepEqual(siteData.branches.map((branch) => branch.slug), [
     "organize", "sehir-hastanesi", "yeni-sanayi", "cafe-pastane"

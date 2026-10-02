@@ -22,7 +22,7 @@
       document.documentElement.classList.add("qr-loading");
       window.qrLoadingTimer = setTimeout(() => document.documentElement.classList.remove("qr-loading"), 5000);
     </script>
-    <link rel="stylesheet" href="/menu/menu.css?v=5">
+    <link rel="stylesheet" href="/menu/menu.css?v=6">
     <script type="module" src="/menu/app.js"></script>
     <!-- structured-data -->
   </head>
@@ -68,7 +68,17 @@
       </section>
       <noscript><p class="qr-noscript">Menüyü görüntülemek için JavaScript'i etkinleştirebilir veya ekibimizle görüşebilirsiniz.</p></noscript>
     </main>
-    <footer class="qr-footer qr-container"><a href="/">Fıstıközü Baklavaları <img class="qr-icon" src="/assets/icons/arrow-up-right.svg" width="20" height="20" alt=""></a><p>© <span data-year></span> Fıstıközü</p></footer>
+    <footer class="qr-footer qr-container" id="site-footer">
+      <div class="qr-footer-main">
+        <a class="qr-footer-home" href="/">Fıstıközü Baklavaları <img class="qr-icon" src="/assets/icons/arrow-up-right.svg" width="20" height="20" alt=""></a>
+        <p>© <span data-year></span> Fıstıközü</p>
+      </div>
+      <p class="qr-footer-credit">
+        <span>Bu sitenin web tasarım ve QR menü hizmetleri</span>
+        <a class="qr-provider" href="https://barbarossoft.com.tr/" target="_blank" rel="noopener noreferrer">BarbarosSoft</a>
+        <span>tarafından yapılmıştır.</span>
+      </p>
+    </footer>
     <div class="qr-floating" data-floating hidden>
       <button class="qr-top qr-icon-button" type="button" data-top aria-label="Yukarı çık" title="Yukarı çık" hidden><img class="qr-icon" src="/assets/icons/arrow-down.svg" width="20" height="20" alt=""></button>
       <button class="qr-category-trigger" type="button" data-category-trigger aria-haspopup="dialog" aria-controls="category-sheet"><img class="qr-icon" src="/assets/icons/menu.svg" width="20" height="20" alt="">Kategoriler</button>
