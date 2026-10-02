@@ -39,7 +39,7 @@ const sections = [
       { id: "sutlu-filtre", name: "Sütlü Filtre", price: 175, description: "Moccamaster ile demlenen filtre kahve ve süt.", image: "/menu/images/products/coffee/sutlu-filtre.webp", imageKind: "generated" },
       { id: "double-americano", name: "Americano", price: 175, description: "Çift shot espresso ve sıcak su.", image: "/menu/images/products/coffee/double-americano.webp", imageKind: "generated" },
       { id: "cappucino", name: "Cappuccino", price: 220, description: "Espresso, sıcak süt ve yoğun süt köpüğü.", image: "/menu/images/products/coffee/cappucino.webp", imageKind: "generated" },
-      { id: "turk-kahvesi", name: "Türk Kahvesi", price: 100, description: "İnce öğütülmüş kahveyle geleneksel usulde hazırlanır.", image: "/menu/images/products/drinks/turk-kahvesi.webp", imageKind: "generated" },
+      { id: "turk-kahvesi", name: "Türk Kahvesi", price: 120, description: "İnce öğütülmüş kahveyle geleneksel usulde hazırlanır.", image: "/menu/images/products/drinks/turk-kahvesi.webp", imageKind: "generated" },
       { id: "mocha", name: "Mocha", price: 190, description: "Espresso, süt ve çikolata.", image: "/menu/images/products/coffee/mocha.webp", imageKind: "generated" },
       { id: "white-chocolate-mocha", name: "White Chocolate Mocha", price: 190, description: "Espresso, süt ve beyaz çikolata.", image: "/menu/images/products/coffee/white-chocolate-mocha.webp", imageKind: "generated" },
       { id: "hazelnut-latte", name: "Hazelnut Latte", price: 190, description: "Espresso, süt ve fındık aroması.", image: "/menu/images/products/coffee/hazelnut-latte.webp", imageKind: "generated" },
@@ -52,13 +52,18 @@ const sections = [
       { id: "cafe-milano", name: "Cafe Milano", price: 190, description: "Kahve, süt ve çikolata dokunuşuyla hazırlanan kremalı sıcak içecek.", image: "/menu/images/products/coffee/cafe-milano.webp", imageKind: "generated" },
       { id: "bal-badem-salep", name: "Bal Badem Salep", price: 165, description: "Sütlü salep, bal, badem ve tarçın.", image: "/menu/images/products/coffee/bal-badem-salep.webp", imageKind: "generated" },
       { id: "damla-sakizli-salep", name: "Damla Sakızlı Salep", price: 165, description: "Damla sakızı aromalı sütlü salep; tarçınla servis edilir.", image: "/menu/images/products/coffee/damla-sakizli-salep.webp", imageKind: "generated" },
+      { id: "findikli-salep", name: "Fındıklı Salep", price: 165, description: "Fındık aromalı sıcak salep.", image: "/menu/images/products/coffee/findikli-salep.webp", imageKind: "generated" },
+      { id: "antep-fistikli-salep", name: "Antep Fıstıklı Salep", price: 165, description: "Antep fıstığı aromalı sıcak salep.", image: "/menu/images/products/coffee/antep-fistikli-salep.webp", imageKind: "generated" },
+      { id: "cilekli-sicak-cikolata", name: "Çilekli Sıcak Çikolata", price: 165, description: "Çilek aromalı sıcak çikolata.", image: "/menu/images/products/coffee/cilekli-sicak-cikolata.webp", imageKind: "generated" },
+      { id: "frambuazli-sicak-cikolata", name: "Frambuazlı Sıcak Çikolata", price: 165, description: "Frambuaz aromalı sıcak çikolata.", image: "/menu/images/products/coffee/frambuazli-sicak-cikolata.webp", imageKind: "generated" },
+      { id: "muzlu-sicak-cikolata", name: "Muzlu Sıcak Çikolata", price: 165, description: "Muz aromalı sıcak çikolata.", image: "/menu/images/products/coffee/muzlu-sicak-cikolata.webp", imageKind: "generated" },
       { id: "chai-tea-latte", name: "Chai Tea Latte", price: 165, description: "Chai baharatları ve sıcak sütle hazırlanan aromatik latte.", image: "/menu/images/products/coffee/chai-tea-latte.webp", imageKind: "generated" }
     ]
   },
   {
     id: "icecekler", name: "İçecekler", icon: "cup-soda", items: [
       { id: "su", name: "Su", price: 40, description: "Soğuk servis edilen şişe su.", image: "/menu/images/products/drinks/su.webp", imageKind: "generated" },
-      { id: "cay", name: "Çay", price: 40, description: "Taze demlenmiş siyah çay.", image: "/menu/images/products/drinks/cay.webp", imageKind: "generated" },
+      { id: "cay", name: "Çay", price: 45, description: "Taze demlenmiş siyah çay.", image: "/menu/images/products/drinks/cay.webp", imageKind: "generated" },
       { id: "soda", name: "Soda", price: 60, description: "Doğal mineralli maden suyu.", image: "/menu/images/products/drinks/soda.webp", imageKind: "generated" },
       { id: "limonata", name: "Limonata", price: 150, description: "Limon ve taze nane aromalı ferahlatıcı içecek.", image: "/menu/images/products/drinks/limonata.webp", imageKind: "generated" },
       { id: "cola", name: "Cola", price: 100, description: "Soğuk servis edilen gazlı kola.", image: "/menu/images/products/drinks/cola.webp", imageKind: "generated" },
@@ -68,9 +73,9 @@ const sections = [
       "turk-kahvesi",
       { id: "double-turk-kahvesi", name: "Double Türk Kahvesi", price: 150, description: "Çift ölçü kahveyle hazırlanan yoğun Türk kahvesi.", image: "/menu/images/products/drinks/double-turk-kahvesi.webp", imageKind: "generated" },
       { id: "salep", name: "Salep", price: 150, description: "Sütle hazırlanan, tarçınla servis edilen sıcak salep.", image: "/menu/images/products/drinks/salep.webp", imageKind: "generated" },
-      { id: "fincan-cay", name: "Fincan Çay", price: 60, description: "Fincanda servis edilen taze demlenmiş siyah çay.", image: "/menu/images/products/drinks/fincan-cay.webp", imageKind: "generated" },
+      { id: "fincan-cay", name: "Fincan Çay", price: 65, description: "Fincanda servis edilen taze demlenmiş siyah çay.", image: "/menu/images/products/drinks/fincan-cay.webp", imageKind: "generated" },
       { id: "sut", name: "Sıcak Süt", price: 90, description: "Sıcak servis edilen süt.", image: "/menu/images/products/drinks/sut.webp", imageKind: "generated" },
-      { id: "portakal-suyu", name: "Portakal Suyu", price: 150, description: "Portakal aromalı ferahlatıcı meyve suyu.", image: "/menu/images/products/drinks/portakal-suyu.webp", imageKind: "generated" },
+      { id: "portakal-suyu", name: "Portakal Suyu", price: 190, description: "Portakal aromalı ferahlatıcı meyve suyu.", image: "/menu/images/products/drinks/portakal-suyu.webp", imageKind: "generated" },
       { id: "red-bull", name: "Red Bull", price: 150, description: "Soğuk servis edilen enerji içeceği.", image: "/menu/images/products/drinks/red-bull.webp", imageKind: "generated" },
       { id: "sicak-cikolata", name: "Sıcak Çikolata", price: 150, description: "Süt ve çikolata ile hazırlanan sıcak içecek.", image: "/menu/images/products/drinks/sicak-cikolata.webp", imageKind: "generated" },
       { id: "ayran", name: "Ayran", price: 60, description: "Yoğurt, su ve tuzla hazırlanan ferahlatıcı içecek.", image: "/menu/images/products/drinks/ayran.webp", imageKind: "generated" }
@@ -106,7 +111,12 @@ const sections = [
       { id: "milkshake-karamel", name: "Karamel", price: 225, description: "Karamel ve sütle hazırlanan kremalı milkshake.", image: "/menu/images/products/milkshake/milkshake-karamel.webp", imageKind: "generated" },
       { id: "milkshake-orman-meyve", name: "Orman Meyve", price: 225, description: "Orman meyveleri ve sütle hazırlanan kremalı milkshake.", image: "/menu/images/products/milkshake/milkshake-orman-meyve.webp", imageKind: "generated" },
       { id: "flamingo-milkshake", name: "Flamingo Milkshake Çilekli", price: 225, description: "Çilek ve sütle hazırlanan kremalı milkshake.", image: "/menu/images/products/milkshake/flamingo-milkshake.webp", imageKind: "generated" },
-      { id: "coko-coko-milkshake", name: "COKO Milkshake Çikolatalı", price: 225, description: "Çikolata ve sütle hazırlanan kremalı milkshake.", image: "/menu/images/products/milkshake/coko-coko-milkshake.webp", imageKind: "generated" }
+      { id: "coko-coko-milkshake", name: "COKO Milkshake Çikolatalı", price: 225, description: "Çikolata ve sütle hazırlanan kremalı milkshake.", image: "/menu/images/products/milkshake/coko-coko-milkshake.webp", imageKind: "generated" },
+      { id: "milkshake-yesil-elma", name: "Yeşil Elma Milkshake", price: 225, description: "Yeşil elma aromalı kremalı milkshake.", image: "/menu/images/products/milkshake/milkshake-yesil-elma.webp", imageKind: "generated" },
+      { id: "milkshake-frambuaz", name: "Frambuaz Milkshake", price: 225, description: "Frambuaz aromalı kremalı milkshake.", image: "/menu/images/products/milkshake/milkshake-frambuaz.webp", imageKind: "generated" },
+      { id: "milkshake-mango", name: "Mango Milkshake", price: 225, description: "Mango aromalı kremalı milkshake.", image: "/menu/images/products/milkshake/milkshake-mango.webp", imageKind: "generated" },
+      { id: "milkshake-muz", name: "Muz Milkshake", price: 225, description: "Muz aromalı kremalı milkshake.", image: "/menu/images/products/milkshake/milkshake-muz.webp", imageKind: "generated" },
+      { id: "milkshake-bogurtlen", name: "Böğürtlen Milkshake", price: 225, description: "Böğürtlen aromalı kremalı milkshake.", image: "/menu/images/products/milkshake/milkshake-bogurtlen.webp", imageKind: "generated" }
     ]
   },
   {
@@ -130,7 +140,8 @@ const sections = [
     id: "limonata", name: "Limonata", icon: "leaf", items: [
       { id: "limonata-kavunlu", name: "Kavunlu", price: 160, description: "Kavun, limon ve buzla hazırlanan ferahlatıcı limonata.", image: "/menu/images/products/limonata/limonata-kavunlu.webp", imageKind: "generated" },
       { id: "limonata-cilekli", name: "Çilekli", price: 160, description: "Çilek, limon ve buzla hazırlanan ferahlatıcı limonata.", image: "/menu/images/products/limonata/limonata-cilekli.webp", imageKind: "generated" },
-      { id: "limonata-naneli", name: "Naneli", price: 160, description: "Taze nane, limon ve buzla hazırlanan ferahlatıcı limonata.", image: "/menu/images/products/limonata/limonata-naneli.webp", imageKind: "generated" }
+      { id: "limonata-naneli", name: "Naneli", price: 160, description: "Taze nane, limon ve buzla hazırlanan ferahlatıcı limonata.", image: "/menu/images/products/limonata/limonata-naneli.webp", imageKind: "generated" },
+      { id: "limonata-yesil-elmali", name: "Yeşil Elmalı Limonata", price: 160, description: "Yeşil elma aromalı ferahlatıcı limonata.", image: "/menu/images/products/limonata/limonata-yesil-elmali.webp", imageKind: "generated" }
     ]
   },
   {
