@@ -34,8 +34,21 @@ export const siteData = {
     },
     {
       id: "sehir-hastanesi", slug: "sehir-hastanesi", name: "Fıstıközü Baklavaları Şehir Hastanesi", label: "Şehir Hastanesi", type: "bakery",
-      description: "", image: "", imageAlt: "", images: [], address: null, phone: "",
-      mapsUrl: "", mapEmbed: "", coordinates: null, workingHours: [], menuUrl: ""
+      description: "Fıstıközü Baklavaları Şehir Hastanesi Şubesi ile Kalitenin En TATLI Halini Sizlere Sunmaya Devam Ediyoruz.",
+      image: "/assets/images/sube-sehir-hastanesi-hero.jpeg", imageAlt: "Fıstıközü Baklavaları Şehir Hastanesi şubesi dış görünümü",
+      imageWidth: 1200, imageHeight: 1600,
+      images: [
+        { src: "/assets/images/sube-sehir-hastanesi-hero.jpeg", alt: "Fıstıközü Baklavaları Şehir Hastanesi şubesi dış görünümü" },
+        { src: "/assets/images/sube-sehir-hastanesi-gallery-01.jpeg", alt: "Fıstıközü Baklavaları Şehir Hastanesi şubesi girişi" }
+      ],
+      address: {
+        streetAddress: "Şeker Mahallesi, Muhsin Yazıcıoğlu Bulvarı No: 76/76A",
+        addressLocality: "Kocasinan", addressRegion: "Kayseri", addressCountry: "TR"
+      },
+      phone: "+90 545 218 38 08", phones: ["+90 545 218 38 08", "+90 543 846 96 09"],
+      mapsUrl: "https://share.google/VJvYovro82oGIkcMe",
+      mapEmbed: "https://www.google.com/maps?q=%C5%9Eeker+Mahallesi%2C+Muhsin+Yaz%C4%B1c%C4%B1o%C4%9Flu+Bulvar%C4%B1+No%3A+76%2F76A%2C+Kocasinan%2FKayseri&output=embed",
+      coordinates: null, workingHours: [], workingHoursText: "05:30 - 00:00", menuUrl: ""
     },
     {
       id: "yeni-sanayi", slug: "yeni-sanayi", name: "Fıstıközü Baklavaları Yeni Sanayi", label: "Yeni Sanayi", type: "bakery",

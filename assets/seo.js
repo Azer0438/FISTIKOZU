@@ -1,4 +1,4 @@
-import { hasText, safeLink, validHours } from "./content.js";
+import { hasText, phoneLink, safeLink, validHours } from "./content.js";
 
 export function createStructuredData(data, menuPage = false) {
   const base = new URL(data.canonicalBase).origin;
@@ -29,7 +29,9 @@ export function createStructuredData(data, menuPage = false) {
       parentOrganization: { "@id": organizationId },
       address: { "@type": "PostalAddress", ...Object.fromEntries(Object.entries(address).filter(([, value]) => hasText(value))) }
     };
-    if (hasText(branch.phone)) business.telephone = branch.phone;
+    const phones = [branch.phone, ...(Array.isArray(branch.phones) ? branch.phones : [])]
+      .filter(hasText).filter(phoneLink).filter((phone, index, items) => items.indexOf(phone) === index);
+    if (phones.length) business.telephone = phones.length === 1 ? phones[0] : phones;
     if (safeLink(branch.image)) business.image = new URL(branch.image, base).href;
     if (safeLink(branch.mapsUrl)) business.hasMap = branch.mapsUrl;
     const menuUrl = safeLink(branch.menuUrl) || (branch.qrMenu ? safeLink(data.qrMenuPath) : "");

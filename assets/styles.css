@@ -154,6 +154,7 @@ p { text-wrap: pretty; }
 .branch-fact-label { display: block; margin-bottom: 8px; color: var(--green-dark); font-size: 11px; line-height: 1.4; font-weight: 700; }
 .branch-fact-value { color: #373b34; font-size: 16px; overflow-wrap: anywhere; }
 .branch-fact-value a { text-decoration: underline; text-underline-offset: 4px; }
+.branch-phone-list { display: grid; justify-items: start; gap: 5px; }
 .branch-hours { list-style: none; padding: 0; margin: 0; display: grid; gap: 5px; }
 .branch-info-empty { max-width: 500px; padding-top: 24px; border-top: 1px solid #cfd5c8; color: var(--muted); }
 .branch-map { min-height: 420px; overflow: hidden; border: 1px solid #cfd5c8; border-radius: 4px; background: var(--white); }

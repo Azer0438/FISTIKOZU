@@ -101,10 +101,13 @@ if (!slug) {
       directions.setAttribute("aria-label", `${branch.name} yol tarifini yeni sekmede aç`);
       actions.append(directions);
     }
-    const telephone = phoneLink(branch.phone);
-    if (telephone) {
-      const call = action("Telefon Et", telephone, "button-secondary", "phone");
-      call.setAttribute("aria-label", `${branch.name} şubesini ara`);
+    const phoneNumbers = [branch.phone, ...(Array.isArray(branch.phones) ? branch.phones : [])]
+      .filter(hasText).map((number) => ({ number, href: phoneLink(number) })).filter((item) => item.href)
+      .filter((item, index, items) => items.findIndex((entry) => entry.href === item.href) === index);
+    for (const item of phoneNumbers) {
+      const label = phoneNumbers.length > 1 ? `${item.number} Ara` : "Telefon Et";
+      const call = action(label, item.href, "button-secondary", "phone");
+      call.setAttribute("aria-label", `${branch.name} şubesini ${item.number} numarasından ara`);
       actions.append(call);
     }
     const menuUrl = safeLink(branch.menuUrl || (branch.qrMenu ? siteData.qrMenuPath : ""));
@@ -118,10 +121,13 @@ if (!slug) {
       addressRow.hidden = false;
     }
     const phoneRow = document.querySelector("[data-branch-phone]");
-    if (telephone) {
-      const phoneValue = document.querySelector("[data-branch-phone-value]");
-      phoneValue.textContent = branch.phone;
-      phoneValue.href = telephone;
+    if (phoneNumbers.length) {
+      const phoneValues = document.querySelector("[data-branch-phone-values]");
+      for (const item of phoneNumbers) {
+        const phoneValue = el("a", "", item.number);
+        phoneValue.href = item.href;
+        phoneValues.append(phoneValue);
+      }
       phoneRow.hidden = false;
     }
     const hours = validHours(branch.workingHours);
@@ -137,7 +143,7 @@ if (!slug) {
       document.querySelector("[data-branch-hours-value]").append(el("li", "branch-fact-value", hoursText));
       hoursRow.hidden = false;
     }
-    const factsPresent = Boolean(address || telephone || hours.length || hoursText);
+    const factsPresent = Boolean(address || phoneNumbers.length || hours.length || hoursText);
     document.querySelector("[data-branch-info-empty]").hidden = factsPresent;
 
     const mapUrl = safeLink(branch.mapEmbed);

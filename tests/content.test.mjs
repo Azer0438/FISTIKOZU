@@ -39,7 +39,7 @@ test("branch cards and detail routes use the four central branch records", () =>
   assert.match(branchTemplate, /data-branch-map/);
   assert.match(branchTemplate, /data-branch-gallery/);
   assert.match(branchScript, /branch\.type === "cafe"/);
-  assert.match(branchScript, /phoneLink\(branch\.phone\)/);
+  assert.match(branchScript, /phoneLink\(number\)/);
 });
 
 test("confirmed Organize branch details and supplied images are published without inferred days", () => {
@@ -53,6 +53,19 @@ test("confirmed Organize branch details and supplied images are published withou
   const business = createStructuredData(siteData)["@graph"].find((item) => item.name === branch.name);
   assert.equal(business.telephone, branch.phone);
   assert.equal(business.address.addressLocality, "Melikgazi");
+  assert.equal(business.openingHoursSpecification, undefined);
+});
+
+test("confirmed Şehir Hastanesi details retain both phone numbers without inferred days", () => {
+  const branch = siteData.branches.find((item) => item.slug === "sehir-hastanesi");
+  assert.equal(branch.address.streetAddress, "Şeker Mahallesi, Muhsin Yazıcıoğlu Bulvarı No: 76/76A");
+  assert.deepEqual(branch.phones, ["+90 545 218 38 08", "+90 543 846 96 09"]);
+  assert.equal(branch.workingHoursText, "05:30 - 00:00");
+  assert.deepEqual(validHours(branch.workingHours), []);
+  assert.equal(branch.images.length, 2);
+  const business = createStructuredData(siteData)["@graph"].find((item) => item.name === branch.name);
+  assert.deepEqual(business.telephone, branch.phones);
+  assert.equal(business.address.addressLocality, "Kocasinan");
   assert.equal(business.openingHoursSpecification, undefined);
 });
 
