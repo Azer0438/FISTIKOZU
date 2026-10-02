@@ -42,6 +42,20 @@ test("branch cards and detail routes use the four central branch records", () =>
   assert.match(branchScript, /phoneLink\(branch\.phone\)/);
 });
 
+test("confirmed Organize branch details and supplied images are published without inferred days", () => {
+  const branch = siteData.branches.find((item) => item.slug === "organize");
+  assert.equal(branch.address.streetAddress, "Anbar Mahallesi 14. Cadde No: 12");
+  assert.equal(branch.phone, "0507 957 25 15");
+  assert.equal(branch.workingHoursText, "06:00 - 21:00");
+  assert.deepEqual(validHours(branch.workingHours), []);
+  assert.equal(branch.images.length, 2);
+  assert.ok(branch.images.every((image) => safeLink(image.src)));
+  const business = createStructuredData(siteData)["@graph"].find((item) => item.name === branch.name);
+  assert.equal(business.telephone, branch.phone);
+  assert.equal(business.address.addressLocality, "Melikgazi");
+  assert.equal(business.openingHoursSpecification, undefined);
+});
+
 test("empty menu and unavailable items do not create placeholder categories", () => {
   assert.deepEqual(getMenuGroups(), []);
   assert.equal(getMenuGroups(fixture).length, 2);

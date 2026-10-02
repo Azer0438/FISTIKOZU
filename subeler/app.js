@@ -125,6 +125,7 @@ if (!slug) {
       phoneRow.hidden = false;
     }
     const hours = validHours(branch.workingHours);
+    const hoursText = hasText(branch.workingHoursText) ? branch.workingHoursText.trim() : "";
     const hoursRow = document.querySelector("[data-branch-hours]");
     if (hours.length) {
       const hoursList = document.querySelector("[data-branch-hours-value]");
@@ -132,8 +133,11 @@ if (!slug) {
         hoursList.append(el("li", "branch-fact-value", `${item.days.map((day) => dayNames[day]).join(", ")}: ${item.opens} - ${item.closes}`));
       }
       hoursRow.hidden = false;
+    } else if (hoursText) {
+      document.querySelector("[data-branch-hours-value]").append(el("li", "branch-fact-value", hoursText));
+      hoursRow.hidden = false;
     }
-    const factsPresent = Boolean(address || telephone || hours.length);
+    const factsPresent = Boolean(address || telephone || hours.length || hoursText);
     document.querySelector("[data-branch-info-empty]").hidden = factsPresent;
 
     const mapUrl = safeLink(branch.mapEmbed);

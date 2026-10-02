@@ -17,8 +17,20 @@ export const siteData = {
   branches: [
     {
       id: "organize", slug: "organize", name: "Fıstıközü Baklavaları Organize", label: "Organize", type: "bakery",
-      description: "", image: "", imageAlt: "", images: [], address: null, phone: "",
-      mapsUrl: "", mapEmbed: "", coordinates: null, workingHours: [], menuUrl: ""
+      description: "Fıstıközü Baklavaları Organize şubesi olarak Kayseri’de geleneksel lezzetleri özenle hazırlayıp misafirlerimizle buluşturuyoruz.",
+      image: "/assets/images/sube-organize-hero.webp", imageAlt: "Fıstıközü Baklavaları Organize şubesi dış görünümü",
+      imageWidth: 1360, imageHeight: 612,
+      images: [
+        { src: "/assets/images/sube-organize-hero.webp", alt: "Fıstıközü Baklavaları Organize şubesi gece görünümü" },
+        { src: "/assets/images/sube-organize-gallery-01.webp", alt: "Fıstıközü Baklavaları Organize şubesi girişi ve baklava sunumu" }
+      ],
+      address: {
+        streetAddress: "Anbar Mahallesi 14. Cadde No: 12", postalCode: "38070",
+        addressLocality: "Melikgazi", addressRegion: "Kayseri", addressCountry: "TR"
+      },
+      phone: "0507 957 25 15", mapsUrl: "https://share.google/d5Ox3Y7jgM3f1S6ij",
+      mapEmbed: "https://www.google.com/maps?q=Anbar+Mahallesi+14.+Cadde+No%3A+12%2C+38070+Melikgazi%2FKayseri&output=embed",
+      coordinates: null, workingHours: [], workingHoursText: "06:00 - 21:00", menuUrl: ""
     },
     {
       id: "sehir-hastanesi", slug: "sehir-hastanesi", name: "Fıstıközü Baklavaları Şehir Hastanesi", label: "Şehir Hastanesi", type: "bakery",

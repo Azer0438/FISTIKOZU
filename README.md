@@ -56,7 +56,7 @@ Kategori şeması (yalnızca dokümantasyon):
 
 ### Şubeler
 
-Her şube `id`, `slug`, `name`, `label`, `type`, `description`, `image`, `imageAlt`, `images`, `address`, `phone`, `mapsUrl`, `mapEmbed`, `coordinates`, `workingHours` ve `menuUrl` alanlarını destekler. `label` kısa şube adı; `type`, `bakery` veya `cafe` olabilir. Cafe / Pastane için `menuUrl: "/menu/"` ve mevcut `qrMenu: true` menü bağlantısını açar.
+Her şube `id`, `slug`, `name`, `label`, `type`, `description`, `image`, `imageAlt`, `images`, `address`, `phone`, `mapsUrl`, `mapEmbed`, `coordinates`, `workingHours`, `workingHoursText` ve `menuUrl` alanlarını destekler. `label` kısa şube adı; `type`, `bakery` veya `cafe` olabilir. Cafe / Pastane için `menuUrl: "/menu/"` ve mevcut `qrMenu: true` menü bağlantısını açar.
 
 Ana sayfadaki kartlar `/subeler/[slug]/` adresine gider. Build sırasında aynı `subeler/index.html` şablonundan dört statik detay sayfası üretilir. Yeni bir şube eklemek için veri listesine benzersiz bir `slug` ile yeni kayıt eklemek yeterlidir.
 
@@ -81,6 +81,7 @@ workingHours: []
 Koordinat şeması: `{ latitude: sayi, longitude: sayi }`.
 Çalışma saati şeması: `{ days: [], opens: "", closes: "" }`.
 `days`, `Monday` ile `Sunday` arasındaki gün adlarını; saatler `HH:MM` biçimini kullanır. Arayüz günleri Türkçe gösterir.
+Gün bilgisi henüz doğrulanmadıysa `workingHoursText` alanında yalnızca onaylanmış saat aralığı gösterilebilir; bu değer yapılandırılmış veriye çalışma günü olarak eklenmez.
 
 Yeni Sanayi fotoğrafı sadece ilgili şubede kullanılır. Diğer şubelere fotoğraf veya boş fotoğraf alanı atanmaz. Logo orijinal JPEG dosyasıdır. Mevcut temsili baklava görseli hero ve lezzetler bölümünde kullanılır; gerçek Fıstıközü ürün fotoğrafı olarak etiketlenmez. WebP sürümleri aynı görselin optimize edilmiş kopyalarıdır; PNG kaynakları korunur.
 
