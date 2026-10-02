@@ -29,7 +29,7 @@ export const siteData = {
         streetAddress: "Anbar Mahallesi 14. Cadde No: 12", postalCode: "38070",
         addressLocality: "Melikgazi", addressRegion: "Kayseri", addressCountry: "TR"
       },
-      phone: "0507 957 25 15", mapsUrl: "https://share.google/d5Ox3Y7jgM3f1S6ij",
+      phone: "0507 957 25 15", mapsUrl: "https://maps.app.goo.gl/1Zt68nCuZwHn2f87A",
       mapEmbed: "https://www.google.com/maps?q=Anbar+Mahallesi+14.+Cadde+No%3A+12%2C+38070+Melikgazi%2FKayseri&output=embed",
       coordinates: null, workingHours: [], workingHoursText: "06:00 - 21:00", menuUrl: ""
     },
@@ -48,7 +48,7 @@ export const siteData = {
         addressLocality: "Kocasinan", addressRegion: "Kayseri", addressCountry: "TR"
       },
       phone: "+90 545 218 38 08", phones: ["+90 545 218 38 08", "+90 543 846 96 09"],
-      mapsUrl: "https://share.google/VJvYovro82oGIkcMe",
+      mapsUrl: "https://maps.app.goo.gl/FyUnLZM4ZekMNX1S7",
       mapEmbed: "https://www.google.com/maps?q=%C5%9Eeker+Mahallesi%2C+Muhsin+Yaz%C4%B1c%C4%B1o%C4%9Flu+Bulvar%C4%B1+No%3A+76%2F76A%2C+Kocasinan%2FKayseri&output=embed",
       coordinates: null, workingHours: [], workingHoursText: "05:30 - 00:00", menuUrl: ""
     },

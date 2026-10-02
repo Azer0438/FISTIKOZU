@@ -48,6 +48,7 @@ test("confirmed Organize branch details and supplied images are published withou
   const branch = siteData.branches.find((item) => item.slug === "organize");
   assert.equal(branch.address.streetAddress, "Anbar Mahallesi 14. Cadde No: 12");
   assert.equal(branch.phone, "0507 957 25 15");
+  assert.equal(branch.mapsUrl, "https://maps.app.goo.gl/1Zt68nCuZwHn2f87A");
   assert.equal(branch.workingHoursText, "06:00 - 21:00");
   assert.deepEqual(validHours(branch.workingHours), []);
   assert.equal(branch.images.length, 3);
@@ -67,6 +68,7 @@ test("confirmed Şehir Hastanesi details retain both phone numbers without infer
   const branch = siteData.branches.find((item) => item.slug === "sehir-hastanesi");
   assert.equal(branch.address.streetAddress, "Şeker Mahallesi, Muhsin Yazıcıoğlu Bulvarı No: 76/76A");
   assert.deepEqual(branch.phones, ["+90 545 218 38 08", "+90 543 846 96 09"]);
+  assert.equal(branch.mapsUrl, "https://maps.app.goo.gl/FyUnLZM4ZekMNX1S7");
   assert.equal(branch.workingHoursText, "05:30 - 00:00");
   assert.deepEqual(validHours(branch.workingHours), []);
   assert.equal(branch.images.length, 3);
