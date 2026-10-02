@@ -34,6 +34,10 @@ const server = createServer((request, response) => {
   const url = new URL(request.url, `http://${request.headers.host}`);
   let filePath = resolveRequestPath(url.pathname);
 
+  if ((!filePath || !existsSync(filePath)) && /^\/subeler\/[^/]+\/?$/.test(url.pathname)) {
+    filePath = resolve(root, "subeler/index.html");
+  }
+
   if (!filePath || !existsSync(filePath)) {
     response.writeHead(404, { "content-type": "text/plain; charset=utf-8" });
     response.end("Sayfa bulunamadı.");
@@ -59,4 +63,5 @@ const server = createServer((request, response) => {
 server.listen(port, () => {
   console.log(`Fıstıközü local site: http://localhost:${port}`);
   console.log(`QR menü: http://localhost:${port}/menu/`);
+  console.log(`Şube örneği: http://localhost:${port}/subeler/organize/`);
 });

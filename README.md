@@ -56,10 +56,14 @@ Kategori şeması (yalnızca dokümantasyon):
 
 ### Şubeler
 
-Her şube `id`, `name`, `label`, `type`, `image`, `address`, `phone`, `mapsUrl`, `coordinates` ve `workingHours` alanlarını destekler. `label` kısa şube adı; `type`, `bakery` veya `cafe` olabilir. Cafe / Pastane için `qrMenu: true`, menü bağlantısını açar.
+Her şube `id`, `slug`, `name`, `label`, `type`, `description`, `image`, `imageAlt`, `images`, `address`, `phone`, `mapsUrl`, `mapEmbed`, `coordinates`, `workingHours` ve `menuUrl` alanlarını destekler. `label` kısa şube adı; `type`, `bakery` veya `cafe` olabilir. Cafe / Pastane için `menuUrl: "/menu/"` ve mevcut `qrMenu: true` menü bağlantısını açar.
 
-- `phone` girildiğinde **Ara**, doğrulanmış `mapsUrl` girildiğinde **Yol Tarifi** otomatik görünür.
+Ana sayfadaki kartlar `/subeler/[slug]/` adresine gider. Build sırasında aynı `subeler/index.html` şablonundan dört statik detay sayfası üretilir. Yeni bir şube eklemek için veri listesine benzersiz bir `slug` ile yeni kayıt eklemek yeterlidir.
+
+- `phone` girildiğinde **Telefon Et**, doğrulanmış `mapsUrl` girildiğinde **Yol Tarifi Al** otomatik görünür.
 - Harita bağlantısı adres veya koordinatlardan tahmin edilmez.
+- `mapEmbed`, doğrulanmış Google Maps gömme bağlantısıdır. Boşsa harita alanı gösterilmez.
+- `images`, `{ src, alt }` nesnelerinden veya yerel görsel yollarından oluşabilir. Boşsa galeri bölümü gösterilmez.
 - `address` boşsa `null` bırakılır. Gerçek bilgiler geldiğinde aşağıdaki nesne doldurulur. Görüntüleme için düz metin de desteklenir; LocalBusiness şeması için yapılandırılmış adres gerekir.
 
 ```js

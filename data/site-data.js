@@ -16,21 +16,25 @@ export const siteData = {
 
   branches: [
     {
-      id: "organize", name: "Fıstıközü Baklavaları Organize", label: "Organize", type: "bakery",
-      image: "", address: null, phone: "", mapsUrl: "", coordinates: null, workingHours: []
+      id: "organize", slug: "organize", name: "Fıstıközü Baklavaları Organize", label: "Organize", type: "bakery",
+      description: "", image: "", imageAlt: "", images: [], address: null, phone: "",
+      mapsUrl: "", mapEmbed: "", coordinates: null, workingHours: [], menuUrl: ""
     },
     {
-      id: "sehir-hastanesi", name: "Fıstıközü Baklavaları Şehir Hastanesi", label: "Şehir Hastanesi", type: "bakery",
-      image: "", address: null, phone: "", mapsUrl: "", coordinates: null, workingHours: []
+      id: "sehir-hastanesi", slug: "sehir-hastanesi", name: "Fıstıközü Baklavaları Şehir Hastanesi", label: "Şehir Hastanesi", type: "bakery",
+      description: "", image: "", imageAlt: "", images: [], address: null, phone: "",
+      mapsUrl: "", mapEmbed: "", coordinates: null, workingHours: [], menuUrl: ""
     },
     {
-      id: "yeni-sanayi", name: "Fıstıközü Baklavaları Yeni Sanayi", label: "Yeni Sanayi", type: "bakery",
-      image: "/assets/images/sube-yeni-sanayi.webp", imageWidth: 687, imageHeight: 1181,
-      address: null, phone: "", mapsUrl: "", coordinates: null, workingHours: []
+      id: "yeni-sanayi", slug: "yeni-sanayi", name: "Fıstıközü Baklavaları Yeni Sanayi", label: "Yeni Sanayi", type: "bakery",
+      description: "", image: "/assets/images/sube-yeni-sanayi.webp", imageAlt: "Fıstıközü Baklavaları Yeni Sanayi şubesi", images: [],
+      imageWidth: 687, imageHeight: 1181, address: null, phone: "", mapsUrl: "", mapEmbed: "",
+      coordinates: null, workingHours: [], menuUrl: ""
     },
     {
-      id: "cafe-pastane", name: "Fıstıközü Cafe / Pastane", label: "Cafe / Pastane", type: "cafe",
-      image: "", address: null, phone: "", mapsUrl: "", coordinates: null, workingHours: [], qrMenu: true
+      id: "cafe-pastane", slug: "cafe-pastane", name: "Fıstıközü Cafe / Pastane", label: "Cafe / Pastane", type: "cafe",
+      description: "", image: "", imageAlt: "", images: [], address: null, phone: "",
+      mapsUrl: "", mapEmbed: "", coordinates: null, workingHours: [], menuUrl: "/menu/", qrMenu: true
     }
   ],
 

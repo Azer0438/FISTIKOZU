@@ -1,5 +1,5 @@
 import { siteData } from "/data/site-data.js";
-import { hasText, safeLink, phoneLink, formatPrice, formatAddress, validHours, dayNames, getMenuGroups, filterMenuGroups } from "./content.js";
+import { hasText, safeLink, phoneLink, formatPrice, formatAddress, getMenuGroups, filterMenuGroups } from "./content.js";
 import { createStructuredData } from "./seo.js";
 
 function el(tag, className, text) {
@@ -115,23 +115,15 @@ if (mobileMenu) {
 const branches = document.querySelector("[data-branches]");
 if (branches) {
   const knownBranches = (siteData.branches || []).filter((branch) => hasText(branch.name));
-  branches.classList.toggle("has-feature", knownBranches.filter((branch) => safeLink(branch.image)).length === 1);
   knownBranches.forEach((branch, index) => {
-    const article = el("article", "branch-card");
-    article.id = `sube-${branch.id}`;
-    article.setAttribute("aria-label", branch.name);
-    if (safeLink(branch.image)) {
-      article.classList.add("has-image");
-      const media = el("figure", "branch-media");
-      const image = contentImage(branch.image, `${branch.name} dış görünümü`, "", branch.imageWidth || 640, branch.imageHeight || 480);
-      image.addEventListener("error", () => { media.hidden = true; }, { once: true });
-      media.append(image);
-      article.append(media);
-    }
-    const body = el("div", "branch-body");
+    const slug = hasText(branch.slug) ? branch.slug : branch.id;
+    const card = el("a", "branch-card");
+    card.id = `sube-${branch.id}`;
+    card.href = `/subeler/${slug}/`;
+    card.setAttribute("aria-label", `${branch.name} şubesini incele`);
     const number = el("span", "branch-index", String(index + 1).padStart(2, "0"));
     number.setAttribute("aria-hidden", "true");
-    body.append(number);
+    card.append(number);
     const content = el("div", "branch-content");
     const heading = el("h3");
     if (hasText(branch.label)) {
@@ -139,30 +131,11 @@ if (branches) {
       heading.append(el("span", "branch-name", branch.label));
     } else heading.textContent = branch.name;
     content.append(heading);
-    const details = el("div", "branch-details");
-    addDetail(details, formatAddress(branch.address), "map-pin");
-    for (const hours of validHours(branch.workingHours)) {
-      addDetail(details, `${hours.days.map((day) => dayNames[day]).join(", ")}: ${hours.opens} - ${hours.closes}`, "clock");
-    }
-    if (details.childElementCount) content.append(details);
-    const actions = el("div", "branch-actions");
-    if (safeLink(branch.mapsUrl)) {
-      const link = linkButton("Yol Tarifi", branch.mapsUrl, "map-pin");
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-      link.setAttribute("aria-label", `${branch.name} yol tarifi (yeni sekme)`);
-      actions.append(link);
-    }
-    if (phoneLink(branch.phone)) {
-      const link = linkButton("Ara", phoneLink(branch.phone), "phone");
-      link.setAttribute("aria-label", `${branch.name} şubesini ara`);
-      actions.append(link);
-    }
-    if (branch.qrMenu) actions.append(linkButton("Menüyü İncele", siteData.qrMenuPath));
-    if (actions.childElementCount) content.append(actions);
-    body.append(content);
-    article.append(body);
-    branches.append(article);
+    card.append(content);
+    const action = el("span", "branch-card-action", "Şubeyi İncele");
+    action.append(icon("arrow-up-right"));
+    card.append(action);
+    branches.append(card);
   });
 }
 

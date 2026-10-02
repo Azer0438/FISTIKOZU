@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { getMenuGroups, filterMenuGroups, formatPrice, formatAddress, safeLink, phoneLink, validHours } from "../assets/content.js";
 import { createStructuredData } from "../assets/seo.js";
 import { siteData } from "../data/site-data.js";
@@ -19,8 +20,26 @@ test("an empty catalog stays empty and the permanent menu route is preserved", (
   assert.equal(siteData.branches.length, 4);
   assert.equal(siteData.qrMenuPath, "/menu/");
   for (const branch of siteData.branches) {
-    assert.ok(branch.id && branch.name);
+    assert.ok(branch.id && branch.slug && branch.name);
+    assert.equal(branch.slug, branch.id);
+    assert.ok(Array.isArray(branch.images));
+    assert.ok(Object.hasOwn(branch, "mapEmbed"));
+    assert.ok(Object.hasOwn(branch, "menuUrl"));
   }
+});
+
+test("branch cards and detail routes use the four central branch records", () => {
+  assert.deepEqual(siteData.branches.map((branch) => branch.slug), [
+    "organize", "sehir-hastanesi", "yeni-sanayi", "cafe-pastane"
+  ]);
+  const homeScript = readFileSync(new URL("../assets/site.js", import.meta.url), "utf8");
+  const branchTemplate = readFileSync(new URL("../subeler/index.html", import.meta.url), "utf8");
+  const branchScript = readFileSync(new URL("../subeler/app.js", import.meta.url), "utf8");
+  assert.match(homeScript, /\/subeler\/\$\{slug\}\//);
+  assert.match(branchTemplate, /data-branch-map/);
+  assert.match(branchTemplate, /data-branch-gallery/);
+  assert.match(branchScript, /branch\.type === "cafe"/);
+  assert.match(branchScript, /phoneLink\(branch\.phone\)/);
 });
 
 test("empty menu and unavailable items do not create placeholder categories", () => {

@@ -25,14 +25,15 @@ export function createStructuredData(data, menuPage = false) {
     const business = {
       "@type": branch.type === "cafe" ? "CafeOrCoffeeShop" : "Bakery",
       "@id": `${base}/#${branch.id}`, name: branch.name,
-      url: `${base}/#sube-${branch.id}`,
+      url: new URL(`/subeler/${branch.slug || branch.id}/`, base).href,
       parentOrganization: { "@id": organizationId },
       address: { "@type": "PostalAddress", ...Object.fromEntries(Object.entries(address).filter(([, value]) => hasText(value))) }
     };
     if (hasText(branch.phone)) business.telephone = branch.phone;
     if (safeLink(branch.image)) business.image = new URL(branch.image, base).href;
     if (safeLink(branch.mapsUrl)) business.hasMap = branch.mapsUrl;
-    if (branch.qrMenu) business.hasMenu = new URL(data.qrMenuPath, base).href;
+    const menuUrl = safeLink(branch.menuUrl) || (branch.qrMenu ? safeLink(data.qrMenuPath) : "");
+    if (menuUrl) business.hasMenu = new URL(menuUrl, base).href;
     const { latitude, longitude } = branch.coordinates || {};
     if (Number.isFinite(latitude) && Math.abs(latitude) <= 90
       && Number.isFinite(longitude) && Math.abs(longitude) <= 180) {
