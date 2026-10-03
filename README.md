@@ -64,6 +64,7 @@ Ana sayfadaki kartlar `/subeler/[slug]/` adresine gider. Build sırasında aynı
 - Harita bağlantısı adres veya koordinatlardan tahmin edilmez.
 - `mapEmbed`, doğrulanmış Google Maps gömme bağlantısıdır. Boşsa harita alanı gösterilmez.
 - `images`, `{ src, alt }` nesnelerinden veya yerel görsel yollarından oluşabilir. Boşsa galeri bölümü gösterilmez.
+- `modern: true` işaretli şube görselleri responsive AVIF ve WebP kaynaklarını kullanır; özgün JPEG/PNG eski tarayıcı ve sosyal paylaşım geri dönüşü olarak korunur.
 - `address` boşsa `null` bırakılır. Gerçek bilgiler geldiğinde aşağıdaki nesne doldurulur. Görüntüleme için düz metin de desteklenir; LocalBusiness şeması için yapılandırılmış adres gerekir.
 
 ```js
@@ -84,6 +85,8 @@ Koordinat şeması: `{ latitude: sayi, longitude: sayi }`.
 Gün bilgisi henüz doğrulanmadıysa `workingHoursText` alanında yalnızca onaylanmış saat aralığı gösterilebilir; bu değer yapılandırılmış veriye çalışma günü olarak eklenmez.
 
 Yeni Sanayi fotoğrafı sadece ilgili şubede kullanılır. Diğer şubelere fotoğraf veya boş fotoğraf alanı atanmaz. Logo orijinal JPEG dosyasıdır. Mevcut temsili baklava görseli hero ve lezzetler bölümünde kullanılır; gerçek Fıstıközü ürün fotoğrafı olarak etiketlenmez. WebP sürümleri aynı görselin optimize edilmiş kopyalarıdır; PNG kaynakları korunur.
+
+Şube kaynak fotoğrafları değiştirildiğinde `npm run optimize:branches` komutu `480`, `640`, `768`, `1024` ve özgün genişliklerde AVIF/WebP türevlerini yeniden üretir.
 
 ### İletişim
 

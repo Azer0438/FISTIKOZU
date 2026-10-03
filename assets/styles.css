@@ -159,6 +159,7 @@ p { text-wrap: pretty; }
 .branch-gallery { background: var(--white); }
 .branch-gallery-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 .branch-gallery-grid figure { min-width: 0; overflow: hidden; aspect-ratio: 4 / 3; background: var(--paper); }
+.branch-gallery-grid picture { display: block; width: 100%; height: 100%; }
 .branch-gallery-grid img { width: 100%; height: 100%; object-fit: cover; transition: transform 500ms ease; }
 .branch-gallery-grid figure:hover img { transform: scale(1.02); }
 .branch-gallery-grid.gallery-count-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }

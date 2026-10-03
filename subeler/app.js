@@ -33,6 +33,20 @@ function setMeta(selector, value) {
   if (meta) meta.content = value;
 }
 
+function modernImageSrcset(item, format) {
+  if (item?.modern !== true || !Number.isFinite(item.width)) return "";
+  const source = typeof item.src === "string" ? item.src : "";
+  if (!/^\/assets\/images\/[a-z0-9-]+\.(?:jpe?g|png)$/i.test(source)) return "";
+  const stem = source.slice(0, source.lastIndexOf("."));
+  const widths = [...new Set([480, 640, 768, 1024, item.width])]
+    .filter((width) => width <= item.width)
+    .sort((a, b) => a - b);
+  return widths.map((width) => {
+    const suffix = width === item.width ? "" : `-${width}`;
+    return `${stem}${suffix}.${format} ${width}w`;
+  }).join(", ");
+}
+
 function renderNotFound() {
   document.title = "Şube Bulunamadı | Fıstıközü";
   const section = el("section", "branch-not-found");
@@ -149,10 +163,14 @@ if (!slug) {
     const galleryImages = Array.isArray(branch.images) ? branch.images : [];
     const gallery = document.querySelector("[data-branch-gallery]");
     const galleryGrid = document.querySelector("[data-branch-gallery-grid]");
+    const gallerySizes = galleryImages.length === 3
+      ? "(max-width: 767px) calc(100vw - 40px), (max-width: 1199px) calc(33vw - 24px), 389px"
+      : "(max-width: 767px) calc(100vw - 40px), (max-width: 1199px) calc(50vw - 28px), 584px";
     for (const [index, item] of galleryImages.entries()) {
       const source = typeof item === "string" ? item : item?.src;
       if (!safeLink(source)) continue;
       const figure = el("figure");
+      const picture = el("picture");
       const image = el("img");
       image.src = source;
       image.alt = typeof item === "object" && hasText(item.alt) ? item.alt : `${branch.name} şubesinden görünüm ${index + 1}`;
@@ -163,7 +181,17 @@ if (!slug) {
       image.loading = "lazy";
       image.decoding = "async";
       image.addEventListener("error", () => figure.remove(), { once: true });
-      figure.append(image);
+      for (const format of ["avif", "webp"]) {
+        const srcset = modernImageSrcset(item, format);
+        if (!srcset) continue;
+        const modernSource = el("source");
+        modernSource.type = `image/${format}`;
+        modernSource.srcset = srcset;
+        modernSource.sizes = gallerySizes;
+        picture.append(modernSource);
+      }
+      picture.append(image);
+      figure.append(picture);
       galleryGrid.append(figure);
     }
     if (galleryGrid.childElementCount === 3) galleryGrid.classList.add("gallery-count-3");

@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { getMenuGroups, filterMenuGroups, formatPrice, formatAddress, safeLink, phoneLink, validHours } from "../assets/content.js";
 import { createStructuredData } from "../assets/seo.js";
 import { siteData } from "../data/site-data.js";
@@ -70,6 +70,26 @@ test("branch cards and detail routes use the four central branch records", () =>
   assert.match(branchScript, /branch\.type === "cafe"/);
   assert.match(branchScript, /phoneLink\(number\)/);
   assert.match(branchScript, /gallery-count-3/);
+  assert.match(branchScript, /\["avif", "webp"\]/);
+  assert.match(branchScript, /image\/\$\{format\}/);
+});
+
+test("branch galleries publish responsive AVIF and WebP assets with JPEG fallbacks", () => {
+  const images = siteData.branches.flatMap((branch) => branch.images);
+  assert.equal(images.length, 10);
+  for (const image of images) {
+    assert.equal(image.modern, true);
+    const stem = image.src.slice(0, image.src.lastIndexOf("."));
+    const widths = [...new Set([480, 640, 768, 1024, image.width])].filter((width) => width <= image.width);
+    for (const format of ["avif", "webp"]) {
+      for (const width of widths) {
+        const suffix = width === image.width ? "" : `-${width}`;
+        const asset = new URL(`..${stem}${suffix}.${format}`, import.meta.url);
+        assert.ok(existsSync(asset), `${asset.pathname} should exist`);
+      }
+    }
+    assert.ok(existsSync(new URL(`..${image.src}`, import.meta.url)), `${image.src} fallback should exist`);
+  }
 });
 
 test("confirmed Organize branch details and supplied images are published without inferred days", () => {
