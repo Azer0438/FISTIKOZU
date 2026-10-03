@@ -91,7 +91,7 @@ Yeni Sanayi fotoğrafı sadece ilgili şubede kullanılır. Diğer şubelere fot
 
 ## SEO ve Yayın
 
-Canonical adresler ve `canonicalBase`, gelecekteki `https://www.fıstıközü.com.tr` alan adına hazırlanmıştır. HTML, alan adının standart ASCII/Punycode karşılığını kullanır. Bu ayarlar alan adını bağlamaz; mevcut yayın Vercel adresinde çalışır.
+Canonical adresler, `canonicalBase`, sitemap ve robots dosyaları canlı ana alan adı olan `https://www.fistikozu.com.tr` adresini kullanır. Diğer alan adı varyasyonları bu adrese kalıcı olarak yönlendirilir.
 
 Organization ve WebSite şemaları hazırdır. Şubelere gerçek `streetAddress`, `addressLocality` ve `addressCountry` girildiğinde LocalBusiness alt türü eklenir; bilinmeyen telefon, koordinat veya saatler şemaya yazılmaz. Menü sayfasında yalnızca ilgili Cafe / Pastane şubesi için yerel işletme verisi eklenir.
 

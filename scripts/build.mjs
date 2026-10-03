@@ -63,11 +63,11 @@ for (const branch of siteData.branches || []) {
   const html = branchTemplate
     .replace("<title>Şube Detayı | Fıstıközü</title>", `<title>${title}</title>`)
     .replace('<meta name="description" content="Fıstıközü şube detayları.">', `<meta name="description" content="${description}">`)
-    .replace('href="https://www.xn--fstkz-mua7b24ac.com.tr/subeler/"', `href="${canonicalUrl}"`)
+    .replace('href="https://www.fistikozu.com.tr/subeler/"', `href="${canonicalUrl}"`)
     .replace('<meta property="og:title" content="Şube Detayı | Fıstıközü">', `<meta property="og:title" content="${title}">`)
     .replace('<meta property="og:description" content="Fıstıközü şube detayları.">', `<meta property="og:description" content="${description}">`)
-    .replace('<meta property="og:url" content="https://www.xn--fstkz-mua7b24ac.com.tr/subeler/">', `<meta property="og:url" content="${canonicalUrl}">`)
-    .replace('<meta property="og:image" content="https://www.xn--fstkz-mua7b24ac.com.tr/assets/logo-original.jpg">', `<meta property="og:image" content="${image}">`)
+    .replace('<meta property="og:url" content="https://www.fistikozu.com.tr/subeler/">', `<meta property="og:url" content="${canonicalUrl}">`)
+    .replace('<meta property="og:image" content="https://www.fistikozu.com.tr/assets/logo-original.jpg">', `<meta property="og:image" content="${image}">`)
     .replace('<meta property="og:image:alt" content="Fıstıközü logosu">', `<meta property="og:image:alt" content="${imageAlt}">`)
     .replace("<!-- structured-data -->", `<script type="application/ld+json" id="structured-data">${branchSchema}</script>`);
   const target = resolve(outDir, "subeler", slug, "index.html");

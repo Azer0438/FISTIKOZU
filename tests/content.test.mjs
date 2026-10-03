@@ -39,6 +39,23 @@ test("BarbarosSoft credit is linked securely from every public footer", () => {
   }
 });
 
+test("all SEO signals use the live canonical domain", () => {
+  const canonical = "https://www.fistikozu.com.tr";
+  const retiredDomain = "xn--fstkz-mua7b24ac.com.tr";
+  assert.equal(siteData.domain, "www.fistikozu.com.tr");
+  assert.equal(siteData.canonicalBase, canonical);
+
+  for (const page of ["../index.html", "../subeler/index.html", "../menu/index.html"]) {
+    const html = readFileSync(new URL(page, import.meta.url), "utf8");
+    assert.ok(html.includes(canonical));
+    assert.ok(!html.includes(retiredDomain));
+  }
+
+  const schema = JSON.stringify(createStructuredData(siteData));
+  assert.match(schema, /https:\/\/www\.fistikozu\.com\.tr/);
+  assert.ok(!schema.includes(retiredDomain));
+});
+
 test("branch cards and detail routes use the four central branch records", () => {
   assert.deepEqual(siteData.branches.map((branch) => branch.slug), [
     "organize", "sehir-hastanesi", "yeni-sanayi", "cafe-pastane"

@@ -1,8 +1,8 @@
 export const siteData = {
   brand: "Fıstıközü Baklavaları",
   shortBrand: "Fıstıközü",
-  domain: "www.fıstıközü.com.tr",
-  canonicalBase: "https://www.fıstıközü.com.tr",
+  domain: "www.fistikozu.com.tr",
+  canonicalBase: "https://www.fistikozu.com.tr",
   logoPath: "/assets/logo-original.jpg",
   heroImage: "/assets/images/baklava-hero.webp",
   heroSrcset: "/assets/images/baklava-hero-720.webp 720w, /assets/images/baklava-hero-1200.webp 1200w, /assets/images/baklava-hero.webp 1672w",
