@@ -108,7 +108,7 @@ test("menu is independent from homepage script and styles; all module syntax is 
 
 test("the final customer-approved categories and product groups are published", () => {
   const expected = [
-    ["pasta", "Pasta", 26],
+    ["pasta", "Pasta", 24],
     ["coffee", "Sıcak İçecekler", 24],
     ["ice-coffee", "Soğuk Kahveler", 10],
     ["bitki-caylari", "Bitki Çayları", 6],
@@ -124,7 +124,7 @@ test("the final customer-approved categories and product groups are published", 
     category.name,
     products.filter(product => product.categories.includes(category.id)).length
   ]), expected);
-  assert.equal(products.length, 110);
+  assert.equal(products.length, 108);
   assert.equal(new Set(products.map(product => product.id)).size, products.length);
   assert.ok(products.every(product => product.categories.every(id => categories.some(category => category.id === id))));
   assert.doesNotMatch(JSON.stringify({ categories, products }), /fl[aâ]neur|fl[aâ]nöz|demo-/i);
@@ -146,7 +146,7 @@ test("removed product records are not exposed", () => {
     "french-kiss", "hawana-special", "kamikaze-redbull", "daffy-duck-redbull",
     "apex-redbull", "berry-margarita", "tropical-rush", "ice-chai-tea-latte",
     "ice-single-americano", "vanilya-latte", "single-americano", "kuzu-kulagi",
-    "green-apple-kokteyl"
+    "green-apple-kokteyl", "frambuaz", "fransiz-ekler"
   ];
   assert.deepEqual(products.filter(product => removed.includes(product.id)), []);
 });
@@ -158,7 +158,7 @@ test("customer-approved prices and the intentionally unpriced birthday cake are 
     "sutlu-cikolata-spoonful": 220, "lotus-spoonful": 220, "san-sebastian": 220,
     "san-sebastian-sutlu-cikolata": 220, "orman-meyveli-cheesecake": 220, "ekstra-muz": 50,
     "ekstra-cilek": 50, "ekstra-cikolata": 50, "magnolya": 220, "pavlova": 220,
-    "profiterol": 220, "budapeste": 220, "frambuaz": 220, "fransiz-ekler": 150,
+    "profiterol": 220, "budapeste": 220,
     "rulo-pasta-muzlu-cikolata": 220, "cupta-cikolatali-spoonful": 150,
     "cupta-orman-meyveli-spoonful": 150, "ruby-mono": 220,
     "latte": 175, "filtre-kahve": 150, "sutlu-filtre": 175,
@@ -193,7 +193,7 @@ test("customer-approved prices and the intentionally unpriced birthday cake are 
     "flamingo-milkshake": 225, "coko-coko-milkshake": 225, "sakura": 175,
     "turunc-bahcesi": 175, "kirmizi-bahar": 175, "blody-jack": 240, "cindirella": 240
   };
-  assert.equal(Object.keys(expectedPrices).length, 109);
+  assert.equal(Object.keys(expectedPrices).length, 107);
   for (const [id, price] of Object.entries(expectedPrices)) {
     assert.equal(products.find(product => product.id === id)?.price, price, id);
   }
@@ -274,11 +274,11 @@ test("provided Pasta images are connected to the matching products", () => {
   const pastaProducts = products.filter(product => product.categories.includes("pasta"));
   const withImages = pastaProducts.filter(product => product.image);
   const latestIds = [
-    "budapeste", "frambuaz", "fransiz-ekler", "lotus-spoonful", "magnolya", "pavlova",
+    "budapeste", "lotus-spoonful", "magnolya", "pavlova",
     "profiterol", "ruby-mono", "rulo-pasta-muzlu-cikolata", "cupta-cikolatali-spoonful",
     "cupta-orman-meyveli-spoonful"
   ];
-  assert.equal(withImages.length, 26);
+  assert.equal(withImages.length, 24);
   assert.deepEqual(pastaProducts.filter(product => !product.image), []);
   assert.equal(latestIds.every(id => products.find(product => product.id === id).description), true);
 
@@ -403,7 +403,7 @@ test("provided cocktail images and descriptions are connected", () => {
 
 test("screenshot descriptions are available without the removed competitor name", () => {
   const described = products.filter(product => product.description);
-  assert.equal(described.length, 103);
+  assert.equal(described.length, 101);
   assert.match(products.find(product => product.id === "tiramisu").description, /Mascarpone.*espresso/i);
   assert.match(products.find(product => product.id === "kis-cayi").description, /Hibiskus.*adaçayı/i);
   assert.match(products.find(product => product.id === "coko-coko-milkshake").description, /Çikolata.*süt/i);

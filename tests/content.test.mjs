@@ -83,6 +83,10 @@ test("confirmed Şehir Hastanesi details retain both phone numbers without infer
   assert.equal(branch.workingHoursText, "05:30 - 00:00");
   assert.deepEqual(validHours(branch.workingHours), []);
   assert.equal(branch.images.length, 3);
+  assert.deepEqual(branch.images.slice(0, 2).map((image) => [image.src, image.width, image.height]), [
+    ["/assets/images/sube-sehir-hastanesi-gunduz-01.jpeg", 1536, 2048],
+    ["/assets/images/sube-sehir-hastanesi-gunduz-02.jpeg", 1536, 2048]
+  ]);
   assert.equal(branch.images.at(-1).src, "/assets/images/sube-sehir-hastanesi-gece.jpg");
   const business = createStructuredData(siteData)["@graph"].find((item) => item.name === branch.name);
   assert.deepEqual(business.telephone, branch.phones);
@@ -97,14 +101,17 @@ test("confirmed Yeni Sanayi details retain both phone numbers and supplied photo
   assert.deepEqual(branch.phones, ["+90 507 957 25 15", "+90 553 305 38 11"]);
   assert.equal(branch.workingHoursText, "07:00 - 21:00");
   assert.deepEqual(validHours(branch.workingHours), []);
-  assert.deepEqual(branch.images.map((image) => image.src), ["/assets/images/sube-yeni-sanayi-gece.jpg"]);
+  assert.deepEqual(branch.images.map((image) => image.src), [
+    "/assets/images/sube-yeni-sanayi-gece.jpg",
+    "/assets/images/sube-yeni-sanayi-gece-02.jpeg"
+  ]);
   const business = createStructuredData(siteData)["@graph"].find((item) => item.name === branch.name);
   assert.deepEqual(business.telephone, branch.phones);
   assert.equal(business.address.addressLocality, "Kocasinan");
   assert.equal(business.openingHoursSpecification, undefined);
 });
 
-test("confirmed Erkilet Cafe / Pastane details publish with its map and without an unconfirmed image", () => {
+test("confirmed Erkilet Cafe / Pastane details publish with its map and supplied gallery", () => {
   const branch = siteData.branches.find((item) => item.slug === "cafe-pastane");
   assert.equal(branch.name, "Fıstıközü Erkilet Cafe / Pastane");
   assert.equal(branch.label, "Erkilet Cafe / Pastane");
@@ -115,8 +122,11 @@ test("confirmed Erkilet Cafe / Pastane details publish with its map and without 
   assert.equal(branch.mapsUrl, "https://maps.app.goo.gl/U8zMd1uaXp7Lz4hB9");
   assert.match(branch.mapEmbed, /38\.7868438%2C35\.4548983/);
   assert.deepEqual(branch.coordinates, { latitude: 38.7868438, longitude: 35.4548983 });
-  assert.equal(branch.image, "");
-  assert.deepEqual(branch.images, []);
+  assert.equal(branch.image, "/assets/images/sube-erkilet-cafe-pastane-gunduz.jpeg");
+  assert.deepEqual(branch.images.map((image) => image.src), [
+    "/assets/images/sube-erkilet-cafe-pastane-gunduz.jpeg",
+    "/assets/images/sube-erkilet-cafe-pastane-gece.jpeg"
+  ]);
   const business = createStructuredData(siteData)["@graph"].find((item) => item.name === branch.name);
   assert.deepEqual(business.telephone, branch.phones);
   assert.equal(business.address.addressLocality, "Kocasinan");
@@ -126,7 +136,7 @@ test("confirmed Erkilet Cafe / Pastane details publish with its map and without 
     latitude: 38.7868438,
     longitude: 35.4548983
   });
-  assert.equal(business.image, undefined);
+  assert.match(business.image, /sube-erkilet-cafe-pastane-gunduz\.jpeg$/);
 });
 
 test("empty menu and unavailable items do not create placeholder categories", () => {

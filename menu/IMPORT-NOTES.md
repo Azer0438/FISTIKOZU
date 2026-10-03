@@ -1,10 +1,10 @@
 # Menü Revizyon Notları
 
-Son müşteri revizyonu 2 Ekim 2026 tarihinde işlendi. Ürün adları, fiyatlar ve kategori değişiklikleri müşterinin güncel listesinden alındı.
+Son müşteri revizyonu 3 Ekim 2026 tarihinde işlendi. Ürün adları, fiyatlar ve kategori değişiklikleri müşterinin güncel listesinden alındı.
 
 | Kategori | Ürün sayısı |
 | --- | ---: |
-| Pasta | 26 |
+| Pasta | 24 |
 | Sıcak İçecekler | 24 |
 | İçecekler | 17 |
 | Bitki Çayları | 6 |
@@ -15,7 +15,7 @@ Son müşteri revizyonu 2 Ekim 2026 tarihinde işlendi. Ürün adları, fiyatlar
 | Limonata | 4 |
 | Kokteyl | 6 |
 
-Toplam 112 kategori üyeliği ve 110 farklı ürün vardır. Türk Kahvesi ve Limonata tek kayıtla birden fazla kategoride kullanılır.
+Toplam 110 kategori üyeliği ve 108 farklı ürün vardır. Türk Kahvesi ve Limonata tek kayıtla birden fazla kategoride kullanılır.
 
 ## Son Revizyon
 
@@ -27,12 +27,12 @@ Toplam 112 kategori üyeliği ve 110 farklı ürün vardır. Türk Kahvesi ve Li
 - Tüm Bitki Çayları 175 TL olarak güncellendi; Double Americano adı Americano olarak değiştirildi.
 - Flamingo Milkshake Çilekli ve COKO Milkshake Çikolatalı, Kokteyl kategorisinden Milkshake kategorisine taşındı.
 - Beş milkshake, Yeşil Elmalı Limonata, iki salep ve üç aromalı sıcak çikolata eklendi; dört mevcut ürünün fiyatı güncellendi.
-- Pasta kategorisine Magnolya, Pavlova, Profiterol, Budapeşte, Frambuaz, Fransız Ekler, Rulo Pasta Muzlu Çikolata, iki Cupta Spoonful çeşidi ve Ruby Mono eklendi.
+- Pasta kategorisine Magnolya, Pavlova, Profiterol, Budapeşte, Rulo Pasta Muzlu Çikolata, iki Cupta Spoonful çeşidi ve Ruby Mono eklendi; Frambuaz ile Fransız Ekler daha sonra kaldırıldı.
 - Ice Chai Tea Latte, Ice Single Americano, Vanilya Latte, Single Americano, Kuzu Kulağı ve Green Apple Kokteyl kaldırıldı.
 - Ice Double Americano adı Ice Americano olarak güncellendi.
 - Milkshake, Frozen, Frappe ve Limonata kategorileri eklendi; Sıcak İçecekler, Bitki Çayları, Soğuk Kahveler ve Kokteyl yeni ürünlerle güncellendi.
-- Güncel katalogda 109 fiyatlı ürün vardır.
-- Son eklenen 31 ürün ile daha önce görselsiz kalan üç Pasta ürünü için görseller ve kısa açıklamalar eklendi.
+- Güncel katalogda 107 fiyatlı ürün vardır.
+- Son eklenen ürünler ile daha önce görselsiz kalan Pasta ürünleri için görseller ve kısa açıklamalar eklendi.
 - Fiyatı olmayan dokuz kokteyl katalogdan kaldırıldı. Yalnızca Doğum Günü Pastası fiyatsız gösterilir.
 - "Spoonfullar Cupta olacak, çikolatalı, orman meyveli, 150" notu iki ayrı ürün olarak yorumlandı. Doğru ürün görselleri sağlanana kadar görselsiz gösterilir.
 

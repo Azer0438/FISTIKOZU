@@ -36,11 +36,11 @@ export const siteData = {
     {
       id: "sehir-hastanesi", slug: "sehir-hastanesi", name: "Fıstıközü Baklavaları Şehir Hastanesi", label: "Şehir Hastanesi", type: "bakery",
       description: "Fıstıközü Baklavaları Şehir Hastanesi Şubesi ile Kalitenin En TATLI Halini Sizlere Sunmaya Devam Ediyoruz.",
-      image: "/assets/images/sube-sehir-hastanesi-hero.jpeg", imageAlt: "Fıstıközü Baklavaları Şehir Hastanesi şubesi dış görünümü",
-      imageWidth: 1200, imageHeight: 1600,
+      image: "/assets/images/sube-sehir-hastanesi-gunduz-01.jpeg", imageAlt: "Fıstıközü Baklavaları Şehir Hastanesi şubesi dış görünümü",
+      imageWidth: 1536, imageHeight: 2048,
       images: [
-        { src: "/assets/images/sube-sehir-hastanesi-hero.jpeg", alt: "Fıstıközü Baklavaları Şehir Hastanesi şubesi dış görünümü", width: 1200, height: 1600 },
-        { src: "/assets/images/sube-sehir-hastanesi-gallery-01.jpeg", alt: "Fıstıközü Baklavaları Şehir Hastanesi şubesi girişi", width: 1200, height: 1600 },
+        { src: "/assets/images/sube-sehir-hastanesi-gunduz-01.jpeg", alt: "Fıstıközü Baklavaları Şehir Hastanesi şubesi gündüz dış görünümü", width: 1536, height: 2048 },
+        { src: "/assets/images/sube-sehir-hastanesi-gunduz-02.jpeg", alt: "Fıstıközü Baklavaları Şehir Hastanesi şubesi gündüz dış görünümü ve girişi", width: 1536, height: 2048 },
         { src: "/assets/images/sube-sehir-hastanesi-gece.jpg", alt: "Fıstıközü Baklavaları Şehir Hastanesi şubesinin gece görünümü", width: 941, height: 1672 }
       ],
       address: {
@@ -58,7 +58,8 @@ export const siteData = {
       image: "/assets/images/sube-yeni-sanayi-gece.jpg", imageAlt: "Fıstıközü Baklavaları Yeni Sanayi şubesi gece dış görünümü",
       imageWidth: 1254, imageHeight: 1254,
       images: [
-        { src: "/assets/images/sube-yeni-sanayi-gece.jpg", alt: "Fıstıközü Baklavaları Yeni Sanayi şubesinin yağmurlu gece görünümü", width: 1254, height: 1254 }
+        { src: "/assets/images/sube-yeni-sanayi-gece.jpg", alt: "Fıstıközü Baklavaları Yeni Sanayi şubesinin yağmurlu gece görünümü", width: 1254, height: 1254 },
+        { src: "/assets/images/sube-yeni-sanayi-gece-02.jpeg", alt: "Fıstıközü Baklavaları Yeni Sanayi şubesinin gece dış görünümü", width: 1536, height: 2048 }
       ],
       address: {
         streetAddress: "Şeker Mahallesi, 6180. Sokak, Yeni Sanayi Sitesi No: 1", postalCode: "38060",
@@ -72,7 +73,12 @@ export const siteData = {
     {
       id: "cafe-pastane", slug: "cafe-pastane", name: "Fıstıközü Erkilet Cafe / Pastane", label: "Erkilet Cafe / Pastane", type: "cafe",
       description: "Fıstıközü Erkilet Cafe / Pastane, tatlı ve pastane lezzetlerini keyifli bir kafe deneyimiyle buluşturuyor. Kahve çeşitleri, sıcak ve soğuk içecekler, tatlılar ve özenle hazırlanan lezzetler eşliğinde günün her anında güzel bir mola için sizi bekliyoruz.",
-      image: "", imageAlt: "", images: [],
+      image: "/assets/images/sube-erkilet-cafe-pastane-gunduz.jpeg", imageAlt: "Fıstıközü Erkilet Cafe / Pastane gündüz dış görünümü",
+      imageWidth: 1600, imageHeight: 902,
+      images: [
+        { src: "/assets/images/sube-erkilet-cafe-pastane-gunduz.jpeg", alt: "Fıstıközü Erkilet Cafe / Pastane gündüz dış görünümü", width: 1600, height: 902 },
+        { src: "/assets/images/sube-erkilet-cafe-pastane-gece.jpeg", alt: "Fıstıközü Erkilet Cafe / Pastane gece dış görünümü", width: 1600, height: 903 }
+      ],
       address: {
         streetAddress: "Erkilet Bulvarı, Osmangazi Mahallesi, İlkut Apartmanı Altı No: 556/A", postalCode: "38050",
         addressLocality: "Kocasinan", addressRegion: "Kayseri", addressCountry: "TR"
