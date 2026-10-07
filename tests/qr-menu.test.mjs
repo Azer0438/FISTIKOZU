@@ -281,6 +281,7 @@ test("provided Pasta images are connected to the matching products", () => {
     "cupta-orman-meyveli-spoonful"
   ];
   assert.equal(withImages.length, 24);
+  assert.equal(products.find(product => product.id === "fistikli-mono").name, "Fıstıközü Mono");
   assert.deepEqual(pastaProducts.filter(product => !product.image), []);
   assert.equal(latestIds.every(id => products.find(product => product.id === id).description), true);
 
