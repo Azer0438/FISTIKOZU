@@ -3,8 +3,7 @@ FISTIKÖZÜ QR MENÜ FİYAT LİSTESİ
 Toplam benzersiz ürün: 110
 
 PASTA
-Tiramisu: 200 ₺
-Flan Raffaello: 220 ₺
+Tiramisu: 220 ₺
 Tart: 220 ₺
 Amerikan Brownie: 200 ₺
 Çıtır Belçika Çikolatalı Mono: 220 ₺
@@ -24,8 +23,8 @@ Pavlova: 220 ₺
 Profiterol: 220 ₺
 Budapeşte: 220 ₺
 Rulo Pasta Muzlu Çikolata: 220 ₺
-Cupta Çikolatalı Spoonful: 150 ₺
-Cupta Orman Meyveli Spoonful: 150 ₺
+Cupta Çikolatalı Spoonful: 220 ₺
+Cupta Orman Meyveli Spoonful: 220 ₺
 Ruby Mono: 220 ₺
 
 SICAK İÇECEKLER
@@ -58,6 +57,7 @@ Chai Tea Latte: 165 ₺
 SOĞUK KAHVELER
 Ice Latte: 210 ₺
 Ice Filtre Kahve: 180 ₺
+Cold Brew: 210 ₺
 Ice Sütlü Filtre Kahve: 210 ₺
 Ice Americano: 200 ₺
 Ice Mocha: 210 ₺

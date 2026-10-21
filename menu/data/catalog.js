@@ -4,8 +4,7 @@
 const sections = [
   {
     id: "pasta", name: "Pasta", icon: "cake-slice", items: [
-      { id: "tiramisu", name: "Tiramisu", price: 200, description: "Mascarpone peyniri, kedi dili, espresso ve Fransız pastacı kreması.", image: "/menu/images/products/pasta/tiramisu.webp", imageKind: "generated" },
-      { id: "flan-raffaello", name: "Flan Raffaello", price: 220, description: "Beyaz çikolatalı prenses kreması, Hindistan cevizi ve çikolata sos.", image: "/menu/images/products/pasta/flan-raffaello.webp", imageKind: "generated" },
+      { id: "tiramisu", name: "Tiramisu", price: 220, description: "Mascarpone peyniri, kedi dili, espresso ve Fransız pastacı kreması.", image: "/menu/images/products/pasta/tiramisu.webp", imageKind: "generated" },
       { id: "tart", name: "Tart", price: 220, description: "Badem ile yoğrulmuş tart, pastacı kreması ve kırmızı meyveler.", image: "/menu/images/products/pasta/tart.webp", imageKind: "generated" },
       { id: "amerikan-brownie", name: "Amerikan Brownie", price: 200, description: "Sütlü Belçika çikolatası ve vanilyalı dondurma ile servis edilir.", image: "/menu/images/products/pasta/amerikan-brownie.webp", imageKind: "generated" },
       { id: "citir-belcika-cikolatali-mono", name: "Çıtır Belçika Çikolatalı Mono", price: 220, description: "Moelleux kek, pastacı kreması, çikolata sos, fındıklı çikolata kaplama ve mevsim meyveleri.", image: "/menu/images/products/pasta/citir-belcika-cikolatali-mono.webp", imageKind: "generated" },
@@ -25,8 +24,8 @@ const sections = [
       { id: "profiterol", name: "Profiterol", price: 220, description: "Pastacı kreması dolgulu profiterol topları, çikolata sosu ve Antep fıstığı.", image: "/menu/images/products/pasta/profiterol.webp", imageKind: "generated" },
       { id: "budapeste", name: "Budapeşte", price: 220, description: "Fındık unu, çilek ve prenses kreması.", image: "/menu/images/products/pasta/budapeste.webp", imageKind: "generated" },
       { id: "rulo-pasta-muzlu-cikolata", name: "Rulo Pasta Muzlu Çikolata", price: 220, description: "Kakaolu rulo kek, muz, krema ve çikolata sosu.", image: "/menu/images/products/pasta/rulo-pasta-muzlu-cikolata.webp", imageKind: "generated" },
-      { id: "cupta-cikolatali-spoonful", name: "Cupta Çikolatalı Spoonful", price: 150, description: "Kakaolu kek, çikolatalı krema ve çikolata parçaları.", image: "/menu/images/products/pasta/cupta-cikolatali-spoonful.webp", imageKind: "generated" },
-      { id: "cupta-orman-meyveli-spoonful", name: "Cupta Orman Meyveli Spoonful", price: 150, description: "Kakaolu kek, krema ve orman meyveleri.", image: "/menu/images/products/pasta/cupta-orman-meyveli-spoonful.webp", imageKind: "generated" },
+      { id: "cupta-cikolatali-spoonful", name: "Cupta Çikolatalı Spoonful", price: 220, description: "Kakaolu kek, çikolatalı krema ve çikolata parçaları.", image: "/menu/images/products/pasta/cupta-cikolatali-spoonful.webp", imageKind: "generated" },
+      { id: "cupta-orman-meyveli-spoonful", name: "Cupta Orman Meyveli Spoonful", price: 220, description: "Kakaolu kek, krema ve orman meyveleri.", image: "/menu/images/products/pasta/cupta-orman-meyveli-spoonful.webp", imageKind: "generated" },
       { id: "ruby-mono", name: "Ruby Mono", price: 220, description: "Ruby çikolata kaplama, krema, orman meyveleri ve Antep fıstığı.", image: "/menu/images/products/pasta/ruby-mono.webp", imageKind: "generated" }
     ]
   },
@@ -94,6 +93,7 @@ const sections = [
     id: "ice-coffee", name: "Soğuk Kahveler", icon: "glass-water", items: [
       { id: "ice-latte", name: "Ice Latte", price: 210, description: "Espresso, soğuk süt ve buz.", image: "/menu/images/products/cold-coffee/ice-latte.webp", imageKind: "generated" },
       { id: "ice-filtre-kahve", name: "Ice Filtre Kahve", price: 180, description: "Soğuk servis edilen filtre kahve ve buz.", image: "/menu/images/products/cold-coffee/ice-filtre-kahve.webp", imageKind: "generated" },
+      { id: "cold-brew", name: "Cold Brew", price: 210, description: "18 saat boyunca demlenen, lezzetini kavrulmuş kahve çekirdeklerinden alan soğuk kahve.", image: "/menu/images/products/cold-coffee/ice-filtre-kahve.webp", imageKind: "generated" },
       { id: "ice-sutlu-filtre-kahve", name: "Ice Sütlü Filtre Kahve", price: 210, description: "Filtre kahve, soğuk süt ve buz.", image: "/menu/images/products/cold-coffee/ice-sutlu-filtre-kahve.webp", imageKind: "generated" },
       { id: "ice-double-americano", name: "Ice Americano", price: 200, description: "Çift shot espresso, soğuk su ve buz.", image: "/menu/images/products/cold-coffee/ice-double-americano.webp", imageKind: "generated" },
       { id: "ice-mocha", name: "Ice Mocha", price: 210, description: "Espresso, soğuk süt, çikolata ve buz.", image: "/menu/images/products/cold-coffee/ice-mocha.webp", imageKind: "generated" },
