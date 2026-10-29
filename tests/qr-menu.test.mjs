@@ -32,11 +32,11 @@ test("the production QR catalog is independent from homepage data", () => {
   assert.deepEqual(buildCatalog({ categories: [null, {}], products: [null, {}] }), { categories: [], products: [] });
 });
 
-test("maintenance mode temporarily hides the QR menu without removing catalog data", () => {
+test("maintenance switch remains available while the QR menu is open", () => {
   const html = readFileSync(new URL("../menu/index.html", import.meta.url), "utf8");
   const app = readFileSync(new URL("../menu/app.js", import.meta.url), "utf8");
 
-  assert.equal(menuData.settings.maintenance.active, true);
+  assert.equal(menuData.settings.maintenance.active, false);
   assert.equal(menuData.settings.maintenance.title, "QR Menümüz Bakımda");
   assert.match(menuData.settings.maintenance.message, /geçici olarak kullanılamıyor/i);
   assert.match(html, /data-maintenance[^>]*aria-labelledby="maintenance-title"[^>]*hidden/);

@@ -9,9 +9,9 @@ export const menuData = {
   settings: {
     defaultBranch: "cafe-pastane",
     unavailableMode: "hide",
-    // Menüyü geri açmak için yalnızca active değerini false yapın; katalog verileri korunur.
+    // Geçici bakım ekranını açmak için active değerini true yapın; katalog verileri korunur.
     maintenance: {
-      active: true,
+      active: false,
       title: "QR Menümüz Bakımda",
       message: "QR menümüz kısa süreli bir bakım çalışması nedeniyle geçici olarak kullanılamıyor.",
       note: "En kısa sürede yeniden hizmetinizdeyiz."

@@ -28,13 +28,13 @@ test("an empty catalog stays empty and the permanent menu route is preserved", (
   }
 });
 
-test("site maintenance mode hides the homepage and branch views without deleting their data", () => {
+test("site maintenance switch remains available while homepage and branch views are open", () => {
   const home = readFileSync(new URL("../index.html", import.meta.url), "utf8");
   const branchTemplate = readFileSync(new URL("../subeler/index.html", import.meta.url), "utf8");
   const siteScript = readFileSync(new URL("../assets/site.js", import.meta.url), "utf8");
   const branchScript = readFileSync(new URL("../subeler/app.js", import.meta.url), "utf8");
 
-  assert.equal(siteData.siteMaintenance.active, true);
+  assert.equal(siteData.siteMaintenance.active, false);
   assert.equal(siteData.siteMaintenance.title, "Web Sitemiz Bakımda");
   assert.match(siteData.siteMaintenance.message, /geçici olarak kullanılamıyor/i);
   assert.match(home, /classList\.add\("site-loading"\)/);

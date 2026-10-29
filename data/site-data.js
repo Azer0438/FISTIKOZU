@@ -9,9 +9,9 @@ export const siteData = {
   fallbackHeroImage: "/assets/images/baklava-hero.png",
   qrMenuPath: "/menu/",
 
-  // Web sitesini geri açmak için yalnızca active değerini false yapın; tüm içerik korunur.
+  // Geçici bakım ekranını açmak için active değerini true yapın; tüm içerik korunur.
   siteMaintenance: {
-    active: true,
+    active: false,
     title: "Web Sitemiz Bakımda",
     message: "Web sitemiz kısa süreli bir bakım çalışması nedeniyle geçici olarak kullanılamıyor.",
     note: "En kısa sürede yeniden hizmetinizdeyiz."
