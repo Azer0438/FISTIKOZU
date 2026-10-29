@@ -19,6 +19,10 @@ npm run build
 
 Build, `public/` içine sayfaları, görselleri, veri dosyalarını, robots.txt ve sitemap.xml dosyalarını çıkarır. Yapılandırılmış veriler HTML içine build sırasında yazılır. Yerel sunucu `scripts/dev-server.mjs` içinde kalmalıdır; köke `server.mjs` koymak Vercel'in projeyi Node uygulaması olarak algılamasına yol açabilir.
 
+## Site bakım modu
+
+Ana site ve şube sayfalarını geçici olarak kapatmak veya yeniden açmak için `data/site-data.js` içindeki `siteMaintenance.active` değerini kullanın. `true` bakım ekranını, `false` mevcut site içeriğini yeniden gösterir. Bu ayar hiçbir şube veya sayfa verisini silmez. QR menünün bakım modu ayrıca `menu/data/menu-data.js` içindeki `maintenance.active` değerinden yönetilir.
+
 ## İçerik Yönetimi
 
 Şubeler, ana sayfa içeriği, iletişim ve sosyal bağlantılar `data/site-data.js` dosyasından yönetilir. QR menünün ürün ve kategorileri bağımsız `menu/data/catalog.js` dosyasındadır; ayrıntılar [menü dokümanında](menu/README.md). Sadece firma tarafından doğrulanmış gerçek bilgiler eklenmelidir. Boş alanlar ziyaretçiye gösterilmez.

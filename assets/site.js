@@ -51,6 +51,40 @@ function addDetail(container, value, iconName, href) {
   container.append(row);
 }
 
+function activateSiteMaintenance(config) {
+  if (config?.active !== true) return false;
+  const main = document.querySelector("main");
+  if (!main) return false;
+
+  const section = el("section", "site-maintenance");
+  section.dataset.siteMaintenance = "";
+  section.setAttribute("aria-labelledby", "site-maintenance-title");
+
+  const inner = el("div", "site-maintenance-inner container");
+  const logo = el("img", "site-maintenance-logo");
+  logo.src = safeLink(siteData.logoPath) || "/assets/logo-original.jpg";
+  logo.alt = "Fıstıközü logosu";
+  logo.width = 150;
+  logo.height = 150;
+
+  const eyebrow = el("p", "section-kicker", "FISTIKÖZÜ");
+  const title = el("h1", "", config.title || "Web Sitemiz Bakımda");
+  title.id = "site-maintenance-title";
+  const rule = el("span", "site-maintenance-rule");
+  rule.setAttribute("aria-hidden", "true");
+  const message = el("p", "site-maintenance-message", config.message || "Web sitemiz geçici olarak kullanılamıyor.");
+  const note = el("p", "site-maintenance-note");
+  note.append(icon("clock"), el("span", "", config.note || "Lütfen daha sonra tekrar deneyin."));
+
+  inner.append(logo, eyebrow, title, rule, message, note);
+  section.append(inner);
+  main.replaceChildren(section);
+  document.body.classList.add("site-maintenance-mode");
+  document.title = `${config.title || "Bakımdayız"} | Fıstıközü`;
+  document.documentElement.classList.remove("site-loading");
+  return true;
+}
+
 setText("[data-brand]", siteData.brand);
 setText("[data-year]", String(new Date().getFullYear()));
 setText("[data-about-title]", siteData.about?.title);
@@ -61,6 +95,8 @@ document.querySelectorAll("[data-logo]").forEach((image) => {
   if (safeLink(siteData.logoPath)) image.src = siteData.logoPath;
 });
 
+const siteMaintenanceActive = activateSiteMaintenance(siteData.siteMaintenance);
+if (!siteMaintenanceActive) {
 document.querySelectorAll("[data-hero-image]").forEach((image) => {
   if (safeLink(siteData.heroImage)) image.src = siteData.heroImage;
   if (hasText(siteData.heroSrcset)) {
@@ -274,4 +310,7 @@ if ("IntersectionObserver" in window) {
     });
   }, { rootMargin: "-20% 0px -60% 0px" });
   document.querySelectorAll(".hero, #urunler, #subeler, #hakkimizda, #iletisim").forEach((node) => activeSection.observe(node));
+}
+
+document.documentElement.classList.remove("site-loading");
 }

@@ -62,7 +62,9 @@ function renderNotFound() {
 const pathParts = window.location.pathname.split("/").filter(Boolean);
 const slug = pathParts[0] === "subeler" ? pathParts[1] : "";
 
-if (!slug) {
+if (siteData.siteMaintenance?.active === true) {
+  // Bakım görünümünü ortak site betiği oluşturur; şube medyası bu sırada yüklenmez.
+} else if (!slug) {
   window.location.replace("/#subeler");
 } else {
   const branch = (siteData.branches || []).find((item) => (item.slug || item.id) === slug);

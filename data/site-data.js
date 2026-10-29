@@ -9,6 +9,14 @@ export const siteData = {
   fallbackHeroImage: "/assets/images/baklava-hero.png",
   qrMenuPath: "/menu/",
 
+  // Web sitesini geri açmak için yalnızca active değerini false yapın; tüm içerik korunur.
+  siteMaintenance: {
+    active: true,
+    title: "Web Sitemiz Bakımda",
+    message: "Web sitemiz kısa süreli bir bakım çalışması nedeniyle geçici olarak kullanılamıyor.",
+    note: "En kısa sürede yeniden hizmetinizdeyiz."
+  },
+
   about: {
     title: "Geleneğin tadı, bugünün buluşması.",
     description: "Fıstıközü, geleneksel tatları modern ve özenli bir sunum anlayışıyla buluşturur. Baklavadan bir araya gelmenin keyfine uzanan bu hikâyeyi, şubelerimizde ve Fıstıközü Erkilet Cafe / Pastane’de paylaşıyoruz."
