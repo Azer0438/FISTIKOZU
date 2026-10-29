@@ -22,8 +22,8 @@
       document.documentElement.classList.add("qr-loading");
       window.qrLoadingTimer = setTimeout(() => document.documentElement.classList.remove("qr-loading"), 5000);
     </script>
-    <link rel="stylesheet" href="/menu/menu.css?v=6">
-    <script type="module" src="/menu/app.js"></script>
+    <link rel="stylesheet" href="/menu/menu.css?v=7">
+    <script type="module" src="/menu/app.js?v=2"></script>
     <!-- structured-data -->
   </head>
   <body class="qr-page">
@@ -37,6 +37,16 @@
       </div>
     </header>
     <main class="qr-main qr-container" id="main">
+      <section class="qr-maintenance" data-maintenance aria-labelledby="maintenance-title" hidden>
+        <div class="qr-maintenance-inner">
+          <img class="qr-maintenance-logo" data-logo src="/assets/logo-original.jpg" width="150" height="150" alt="Fıstıközü logosu">
+          <p class="qr-eyebrow">FISTIKÖZÜ QR MENÜ</p>
+          <h1 id="maintenance-title" data-maintenance-title>QR Menümüz Bakımda</h1>
+          <span class="qr-maintenance-rule" aria-hidden="true"></span>
+          <p class="qr-maintenance-message" data-maintenance-message>QR menümüz kısa süreli bir bakım çalışması nedeniyle geçici olarak kullanılamıyor.</p>
+          <p class="qr-maintenance-note"><img class="qr-icon" src="/assets/icons/clock.svg" width="20" height="20" alt=""><span data-maintenance-note>En kısa sürede yeniden hizmetinizdeyiz.</span></p>
+        </div>
+      </section>
       <div class="qr-intro" data-intro>
         <p class="qr-eyebrow" data-branch>FISTIKÖZÜ CAFE / PASTANE</p>
         <div class="qr-title-row"><h1 data-title tabindex="-1">Menümüz</h1><span class="qr-title-rule" aria-hidden="true"></span></div>

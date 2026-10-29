@@ -1,5 +1,11 @@
 # Fıstıközü QR Menü
 
+## Bakım modu
+
+QR menüyü geçici olarak kapatmak veya yeniden açmak için `menu/data/menu-data.js`
+dosyasındaki `settings.maintenance.active` değerini kullanın. `true` bakım ekranını,
+`false` mevcut katalog ve ürünleri yeniden gösterir. Bakım modu ürün verilerini silmez.
+
 Normal adres: `/menu/`. Menü artık demo verisi kullanmaz. Eski `?demo=1` bağlantıları da aynı kataloğu açar; şube, masa ve kategori bilgileri korunur.
 
 77 farklı ürün, 6 kategori. Ürünler ve 76 fiyat müşterinin son revizyonuna göre düzenlenmiştir. Yalnızca Doğum Günü Pastası fiyatsız bırakılır. Mevcut içerik açıklamaları kullanıcının sağladığı ekranlardan, yeni ürün açıklamaları ise müşteri notlarından alınmıştır. Aktarım dökümü: [IMPORT-NOTES.md](IMPORT-NOTES.md).

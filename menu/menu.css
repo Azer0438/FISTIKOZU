@@ -30,7 +30,21 @@ ul { list-style: none; margin: 0; padding: 0; }
 .qr-header-title { text-align: center; font-size: 16px; font-weight: 650; line-height: 1.35; overflow-wrap: anywhere; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .qr-main { flex: 1; padding-bottom: 50px; }
 .qr-loading .qr-main { min-height: calc(100svh - 76px); }
-.qr-loading .qr-main > :not(.qr-intro) { visibility: hidden; }
+.qr-loading .qr-main > * { visibility: hidden; }
+.qr-maintenance { min-height: calc(100svh - 230px); display: grid; place-items: center; padding-block: 56px 72px; text-align: center; }
+.qr-maintenance-inner { width: min(100%, 620px); margin-inline: auto; }
+.qr-maintenance-logo { width: 96px; height: 96px; margin: 0 auto 24px; object-fit: contain; border-radius: 50%; }
+.qr-maintenance h1 { font: 44px/1.12 var(--qr-serif); }
+.qr-maintenance .qr-eyebrow { margin-bottom: 10px; }
+.qr-maintenance-rule { display: block; width: 52px; height: 1px; margin: 24px auto; background: var(--qr-gold); }
+.qr-maintenance-message { max-width: 520px; margin-inline: auto; color: var(--qr-muted); font-size: 17px; line-height: 1.7; }
+.qr-maintenance-note { display: inline-flex; align-items: center; justify-content: center; gap: 10px; margin-top: 28px; color: var(--qr-accent); font-size: 13px; font-weight: 650; }
+.qr-maintenance-mode .qr-intro,
+.qr-maintenance-mode .qr-search,
+.qr-maintenance-mode .qr-content,
+.qr-maintenance-mode .qr-empty,
+.qr-maintenance-mode .qr-noscript,
+.qr-maintenance-mode .qr-floating { display: none !important; }
 .qr-intro { position: relative; padding-block: 38px 25px; }
 .qr-eyebrow { font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--qr-accent); margin-bottom: 8px; }
 .qr-title-row { display: flex; align-items: center; gap: 18px; }
@@ -167,6 +181,10 @@ ul { list-style: none; margin: 0; padding: 0; }
 }
 @media (max-width: 430px) {
   .qr-brand > span { font-size: 23px; }
+  .qr-maintenance { min-height: calc(100svh - 250px); padding-block: 42px 58px; }
+  .qr-maintenance-logo { width: 82px; height: 82px; }
+  .qr-maintenance h1 { font-size: 36px; }
+  .qr-maintenance-message { font-size: 15px; }
 }
 @media (max-width: 339px) {
   .qr-category-grid { grid-template-columns: minmax(0, 1fr); }

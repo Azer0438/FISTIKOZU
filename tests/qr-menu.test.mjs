@@ -31,6 +31,19 @@ test("the production QR catalog is independent from homepage data", () => {
   assert.deepEqual(buildCatalog(), { categories: [], products: [] });
   assert.deepEqual(buildCatalog({ categories: [null, {}], products: [null, {}] }), { categories: [], products: [] });
 });
+
+test("maintenance mode temporarily hides the QR menu without removing catalog data", () => {
+  const html = readFileSync(new URL("../menu/index.html", import.meta.url), "utf8");
+  const app = readFileSync(new URL("../menu/app.js", import.meta.url), "utf8");
+
+  assert.equal(menuData.settings.maintenance.active, true);
+  assert.equal(menuData.settings.maintenance.title, "QR Menümüz Bakımda");
+  assert.match(menuData.settings.maintenance.message, /geçici olarak kullanılamıyor/i);
+  assert.match(html, /data-maintenance[^>]*aria-labelledby="maintenance-title"[^>]*hidden/);
+  assert.match(app, /maintenanceActive.*maintenance\.active === true/);
+  assert.match(app, /if \(maintenanceActive\) activateMaintenance\(\)/);
+  assert.equal(products.length, 110);
+});
 test("multiple categories, legacy category, explicit order, active state and empty categories", () => {
   const catalog = buildCatalog(fixture, "cafe-pastane");
   assert.deepEqual(catalog.categories.map(item => item.id), ["b", "a"]);
@@ -99,7 +112,7 @@ test("menu is independent from homepage script and styles; all module syntax is 
   const html = readFileSync(new URL("../menu/index.html", import.meta.url), "utf8");
   const components = readFileSync(new URL("../menu/components.js", import.meta.url), "utf8");
   assert.doesNotMatch(html, /(?:src|href)="\/assets\/(?:site\.js|styles\.css)/);
-  assert.match(html, /src="\/menu\/app\.js"/);
+  assert.match(html, /src="\/menu\/app\.js(?:\?v=\d+)?"/);
   assert.doesNotMatch(components, /Temsili görsel/);
   for (const path of ["app.js", "components.js", "utils/catalog.js", "data/menu-data.js", "data/catalog.js"]) {
     execFileSync(process.execPath, ["--check", fileURLToPath(new URL(`../menu/${path}`, import.meta.url))]);

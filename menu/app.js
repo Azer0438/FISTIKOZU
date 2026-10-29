@@ -13,6 +13,8 @@ if (pageUrl.searchParams.has("demo")) {
 }
 const context = readContext(location.href, siteData.branches, menuData.settings.defaultBranch);
 const data = menuData;
+const maintenance = data.settings.maintenance || {};
+const maintenanceActive = maintenance.active === true;
 const catalog = buildCatalog(data, context.branch?.id);
 const logo = safeLink(siteData.logoPath) || "/assets/logo-original.jpg";
 const currency = data.currency || "TRY";
@@ -43,6 +45,21 @@ if (!schema) {
   document.head.append(schema);
 }
 schema.textContent = JSON.stringify(createStructuredData(siteData, true));
+
+function activateMaintenance() {
+  document.body.classList.add("qr-maintenance-mode");
+  $("[data-maintenance-title]").textContent = maintenance.title || "QR Menümüz Bakımda";
+  $("[data-maintenance-message]").textContent = maintenance.message || "QR menümüz geçici olarak kullanılamıyor.";
+  $("[data-maintenance-note]").textContent = maintenance.note || "Lütfen daha sonra tekrar deneyin.";
+  $("[data-maintenance]").hidden = false;
+  $("[data-back]").hidden = true;
+  $("[data-header-title]").hidden = true;
+  $("[data-brand-link]").hidden = false;
+  $("[data-floating]").hidden = true;
+  document.title = `${maintenance.title || "Bakımdayız"} | Fıstıközü`;
+  clearTimeout(window.qrLoadingTimer);
+  document.documentElement.classList.remove("qr-loading");
+}
 
 function openDialog(dialog) {
   dialog.showModal();
@@ -187,6 +204,9 @@ window.addEventListener("scroll", () => {
   scrollScheduled = true;
   requestAnimationFrame(() => { $("[data-top]").hidden = scrollY < 600; scrollScheduled = false; });
 }, { passive: true });
-render();
-clearTimeout(window.qrLoadingTimer);
-document.documentElement.classList.remove("qr-loading");
+if (maintenanceActive) activateMaintenance();
+else {
+  render();
+  clearTimeout(window.qrLoadingTimer);
+  document.documentElement.classList.remove("qr-loading");
+}
